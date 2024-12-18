@@ -1,0 +1,45 @@
+[2024-12-17T19:22:38.394+0000] {__init__.py:54} DEBUG - Loading core task runner: StandardTaskRunner
+[2024-12-17T19:22:38.422+0000] {base_task_runner.py:73} DEBUG - Planning to run as the  user
+[2024-12-17T19:22:38.433+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T19:22:38.448+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-17T19:22:38.449+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Task Instance Not Running' PASSED: True, Task is not in running state.
+[2024-12-17T19:22:38.457+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-17T19:22:38.458+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Task Instance State' PASSED: True, Task state queued was valid.
+[2024-12-17T19:22:38.462+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Trigger Rule' PASSED: True, The task instance did not have any upstream tasks.
+[2024-12-17T19:22:38.463+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]>
+[2024-12-17T19:22:38.464+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-17T19:22:38.470+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Pool Slots Available' PASSED: True, There are enough open slots in default_pool to execute the task
+[2024-12-17T19:22:38.473+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-17T19:22:38.474+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Trigger Rule' PASSED: True, The task instance did not have any upstream tasks.
+[2024-12-17T19:22:38.475+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]> dependency 'Task Concurrency' PASSED: True, Task concurrency is not set.
+[2024-12-17T19:22:38.481+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [queued]>
+[2024-12-17T19:22:38.481+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2024-12-17T19:22:38.502+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): load_usernames> on 2024-12-17 19:22:36.141404+00:00
+[2024-12-17T19:22:38.516+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=327) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-17T19:22:38.515+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'tiktok_dag', 'load_usernames', 'manual__2024-12-17T19:22:36.141404+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/tiktok_dag.py', '--cfg-path', '/tmp/tmptpryuc7s']
+[2024-12-17T19:22:38.518+0000] {standard_task_runner.py:72} INFO - Started process 329 to run task
+[2024-12-17T19:22:38.518+0000] {standard_task_runner.py:105} INFO - Job 64: Subtask load_usernames
+[2024-12-17T19:22:38.519+0000] {cli_action_loggers.py:79} DEBUG - Calling callbacks: [<function default_action_log at 0x7f3674785da0>]
+[2024-12-17T19:22:38.592+0000] {task_command.py:467} INFO - Running <TaskInstance: tiktok_dag.load_usernames manual__2024-12-17T19:22:36.141404+00:00 [running]> on host b221d1600292
+[2024-12-17T19:22:38.654+0000] {taskinstance.py:2384} DEBUG - Clearing XCom data
+[2024-12-17T19:22:38.673+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields.write with retries. Try 1 of 3
+[2024-12-17T19:22:38.705+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields._do_delete_old_records with retries. Try 1 of 3
+[2024-12-17T19:22:38.720+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tiktok_dag' AIRFLOW_CTX_TASK_ID='load_usernames' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T19:22:36.141404+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-17T19:22:36.141404+00:00'
+[2024-12-17T19:22:38.721+0000] {__init__.py:115} DEBUG - Preparing lineage inlets and outlets
+[2024-12-17T19:22:38.722+0000] {__init__.py:154} DEBUG - inlets: [], outlets: []
+[2024-12-17T19:22:38.723+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T19:22:38.746+0000] {tiktok_dag.py:43} INFO - Successfully loaded 3 usernames from /opt/***/dags/influencers.csv
+[2024-12-17T19:22:38.747+0000] {tiktok_dag.py:44} INFO - Usernames loaded: ['mrbeast', 'jadeanna', 'feyenoord']
+[2024-12-17T19:22:38.765+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-17T19:22:38.766+0000] {__init__.py:77} DEBUG - Lineage called with inlets: [], outlets: []
+[2024-12-17T19:22:38.778+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T19:22:38.779+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=tiktok_dag, task_id=load_usernames, run_id=manual__2024-12-17T19:22:36.141404+00:00, execution_date=20241217T192236, start_date=20241217T192238, end_date=20241217T192238
+[2024-12-17T19:22:38.791+0000] {cli_action_loggers.py:98} DEBUG - Calling callbacks: []
+[2024-12-17T19:22:38.816+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T19:22:38.835+0000] {dagrun.py:968} DEBUG - number of tis tasks for <DagRun tiktok_dag @ 2024-12-17 19:22:36.141404+00:00: manual__2024-12-17T19:22:36.141404+00:00, state:running, queued_at: 2024-12-17 19:22:36.422053+00:00. externally triggered: True>: 2 task(s)
+[2024-12-17T19:22:38.836+0000] {dagrun.py:989} DEBUG - number of scheduleable tasks for <DagRun tiktok_dag @ 2024-12-17 19:22:36.141404+00:00: manual__2024-12-17T19:22:36.141404+00:00, state:running, queued_at: 2024-12-17 19:22:36.422053+00:00. externally triggered: True>: 1 task(s)
+[2024-12-17T19:22:38.837+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T19:22:36.141404+00:00 [None]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-17T19:22:38.838+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T19:22:36.141404+00:00 [None]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-17T19:22:38.839+0000] {taskinstance.py:2613} DEBUG - Dependencies all met for dep_context=None ti=<TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T19:22:36.141404+00:00 [None]>
+[2024-12-17T19:22:38.846+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T19:22:38.850+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

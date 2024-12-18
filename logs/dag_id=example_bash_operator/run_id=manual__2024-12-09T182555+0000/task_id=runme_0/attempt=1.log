@@ -1,0 +1,29 @@
+[2024-12-09T18:26:18.290+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-09T18:26:18.440+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_bash_operator.runme_0 manual__2024-12-09T18:25:55+00:00 [queued]>
+[2024-12-09T18:26:18.572+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_bash_operator.runme_0 manual__2024-12-09T18:25:55+00:00 [queued]>
+[2024-12-09T18:26:18.585+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-09T18:26:19.159+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): runme_0> on 2024-12-09 18:25:55+00:00
+[2024-12-09T18:26:19.333+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_bash_operator', 'runme_0', 'manual__2024-12-09T18:25:55+00:00', '--job-id', '17', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_bash_operator.py', '--cfg-path', '/tmp/tmp4o7uvfq0']
+[2024-12-09T18:26:19.382+0000] {standard_task_runner.py:105} INFO - Job 17: Subtask runme_0
+[2024-12-09T18:26:19.363+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=18935) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-09T18:26:19.496+0000] {standard_task_runner.py:72} INFO - Started process 19001 to run task
+[2024-12-09T18:26:20.131+0000] {task_command.py:467} INFO - Running <TaskInstance: example_bash_operator.runme_0 manual__2024-12-09T18:25:55+00:00 [running]> on host ad295016f549
+[2024-12-09T18:26:20.757+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_bash_operator' AIRFLOW_CTX_TASK_ID='runme_0' AIRFLOW_CTX_EXECUTION_DATE='2024-12-09T18:25:55+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-09T18:25:55+00:00'
+[2024-12-09T18:26:20.760+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-09T18:26:20.761+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-09T18:26:20.762+0000] {logging_mixin.py:190} INFO - Current task name:runme_0 state:running start_date:2024-12-09 18:26:18.448704+00:00
+[2024-12-09T18:26:20.763+0000] {logging_mixin.py:190} INFO - Dag name:example_bash_operator and current dag run status:running
+[2024-12-09T18:26:20.764+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-09T18:26:20.767+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2024-12-09T18:26:20.778+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'echo "example_bash_operator__runme_0__20241209" && sleep 1']
+[2024-12-09T18:26:20.844+0000] {subprocess.py:99} INFO - Output:
+[2024-12-09T18:26:20.850+0000] {subprocess.py:106} INFO - example_bash_operator__runme_0__20241209
+[2024-12-09T18:26:21.854+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2024-12-09T18:26:21.932+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-09T18:26:21.933+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=example_bash_operator, task_id=runme_0, run_id=manual__2024-12-09T18:25:55+00:00, execution_date=20241209T182555, start_date=20241209T182618, end_date=20241209T182621
+[2024-12-09T18:26:21.964+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-09T18:26:21.966+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-09T18:26:21.974+0000] {logging_mixin.py:190} INFO - Dag name:example_bash_operator queued_at:2024-12-09 18:26:09.121855+00:00
+[2024-12-09T18:26:21.976+0000] {logging_mixin.py:190} INFO - Task hostname:ad295016f549 operator:BashOperator
+[2024-12-09T18:26:22.016+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-09T18:26:22.050+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,159 @@
+[2024-12-17T17:40:20.397+0000] {__init__.py:54} DEBUG - Loading core task runner: StandardTaskRunner
+[2024-12-17T17:40:20.454+0000] {base_task_runner.py:73} DEBUG - Planning to run as the  user
+[2024-12-17T17:40:20.468+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-17T17:40:20.511+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Task Instance State' PASSED: True, Task state queued was valid.
+[2024-12-17T17:40:20.512+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Task Instance Not Running' PASSED: True, Task is not in running state.
+[2024-12-17T17:40:20.512+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-17T17:40:20.513+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-17T17:40:20.514+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]>
+[2024-12-17T17:40:20.518+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-17T17:40:20.519+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-17T17:40:20.520+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Task Concurrency' PASSED: True, Task concurrency is not set.
+[2024-12-17T17:40:20.530+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]> dependency 'Pool Slots Available' PASSED: True, There are enough open slots in default_pool to execute the task
+[2024-12-17T17:40:20.534+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [queued]>
+[2024-12-17T17:40:20.535+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2024-12-17T17:40:20.566+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): fetch_all_user_data> on 2024-12-17 17:40:15.433042+00:00
+[2024-12-17T17:40:20.581+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=1622) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-17T17:40:20.581+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'tiktok_dag', 'fetch_all_user_data', 'manual__2024-12-17T17:40:15.433042+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/tiktok_dag.py', '--cfg-path', '/tmp/tmpk3tl43of']
+[2024-12-17T17:40:20.584+0000] {standard_task_runner.py:72} INFO - Started process 1624 to run task
+[2024-12-17T17:40:20.585+0000] {standard_task_runner.py:105} INFO - Job 54: Subtask fetch_all_user_data
+[2024-12-17T17:40:20.586+0000] {cli_action_loggers.py:79} DEBUG - Calling callbacks: [<function default_action_log at 0x7f8722155da0>]
+[2024-12-17T17:40:20.710+0000] {task_command.py:467} INFO - Running <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-17T17:40:15.433042+00:00 [running]> on host 8ee198177aea
+[2024-12-17T17:40:20.781+0000] {taskinstance.py:2384} DEBUG - Clearing XCom data
+[2024-12-17T17:40:20.801+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields.write with retries. Try 1 of 3
+[2024-12-17T17:40:20.836+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields._do_delete_old_records with retries. Try 1 of 3
+[2024-12-17T17:40:20.855+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tiktok_dag' AIRFLOW_CTX_TASK_ID='fetch_all_user_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T17:40:15.433042+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-17T17:40:15.433042+00:00'
+[2024-12-17T17:40:20.859+0000] {__init__.py:115} DEBUG - Preparing lineage inlets and outlets
+[2024-12-17T17:40:20.860+0000] {__init__.py:154} DEBUG - inlets: [], outlets: []
+[2024-12-17T17:40:20.861+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-17T17:40:20.881+0000] {tiktok_dag.py:51} INFO - Fetching data for all usernames...
+[2024-12-17T17:40:20.896+0000] {tiktok_dag.py:53} INFO - Usernames pulled from XCom: ['mrbeast', 'jadeanna', 'feyenoord']
+[2024-12-17T17:40:20.896+0000] {tiktok_dag.py:59} INFO - Fetching data for username: mrbeast
+[2024-12-17T17:40:20.897+0000] {tiktok_etl.py:134} INFO - Now in function tiktok_get_user_info, getting mrbeast
+[2024-12-17T17:40:20.898+0000] {tiktok_etl.py:141} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNgyPDqxrcckxt1d-KDYDU4OFr7UMQYh3pHDTym9rRjGwCNZCJ-Oh2yVQv7VAjzbHf8w*0', 'Content-Type': 'application/json'}, Body: {'username': 'mrbeast'}
+[2024-12-17T17:40:20.902+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-17T17:40:21.712+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 401 166
+[2024-12-17T17:40:21.718+0000] {tiktok_etl.py:144} INFO - Call is done...
+[2024-12-17T17:40:21.721+0000] {tiktok_etl.py:164} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-17T17:40:21.722+0000] {tiktok_etl.py:166} INFO - HTTP error occurred: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:21.733+0000] {tiktok_etl.py:167} INFO - Status Code: 401
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:21.736+0000] {tiktok_etl.py:168} INFO - Response Content: {"data":{},"error":{"code":"access_token_invalid","message":"The access token is invalid or not found in the request.","log_id":"20241217174020F3DB9B607CD9820670A7"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:21.738+0000] {tiktok_etl.py:169} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '166', 'X-Janus-Info': 'j5wNYDTGmkhY-ZZaDbHeta4YXQaOx-MI_AxFu-h6hGLspC9ymqGDto0-wUXIZ8fOYNgisXK23BhlNy2SQPRWKfDlIw4BWsn2PIKC95iJELCcmiDJUpkurlyAi7fVxRDyPl8PZf--wDMFiFqi19AGrHB5LRoK9rvJJnJSkeAaOYRlCICx0k9tUiK3safgiH1qGzCkwpdLjNbhoRaoqrLF_vU5Ib9MM0Pt7Wjyfurf30UqLIeAqYVeEDiCTfh2kXAzE2dX1t1p7wIYsGUWRJiA5ZmiWg==', 'X-Tt-Logid': '20241217174020F3DB9B607CD9820670A7', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b89c1f5e66c2bcbded0de039ac7ea739ef1fd247764be2c73838158fce2e303df6f90b8e550c6e478bfca03b7351f0072f3920187571959fbb19f17dc35f8f0ce51d75252086fdd2252046752c59e0724d04e1dc024e734a01a0e033b6f680f4241', 'x-tt-trace-id': '00-241217174020F3DB9B607CD9820670A7-46565B521E3BF337-00', 'X-Origin-Response-Time': '44,23.48.249.167', 'Expires': 'Tue, 17 Dec 2024 17:40:20 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Tue, 17 Dec 2024 17:40:20 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'Server-Timing': 'cdn-cache; desc=MISS, edge; dur=364, origin; dur=44, inner; dur=16', 'X-Parent-Response-Time': '385,2.18.41.47'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:21.742+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: mrbeast
+[2024-12-17T17:40:21.743+0000] {tiktok_dag.py:59} INFO - Fetching data for username: jadeanna
+[2024-12-17T17:40:21.744+0000] {tiktok_etl.py:134} INFO - Now in function tiktok_get_user_info, getting jadeanna
+[2024-12-17T17:40:21.745+0000] {tiktok_etl.py:141} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNgyPDqxrcckxt1d-KDYDU4OFr7UMQYh3pHDTym9rRjGwCNZCJ-Oh2yVQv7VAjzbHf8w*0', 'Content-Type': 'application/json'}, Body: {'username': 'jadeanna'}
+[2024-12-17T17:40:21.747+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-17T17:40:22.241+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 401 166
+[2024-12-17T17:40:22.244+0000] {tiktok_etl.py:144} INFO - Call is done...
+[2024-12-17T17:40:22.245+0000] {tiktok_etl.py:164} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-17T17:40:22.246+0000] {tiktok_etl.py:166} INFO - HTTP error occurred: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.249+0000] {tiktok_etl.py:167} INFO - Status Code: 401
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.251+0000] {tiktok_etl.py:168} INFO - Response Content: {"data":{},"error":{"code":"access_token_invalid","message":"The access token is invalid or not found in the request.","log_id":"2024121717402012FDA0720960E6080C7F"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.254+0000] {tiktok_etl.py:169} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '166', 'X-Janus-Info': 'DTlst-cowE8iSoFD773GRqS7jMLuwXFSJ8c7AW88CewXJv9Jgw1fr4qL9q3mEZeJ5qP9dYvh5pvdk_NF8NLs256u2IvLHaygU-nVz_Mx2Lzz_ziu7HNMV5vpH4mREvwQ4WdznTiNckqRFs6fMsDzPQ7GizFS85XkJymxOrvSuvIL6PFXC53Qq6PHCN0y6K9TisTjkRSxlldHTpJSOTJUIuWFB62NKLildzq2KgDPfhLm_v23hf506P5xJf2Yb0Fnc7C0QweiZlq6PKNRiwqjqBf8Pw==', 'X-Tt-Logid': '2024121717402012FDA0720960E6080C7F', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b89ba88ab879104adf76f3e433fedc8d14d7baa5db43aa6b46df5f0e9b1f5dc15c103974cfff43a3ef4ed6dd308ae378a00f6be985e51522aedfe22beb298864fd3eff20571ec10b4a63a00e1d9696fbe852aeb42f957415649f2693836ad1a42be', 'x-tt-trace-id': '00-24121717402012FDA0720960E6080C7F-79F694F34130BBC5-00', 'X-Origin-Response-Time': '228,23.15.7.190', 'Expires': 'Tue, 17 Dec 2024 17:40:21 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Tue, 17 Dec 2024 17:40:21 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'Server-Timing': 'cdn-cache; desc=MISS, edge; dur=114, origin; dur=228, inner; dur=224', 'X-Parent-Response-Time': '338,2.18.41.9'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.256+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: jadeanna
+[2024-12-17T17:40:22.257+0000] {tiktok_dag.py:59} INFO - Fetching data for username: feyenoord
+[2024-12-17T17:40:22.259+0000] {tiktok_etl.py:134} INFO - Now in function tiktok_get_user_info, getting feyenoord
+[2024-12-17T17:40:22.260+0000] {tiktok_etl.py:141} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNgyPDqxrcckxt1d-KDYDU4OFr7UMQYh3pHDTym9rRjGwCNZCJ-Oh2yVQv7VAjzbHf8w*0', 'Content-Type': 'application/json'}, Body: {'username': 'feyenoord'}
+[2024-12-17T17:40:22.262+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-17T17:40:22.703+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 401 166
+[2024-12-17T17:40:22.706+0000] {tiktok_etl.py:144} INFO - Call is done...
+[2024-12-17T17:40:22.711+0000] {tiktok_etl.py:164} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-17T17:40:22.714+0000] {tiktok_etl.py:166} INFO - HTTP error occurred: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.719+0000] {tiktok_etl.py:167} INFO - Status Code: 401
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.729+0000] {tiktok_etl.py:168} INFO - Response Content: {"data":{},"error":{"code":"access_token_invalid","message":"The access token is invalid or not found in the request.","log_id":"20241217174021CA38AE3D97D75F064070"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.733+0000] {tiktok_etl.py:169} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '166', 'X-Janus-Info': 'CnTgFqDTbLd-z5f8GqWcfBdSTOrFk0msk2tneYF-RmUfQdiX9tFz43GGQOIQoFwCfBtp3dN9mamTEI8XXqljTnOZYIGSpexlYEHUGk-9A5aOqssQQGEIpM5P_8-rJzsT7zDTq2FsRKwfCNYvnyy2P02bAbUW1SjlaVN24UJ9HWLIZAyAWCX79wZFlHLF1DmVi_MFU1ZjUbctjUcEzdrJ_--jDhf3gxRrkdf9P-MDuBd_3GJEBExv1G-gnV7u2EVO8_MXmzySG_P-TwuBVRmExYN7', 'X-Tt-Logid': '20241217174021CA38AE3D97D75F064070', 'Server-Timing': 'inner; dur=14, cdn-cache; desc=MISS, edge; dur=5, origin; dur=316', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b898aa3bdff1ccf1f5766fd2443e47b4d826f9cf972cf36855c12b68c426b114634c0ce1b20c7e8679e1513769c366b695942e702ecb9fb88864f9077d08d0c5a14af3aacf7253a739dc63053324789753c', 'x-tt-trace-id': '00-241217174021CA38AE3D97D75F064070-68CE5F8F3C581CB7-00', 'Expires': 'Tue, 17 Dec 2024 17:40:21 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Tue, 17 Dec 2024 17:40:21 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'X-Origin-Response-Time': '316,2.18.41.47'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 147, in tiktok_get_user_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://open.tiktokapis.com/v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count
+[2024-12-17T17:40:22.737+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: feyenoord
+[2024-12-17T17:40:22.738+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-17T17:40:22.740+0000] {__init__.py:77} DEBUG - Lineage called with inlets: [], outlets: []
+[2024-12-17T17:40:22.757+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-17T17:40:22.761+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=tiktok_dag, task_id=fetch_all_user_data, run_id=manual__2024-12-17T17:40:15.433042+00:00, execution_date=20241217T174015, start_date=20241217T174020, end_date=20241217T174022
+[2024-12-17T17:40:22.784+0000] {cli_action_loggers.py:98} DEBUG - Calling callbacks: []
+[2024-12-17T17:40:22.815+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-17T17:40:22.844+0000] {dagrun.py:968} DEBUG - number of tis tasks for <DagRun tiktok_dag @ 2024-12-17 17:40:15.433042+00:00: manual__2024-12-17T17:40:15.433042+00:00, state:running, queued_at: 2024-12-17 17:40:15.556827+00:00. externally triggered: True>: 2 task(s)
+[2024-12-17T17:40:22.845+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-17T17:40:22.849+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

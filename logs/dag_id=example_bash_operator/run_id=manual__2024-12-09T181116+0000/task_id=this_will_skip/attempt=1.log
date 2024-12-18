@@ -1,0 +1,26 @@
+[2024-12-09T18:11:48.805+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-09T18:11:48.909+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: example_bash_operator.this_will_skip manual__2024-12-09T18:11:16+00:00 [queued]>
+[2024-12-09T18:11:48.999+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: example_bash_operator.this_will_skip manual__2024-12-09T18:11:16+00:00 [queued]>
+[2024-12-09T18:11:49.015+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2024-12-09T18:11:49.207+0000] {taskinstance.py:2889} INFO - Executing <Task(BashOperator): this_will_skip> on 2024-12-09 18:11:16+00:00
+[2024-12-09T18:11:49.653+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'example_bash_operator', 'this_will_skip', 'manual__2024-12-09T18:11:16+00:00', '--job-id', '11', '--raw', '--subdir', '/home/***/.local/lib/python3.12/site-packages/***/example_dags/example_bash_operator.py', '--cfg-path', '/tmp/tmp7vjkl45f']
+[2024-12-09T18:11:49.658+0000] {standard_task_runner.py:105} INFO - Job 11: Subtask this_will_skip
+[2024-12-09T18:11:49.661+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=10827) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-09T18:11:49.665+0000] {standard_task_runner.py:72} INFO - Started process 10909 to run task
+[2024-12-09T18:11:50.953+0000] {task_command.py:467} INFO - Running <TaskInstance: example_bash_operator.this_will_skip manual__2024-12-09T18:11:16+00:00 [running]> on host ad295016f549
+[2024-12-09T18:11:51.879+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='example_bash_operator' AIRFLOW_CTX_TASK_ID='this_will_skip' AIRFLOW_CTX_EXECUTION_DATE='2024-12-09T18:11:16+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-09T18:11:16+00:00'
+[2024-12-09T18:11:51.884+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-09T18:11:51.886+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-09T18:11:51.886+0000] {logging_mixin.py:190} INFO - Current task name:this_will_skip state:running start_date:2024-12-09 18:11:48.917056+00:00
+[2024-12-09T18:11:51.888+0000] {logging_mixin.py:190} INFO - Dag name:example_bash_operator and current dag run status:running
+[2024-12-09T18:11:51.889+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-09T18:11:51.891+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2024-12-09T18:11:51.923+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'echo "hello world"; exit 99;']
+[2024-12-09T18:11:51.940+0000] {subprocess.py:99} INFO - Output:
+[2024-12-09T18:11:52.407+0000] {subprocess.py:106} INFO - hello world
+[2024-12-09T18:11:52.413+0000] {subprocess.py:110} INFO - Command exited with return code 99
+[2024-12-09T18:11:52.420+0000] {taskinstance.py:301} INFO - Bash command returned exit code 99. Skipping.
+[2024-12-09T18:11:52.516+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-09T18:11:52.519+0000] {taskinstance.py:352} INFO - Marking task as SKIPPED. dag_id=example_bash_operator, task_id=this_will_skip, run_id=manual__2024-12-09T18:11:16+00:00, execution_date=20241209T181116, start_date=20241209T181148, end_date=20241209T181152
+[2024-12-09T18:11:52.686+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-09T18:11:52.718+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

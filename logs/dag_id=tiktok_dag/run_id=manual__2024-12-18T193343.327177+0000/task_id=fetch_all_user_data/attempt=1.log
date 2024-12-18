@@ -1,0 +1,241 @@
+[2024-12-18T19:33:47.430+0000] {__init__.py:54} DEBUG - Loading core task runner: StandardTaskRunner
+[2024-12-18T19:33:47.455+0000] {base_task_runner.py:73} DEBUG - Planning to run as the  user
+[2024-12-18T19:33:47.462+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-18T19:33:47.475+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-18T19:33:47.475+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Task Instance Not Running' PASSED: True, Task is not in running state.
+[2024-12-18T19:33:47.476+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Task Instance State' PASSED: True, Task state queued was valid.
+[2024-12-18T19:33:47.483+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-18T19:33:47.484+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]>
+[2024-12-18T19:33:47.491+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Pool Slots Available' PASSED: True, There are enough open slots in default_pool to execute the task
+[2024-12-18T19:33:47.491+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-18T19:33:47.497+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Task Concurrency' PASSED: True, Task concurrency is not set.
+[2024-12-18T19:33:47.497+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-18T19:33:47.498+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [queued]>
+[2024-12-18T19:33:47.499+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2024-12-18T19:33:47.518+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): fetch_all_user_data> on 2024-12-18 19:33:43.327177+00:00
+[2024-12-18T19:33:47.529+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=653) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-18T19:33:47.531+0000] {standard_task_runner.py:72} INFO - Started process 658 to run task
+[2024-12-18T19:33:47.530+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'tiktok_dag', 'fetch_all_user_data', 'manual__2024-12-18T19:33:43.327177+00:00', '--job-id', '81', '--raw', '--subdir', 'DAGS_FOLDER/tiktok_dag.py', '--cfg-path', '/tmp/tmpx7s7j52y']
+[2024-12-18T19:33:47.533+0000] {standard_task_runner.py:105} INFO - Job 81: Subtask fetch_all_user_data
+[2024-12-18T19:33:47.536+0000] {cli_action_loggers.py:79} DEBUG - Calling callbacks: [<function default_action_log at 0x7f2a69185da0>]
+[2024-12-18T19:33:47.599+0000] {task_command.py:467} INFO - Running <TaskInstance: tiktok_dag.fetch_all_user_data manual__2024-12-18T19:33:43.327177+00:00 [running]> on host 00d1ef865b53
+[2024-12-18T19:33:47.660+0000] {taskinstance.py:2384} DEBUG - Clearing XCom data
+[2024-12-18T19:33:47.676+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields.write with retries. Try 1 of 3
+[2024-12-18T19:33:47.702+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields._do_delete_old_records with retries. Try 1 of 3
+[2024-12-18T19:33:47.712+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tiktok_dag' AIRFLOW_CTX_TASK_ID='fetch_all_user_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-18T19:33:43.327177+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-18T19:33:43.327177+00:00'
+[2024-12-18T19:33:47.713+0000] {__init__.py:115} DEBUG - Preparing lineage inlets and outlets
+[2024-12-18T19:33:47.714+0000] {__init__.py:154} DEBUG - inlets: [], outlets: []
+[2024-12-18T19:33:47.715+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-18T19:33:47.731+0000] {tiktok_dag.py:51} INFO - Fetching data for all usernames...
+[2024-12-18T19:33:47.744+0000] {tiktok_dag.py:53} INFO - Usernames pulled from XCom: ['mrbeast', 'jadeanna', 'feyenoord']
+[2024-12-18T19:33:47.745+0000] {tiktok_dag.py:59} INFO - Fetching data for username: mrbeast
+[2024-12-18T19:33:47.745+0000] {tiktok_etl.py:113} INFO - Checking token expiry: {'token': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNgyPDqxrcckxt1d-KDYDU4OFr7UMQYh3pHDTym9rRjGwCNZCJ-Oh2yVQv7VAjzbHf8w*0', 'expires_at': 1734447290.981219}
+[2024-12-18T19:33:47.746+0000] {tiktok_etl.py:76} INFO - Fetching new token...
+[2024-12-18T19:33:47.747+0000] {tiktok_etl.py:86} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/oauth/token/, Headers: {'Content-Type': 'application/x-www-form-urlencoded'}, Body: {'client_key': 'awppjtwldd6o69ll', 'client_secret': 'prK149Sj8dYCkxgvuXMHkaEMG8pw2yIL', 'grant_type': 'client_credentials'}
+[2024-12-18T19:33:47.754+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-18T19:33:48.460+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/oauth/token/ HTTP/11" 200 153
+[2024-12-18T19:33:48.461+0000] {tiktok_etl.py:102} INFO - New token obtained: Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2, expires at 2024-12-18 21:33:48.461520
+[2024-12-18T19:33:48.463+0000] {tiktok_etl.py:132} INFO - Now in function tiktok_get_user_info, getting mrbeast
+[2024-12-18T19:33:48.463+0000] {tiktok_etl.py:139} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2', 'Content-Type': 'application/json'}, Body: {'username': 'mrbeast'}
+[2024-12-18T19:33:48.465+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-18T19:33:49.206+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 200 238
+[2024-12-18T19:33:49.208+0000] {tiktok_etl.py:142} INFO - Call is done...
+[2024-12-18T19:33:49.209+0000] {tiktok_etl.py:149} INFO - Now in function tiktok_get_user_info, getting resp {'data': {'follower_count': 106706660, 'following_count': 362, 'is_verified': True, 'likes_count': 1057766122, 'video_count': 388, 'bio_description': 'I want to make the world a better place', 'display_name': 'MrBeast'}, 'error': {'code': 'ok', 'message': '', 'log_id': '20241218193348A3773BDF2683A60F2DCF'}}
+[2024-12-18T19:33:49.212+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/pymongo/_csot.py:119 UserWarning: MongoClient opened before fork. May not be entirely fork-safe, proceed with caution. See PyMongo's documentation for details: https://www.mongodb.com/docs/languages/python/pymongo-driver/current/faq/#is-pymongo-fork-safe-
+[2024-12-18T19:33:49.214+0000] {logger.py:100} DEBUG - {"message": "Server selection started", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}}
+[2024-12-18T19:33:49.216+0000] {logger.py:100} DEBUG - {"message": "Waiting for suitable server to become available", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Unknown, servers: [<ServerDescription ('mongodb', 27017) server_type: Unknown, rtt: None>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}, "remainingTimeMS": 29}
+[2024-12-18T19:33:49.218+0000] {logger.py:100} DEBUG - {"message": "Server selection succeeded", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Single, servers: [<ServerDescription ('mongodb', 27017) server_type: Standalone, rtt: 0.001544526981888339>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.242+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command started", "command": "{\"insert\": \"user_info\", \"ordered\": true, \"lsid\": {\"id\": {\"$binary\": {\"base64\": \"CqIZLb/ORgagFJzvG/ST+w==\", \"subType\": \"04\"}}}, \"$db\": \"tiktok_db\", \"documents\": [{\"follower_count\": 106706660, \"following_count\": 362, \"is_verified\": true, \"likes_count\": 1057766122, \"video_count\": 388, \"bio_description\": \"I want to make the world a better place\", \"display_name\": \"MrBeast\", \"username\": \"mrbeast\", \"timestamp\": {\"$date\": \"2024-12-18T19:33:49.209Z\"}, \"_id\": {\"$oid\": \"6763239dfa5e6b5cab5b29bd\"}}]}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 596516649, "operationId": 596516649, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.244+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command succeeded", "durationMS": 2.0010000000000003, "reply": "{\"n\": 1, \"ok\": 1.0}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 596516649, "operationId": 596516649, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.245+0000] {tiktok_etl.py:202} INFO - Data for mrbeast inserted into MongoDB successfully.
+[2024-12-18T19:33:49.254+0000] {xcom.py:690} ERROR - Object of type ObjectId is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2024-12-18T19:33:49.255+0000] {tiktok_etl.py:177} INFO - TIKTOK request All Other Exception
+[2024-12-18T19:33:49.256+0000] {tiktok_etl.py:178} INFO - An unexpected error occurred: Object of type ObjectId is not JSON serializable
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 92, in default
+    return serialize(o)
+           ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/serialization/serde.py", line 190, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'bson.objectid.ObjectId'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 158, in tiktok_get_user_info
+    context['ti'].xcom_push(key=f'{username}_info_path', value=resp["data"])
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3639, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 249, in set
+    value = cls.serialize_value(
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 688, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 105, in encode
+    return super().encode(o)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 94, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ObjectId is not JSON serializable
+[2024-12-18T19:33:49.268+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: mrbeast
+[2024-12-18T19:33:49.271+0000] {tiktok_dag.py:59} INFO - Fetching data for username: jadeanna
+[2024-12-18T19:33:49.272+0000] {tiktok_etl.py:113} INFO - Checking token expiry: {'token': 'Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2', 'expires_at': 1734557628.4615197}
+[2024-12-18T19:33:49.273+0000] {tiktok_etl.py:132} INFO - Now in function tiktok_get_user_info, getting jadeanna
+[2024-12-18T19:33:49.273+0000] {tiktok_etl.py:139} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2', 'Content-Type': 'application/json'}, Body: {'username': 'jadeanna'}
+[2024-12-18T19:33:49.275+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-18T19:33:49.842+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 200 291
+[2024-12-18T19:33:49.843+0000] {tiktok_etl.py:142} INFO - Call is done...
+[2024-12-18T19:33:49.844+0000] {tiktok_etl.py:149} INFO - Now in function tiktok_get_user_info, getting resp {'data': {'bio_description': '🧸 founder @bi yù \n🎙️ 1/4 @Confession Club \n💌 jadeanna@ad-venturestudios.com', 'display_name': 'Jade Anna', 'follower_count': 1786473, 'following_count': 1392, 'is_verified': True, 'likes_count': 152866956, 'video_count': 2517}, 'error': {'code': 'ok', 'message': '', 'log_id': '202412181933486B102515299CDE0D666D'}}
+[2024-12-18T19:33:49.845+0000] {logger.py:100} DEBUG - {"message": "Server selection started", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Single, servers: [<ServerDescription ('mongodb', 27017) server_type: Standalone, rtt: 0.001544526981888339>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}}
+[2024-12-18T19:33:49.846+0000] {logger.py:100} DEBUG - {"message": "Server selection succeeded", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Single, servers: [<ServerDescription ('mongodb', 27017) server_type: Standalone, rtt: 0.001544526981888339>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.847+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command started", "command": "{\"insert\": \"user_info\", \"ordered\": true, \"lsid\": {\"id\": {\"$binary\": {\"base64\": \"CqIZLb/ORgagFJzvG/ST+w==\", \"subType\": \"04\"}}}, \"$db\": \"tiktok_db\", \"documents\": [{\"bio_description\": \"\\ud83e\\uddf8 founder @bi y\\u00f9 \\n\\ud83c\\udf99\\ufe0f 1/4 @Confession Club \\n\\ud83d\\udc8c jadeanna@ad-venturestudios.com\", \"display_name\": \"Jade Anna\", \"follower_count\": 1786473, \"following_count\": 1392, \"is_verified\": true, \"likes_count\": 152866956, \"video_count\": 2517, \"username\": \"jadeanna\", \"timestamp\": {\"$date\": \"2024-12-18T19:33:49.845Z\"}, \"_id\": {\"$oid\": \"6763239dfa5e6b5cab5b29be\"}}]}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 1189641421, "operationId": 1189641421, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.849+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command succeeded", "durationMS": 1.818, "reply": "{\"n\": 1, \"ok\": 1.0}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 1189641421, "operationId": 1189641421, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:49.850+0000] {tiktok_etl.py:202} INFO - Data for jadeanna inserted into MongoDB successfully.
+[2024-12-18T19:33:49.858+0000] {xcom.py:690} ERROR - Object of type ObjectId is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2024-12-18T19:33:49.860+0000] {tiktok_etl.py:177} INFO - TIKTOK request All Other Exception
+[2024-12-18T19:33:49.860+0000] {tiktok_etl.py:178} INFO - An unexpected error occurred: Object of type ObjectId is not JSON serializable
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 92, in default
+    return serialize(o)
+           ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/serialization/serde.py", line 190, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'bson.objectid.ObjectId'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 158, in tiktok_get_user_info
+    context['ti'].xcom_push(key=f'{username}_info_path', value=resp["data"])
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3639, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 249, in set
+    value = cls.serialize_value(
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 688, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 105, in encode
+    return super().encode(o)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 94, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ObjectId is not JSON serializable
+[2024-12-18T19:33:49.866+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: jadeanna
+[2024-12-18T19:33:49.867+0000] {tiktok_dag.py:59} INFO - Fetching data for username: feyenoord
+[2024-12-18T19:33:49.868+0000] {tiktok_etl.py:113} INFO - Checking token expiry: {'token': 'Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2', 'expires_at': 1734557628.4615197}
+[2024-12-18T19:33:49.870+0000] {tiktok_etl.py:132} INFO - Now in function tiktok_get_user_info, getting feyenoord
+[2024-12-18T19:33:49.871+0000] {tiktok_etl.py:139} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/user/info/, Headers: {'Authorization': 'Bearer clt.2.6mssWgcTtVli3K3ThuQRJ96HpOhR453PB-uGQWiJSL15fCgtGKxO6vYTOBXUrbjwZUSb-PFMZVl5qDb8CdBbDQ*2', 'Content-Type': 'application/json'}, Body: {'username': 'feyenoord'}
+[2024-12-18T19:33:49.873+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-18T19:33:50.156+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/user/info/?fields=display_name%2Cbio_description%2Cis_verified%2Cfollower_count%2Cfollowing_count%2Clikes_count%2Cvideo_count HTTP/11" 200 289
+[2024-12-18T19:33:50.157+0000] {tiktok_etl.py:142} INFO - Call is done...
+[2024-12-18T19:33:50.158+0000] {tiktok_etl.py:149} INFO - Now in function tiktok_get_user_info, getting resp {'data': {'likes_count': 33318899, 'video_count': 1104, 'bio_description': 'The official TikTok account of Feyenoord Rotterdam. \n\n𝙵𝚘𝚞𝚗𝚍𝚎𝚍 in 𝟷𝟿𝟶𝟾', 'display_name': 'Feyenoord', 'follower_count': 1792451, 'following_count': 16, 'is_verified': True}, 'error': {'code': 'ok', 'message': '', 'log_id': '20241218193349A3773BDF2683A60F2DFA'}}
+[2024-12-18T19:33:50.159+0000] {logger.py:100} DEBUG - {"message": "Server selection started", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Single, servers: [<ServerDescription ('mongodb', 27017) server_type: Standalone, rtt: 0.001544526981888339>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}}
+[2024-12-18T19:33:50.159+0000] {logger.py:100} DEBUG - {"message": "Server selection succeeded", "selector": "<function writable_server_selector at 0x7f2a4f2cda80>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 6763239b1287049e885b29bc, topology_type: Single, servers: [<ServerDescription ('mongodb', 27017) server_type: Standalone, rtt: 0.001544526981888339>]>", "clientId": {"$oid": "6763239b1287049e885b29bc"}, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:50.160+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command started", "command": "{\"insert\": \"user_info\", \"ordered\": true, \"lsid\": {\"id\": {\"$binary\": {\"base64\": \"CqIZLb/ORgagFJzvG/ST+w==\", \"subType\": \"04\"}}}, \"$db\": \"tiktok_db\", \"documents\": [{\"likes_count\": 33318899, \"video_count\": 1104, \"bio_description\": \"The official TikTok account of Feyenoord Rotterdam. \\n\\n\\ud835\\ude75\\ud835\\ude98\\ud835\\ude9e\\ud835\\ude97\\ud835\\ude8d\\ud835\\ude8e\\ud835\\ude8d in \\ud835\\udff7\\ud835\\udfff\\ud835\\udff6\\ud835\\udffe\", \"display_name\": \"Feyenoord\", \"follower_count\": 1792451, \"following_count\": 16, \"is_verified\": true, \"username\": \"feyenoord\", \"timestamp\": {\"$date\": \"2024-12-18T19:33:50.158Z\"}, \"_id\": {\"$oid\": \"6763239efa5e6b5cab5b29bf\"}}]}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 1025202362, "operationId": 1025202362, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:50.162+0000] {logger.py:100} DEBUG - {"clientId": {"$oid": "6763239b1287049e885b29bc"}, "message": "Command succeeded", "durationMS": 1.7650000000000001, "reply": "{\"n\": 1, \"ok\": 1.0}", "commandName": "insert", "databaseName": "tiktok_db", "requestId": 1025202362, "operationId": 1025202362, "driverConnectionId": 1, "serverConnectionId": 78, "serverHost": "mongodb", "serverPort": 27017}
+[2024-12-18T19:33:50.163+0000] {tiktok_etl.py:202} INFO - Data for feyenoord inserted into MongoDB successfully.
+[2024-12-18T19:33:50.177+0000] {xcom.py:690} ERROR - Object of type ObjectId is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2024-12-18T19:33:50.180+0000] {tiktok_etl.py:177} INFO - TIKTOK request All Other Exception
+[2024-12-18T19:33:50.182+0000] {tiktok_etl.py:178} INFO - An unexpected error occurred: Object of type ObjectId is not JSON serializable
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 92, in default
+    return serialize(o)
+           ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/serialization/serde.py", line 190, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'bson.objectid.ObjectId'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 158, in tiktok_get_user_info
+    context['ti'].xcom_push(key=f'{username}_info_path', value=resp["data"])
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3639, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 249, in set
+    value = cls.serialize_value(
+            ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/xcom.py", line 688, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 105, in encode
+    return super().encode(o)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/json.py", line 94, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ObjectId is not JSON serializable
+[2024-12-18T19:33:50.193+0000] {tiktok_dag.py:62} INFO - Successfully fetched data for username: feyenoord
+[2024-12-18T19:33:50.197+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-18T19:33:50.207+0000] {__init__.py:77} DEBUG - Lineage called with inlets: [], outlets: []
+[2024-12-18T19:33:50.225+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-18T19:33:50.228+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=tiktok_dag, task_id=fetch_all_user_data, run_id=manual__2024-12-18T19:33:43.327177+00:00, execution_date=20241218T193343, start_date=20241218T193347, end_date=20241218T193350
+[2024-12-18T19:33:50.254+0000] {cli_action_loggers.py:98} DEBUG - Calling callbacks: []
+[2024-12-18T19:33:50.295+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-18T19:33:50.329+0000] {dagrun.py:968} DEBUG - number of tis tasks for <DagRun tiktok_dag @ 2024-12-18 19:33:43.327177+00:00: manual__2024-12-18T19:33:43.327177+00:00, state:running, queued_at: 2024-12-18 19:33:43.354992+00:00. externally triggered: True>: 2 task(s)
+[2024-12-18T19:33:50.330+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-18T19:33:50.337+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
