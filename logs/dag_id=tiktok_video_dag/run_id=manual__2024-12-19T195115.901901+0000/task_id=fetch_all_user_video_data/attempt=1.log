@@ -1,0 +1,167 @@
+[2024-12-19T19:51:40.831+0000] {__init__.py:54} DEBUG - Loading core task runner: StandardTaskRunner
+[2024-12-19T19:51:40.855+0000] {base_task_runner.py:73} DEBUG - Planning to run as the  user
+[2024-12-19T19:51:40.862+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-19T19:51:40.881+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-19T19:51:40.884+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Task Instance Not Running' PASSED: True, Task is not in running state.
+[2024-12-19T19:51:40.885+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Task Instance State' PASSED: True, Task state queued was valid.
+[2024-12-19T19:51:40.893+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-19T19:51:40.894+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]>
+[2024-12-19T19:51:40.903+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Pool Slots Available' PASSED: True, There are enough open slots in default_pool to execute the task
+[2024-12-19T19:51:40.904+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Previous Dagrun State' PASSED: True, The task did not have depends_on_past set.
+[2024-12-19T19:51:40.910+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Task Concurrency' PASSED: True, Task concurrency is not set.
+[2024-12-19T19:51:40.911+0000] {taskinstance.py:2625} DEBUG - <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]> dependency 'Not In Retry Period' PASSED: True, The task instance was not marked for retrying.
+[2024-12-19T19:51:40.912+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [queued]>
+[2024-12-19T19:51:40.913+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 2
+[2024-12-19T19:51:40.939+0000] {taskinstance.py:2889} INFO - Executing <Task(PythonOperator): fetch_all_user_video_data> on 2024-12-19 19:51:15.901901+00:00
+[2024-12-19T19:51:40.952+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=26404) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-12-19T19:51:40.954+0000] {standard_task_runner.py:72} INFO - Started process 26419 to run task
+[2024-12-19T19:51:40.952+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'tiktok_video_dag', 'fetch_all_user_video_data', 'manual__2024-12-19T19:51:15.901901+00:00', '--job-id', '93', '--raw', '--subdir', 'DAGS_FOLDER/tiktok_video_dag.py', '--cfg-path', '/tmp/tmpnlhts5de']
+[2024-12-19T19:51:40.955+0000] {standard_task_runner.py:105} INFO - Job 93: Subtask fetch_all_user_video_data
+[2024-12-19T19:51:40.957+0000] {cli_action_loggers.py:79} DEBUG - Calling callbacks: [<function default_action_log at 0x7f2a69185da0>]
+[2024-12-19T19:51:41.038+0000] {task_command.py:467} INFO - Running <TaskInstance: tiktok_video_dag.fetch_all_user_video_data manual__2024-12-19T19:51:15.901901+00:00 [running]> on host 00d1ef865b53
+[2024-12-19T19:51:41.087+0000] {taskinstance.py:2384} DEBUG - Clearing XCom data
+[2024-12-19T19:51:41.105+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields.write with retries. Try 1 of 3
+[2024-12-19T19:51:41.131+0000] {retries.py:95} DEBUG - Running RenderedTaskInstanceFields._do_delete_old_records with retries. Try 1 of 3
+[2024-12-19T19:51:41.142+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tiktok_video_dag' AIRFLOW_CTX_TASK_ID='fetch_all_user_video_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-19T19:51:15.901901+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-19T19:51:15.901901+00:00'
+[2024-12-19T19:51:41.143+0000] {__init__.py:115} DEBUG - Preparing lineage inlets and outlets
+[2024-12-19T19:51:41.144+0000] {__init__.py:154} DEBUG - inlets: [], outlets: []
+[2024-12-19T19:51:41.145+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-19T19:51:41.167+0000] {tiktok_video_dag.py:51} INFO - Fetching video data for all usernames...
+[2024-12-19T19:51:41.179+0000] {tiktok_video_dag.py:53} INFO - Usernames pulled from XCom: ['mrbeast', 'jadeanna', 'feyenoord']
+[2024-12-19T19:51:41.180+0000] {tiktok_video_dag.py:59} INFO - Fetching data for username: mrbeast
+[2024-12-19T19:51:41.181+0000] {tiktok_etl.py:114} INFO - Checking token expiry: {'token': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNgyPDqxrcckxt1d-KDYDU4OFr7UMQYh3pHDTym9rRjGwCNZCJ-Oh2yVQv7VAjzbHf8w*0', 'expires_at': 1734447290.981219}
+[2024-12-19T19:51:41.182+0000] {tiktok_etl.py:77} INFO - Fetching new token...
+[2024-12-19T19:51:41.184+0000] {tiktok_etl.py:87} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/oauth/token/, Headers: {'Content-Type': 'application/x-www-form-urlencoded'}, Body: {'client_key': 'awppjtwldd6o69ll', 'client_secret': 'prK149Sj8dYCkxgvuXMHkaEMG8pw2yIL', 'grant_type': 'client_credentials'}
+[2024-12-19T19:51:41.187+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-19T19:51:42.127+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/oauth/token/ HTTP/11" 200 None
+[2024-12-19T19:51:42.129+0000] {tiktok_etl.py:103} INFO - New token obtained: Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0, expires at 2024-12-19 21:51:42.128824
+[2024-12-19T19:51:42.131+0000] {tiktok_etl.py:194} INFO - Now in function tiktok_get_user_video_info, getting mrbeast
+[2024-12-19T19:51:42.132+0000] {tiktok_etl.py:201} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/video/query/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0', 'Content-Type': 'application/json'}, Body: {'query': {'and': [{'operation': 'IN', 'field_name': 'username', 'field_values': ['mrbeast']}]}, 'max_count': 100, 'start_date': '20240101', 'end_date': '20241231'}
+[2024-12-19T19:51:42.136+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-19T19:51:42.854+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label HTTP/11" 400 168
+[2024-12-19T19:51:42.855+0000] {tiktok_etl.py:204} INFO - Call is done...
+[2024-12-19T19:51:42.856+0000] {tiktok_etl.py:228} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-19T19:51:42.857+0000] {tiktok_etl.py:230} INFO - HTTP error occurred: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:42.862+0000] {tiktok_etl.py:231} INFO - Status Code: 400
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:42.865+0000] {tiktok_etl.py:232} INFO - Response Content: {"error":{"code":"invalid_params","message":"the field favourites_count is not a valid field for /research/video/query/","log_id":"20241219195141EC138342A16CF511C5F4"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:42.869+0000] {tiktok_etl.py:233} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '168', 'X-Janus-Info': 'WYEdTnDhuAZ5eQz-OwYU8BwxfwgCNf8LesFJ2Qx-QymOaVuKrXPJcIBliDfDiik34fFhBPWKdx76job7RMmxQ4GhYlpXvqh9G36S4PL3wuA05jCtTszB6PMspsDhxAusmSUxIGfYw_zVihFYq-A62LaEGF5QS91MpHdEjavRjBdnydznD2Kh-Z0Czf7yRctABNE8-UVFf4f4SKYLm3FvJJz07Wuy3CKGo4SVfrbMTe5pdm1_sLXNvLL9RZJKH06HRa5rnVg3BdDeNa4XjVMoa1Y6O8ci', 'X-Tt-Logid': '20241219195141EC138342A16CF511C5F4', 'Server-Timing': 'inner; dur=250, cdn-cache; desc=MISS, edge; dur=6, origin; dur=557', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b893fb075a92faa4def34909c3344d4293bc9ebbeeb437778e2dada1d2a62cf593403edbd60876f45fbd12b5f3b8891b5b59897060798e0922485c2b8b65a8e7f6af7e9a599237ab512d995813d59521e30', 'x-tt-trace-id': '00-241219195141EC138342A16CF511C5F4-2A83D4FF2C058511-00', 'Expires': 'Thu, 19 Dec 2024 19:51:41 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Thu, 19 Dec 2024 19:51:41 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'X-Origin-Response-Time': '558,2.18.41.139'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:42.872+0000] {tiktok_video_dag.py:62} INFO - Successfully fetched data for username: mrbeast
+[2024-12-19T19:51:42.873+0000] {tiktok_video_dag.py:59} INFO - Fetching data for username: jadeanna
+[2024-12-19T19:51:42.873+0000] {tiktok_etl.py:114} INFO - Checking token expiry: {'token': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0', 'expires_at': 1734645102.1288235}
+[2024-12-19T19:51:42.874+0000] {tiktok_etl.py:194} INFO - Now in function tiktok_get_user_video_info, getting jadeanna
+[2024-12-19T19:51:42.875+0000] {tiktok_etl.py:201} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/video/query/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0', 'Content-Type': 'application/json'}, Body: {'query': {'and': [{'operation': 'IN', 'field_name': 'username', 'field_values': ['jadeanna']}]}, 'max_count': 100, 'start_date': '20240101', 'end_date': '20241231'}
+[2024-12-19T19:51:42.876+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-19T19:51:43.139+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label HTTP/11" 400 168
+[2024-12-19T19:51:43.143+0000] {tiktok_etl.py:204} INFO - Call is done...
+[2024-12-19T19:51:43.144+0000] {tiktok_etl.py:228} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-19T19:51:43.145+0000] {tiktok_etl.py:230} INFO - HTTP error occurred: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.148+0000] {tiktok_etl.py:231} INFO - Status Code: 400
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.153+0000] {tiktok_etl.py:232} INFO - Response Content: {"error":{"code":"invalid_params","message":"the field favourites_count is not a valid field for /research/video/query/","log_id":"20241219195142FF7B1BA0EC2A5A11CCA0"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.156+0000] {tiktok_etl.py:233} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '168', 'X-Janus-Info': 'M5HR5bMjIjWzWsj6sNamxM_v_3B9Mjx-w4_HrJNY9YWW4u3qgOtX9Aop3nVXwdAdZ233z7AYsCo2_-NkS-uyhTHs9nL8SeEVtqAXampouljbr3xS0WF7-Rt5r2SzvlLqsRvEF2fBehTXhXTqTaVW-wTeJxFLMkBxc9oQ_KYwNl98bdRp5waAKriMoWL8jiP6SlN8okF3lhZnbxVPabmfMEAniUc8EeZ7YGaJnUreImnVf3e3DWqDKn8Nfqfl5MKQv0FSAT9zGOlH_8bM_LfpkMcq6C25', 'X-Tt-Logid': '20241219195142FF7B1BA0EC2A5A11CCA0', 'Server-Timing': 'inner; dur=30, cdn-cache; desc=MISS, edge; dur=4, origin; dur=132', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b89481a0d9836a705de59fb385921a47d9be23ab8fad0e8130f385fb4af3614c8153ccecd3e01be26a36f5910f470fb421353cc75937143522ef5bfc9065e4d4a82d17066dfcda4f9c5772686e24c2cb160', 'x-tt-trace-id': '00-241219195142FF7B1BA0EC2A5A11CCA0-19BF1AAD0BFFF1A7-00', 'Expires': 'Thu, 19 Dec 2024 19:51:42 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Thu, 19 Dec 2024 19:51:42 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'X-Origin-Response-Time': '133,2.18.41.194'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.161+0000] {tiktok_video_dag.py:62} INFO - Successfully fetched data for username: jadeanna
+[2024-12-19T19:51:43.163+0000] {tiktok_video_dag.py:59} INFO - Fetching data for username: feyenoord
+[2024-12-19T19:51:43.164+0000] {tiktok_etl.py:114} INFO - Checking token expiry: {'token': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0', 'expires_at': 1734645102.1288235}
+[2024-12-19T19:51:43.165+0000] {tiktok_etl.py:194} INFO - Now in function tiktok_get_user_video_info, getting feyenoord
+[2024-12-19T19:51:43.166+0000] {tiktok_etl.py:201} INFO - Requesting TikTok API with URL: https://open.tiktokapis.com/v2/research/video/query/, Headers: {'Authorization': 'Bearer clt.2.2FPqi0MGZIXZZ3clzQTNg3ByJV1fATWIFAYmiBVj-CBv1xhkg_gMh9O7mw7or9RmjCX9wx_jq2eCIaqSz1XE1w*0', 'Content-Type': 'application/json'}, Body: {'query': {'and': [{'operation': 'IN', 'field_name': 'username', 'field_values': ['feyenoord']}]}, 'max_count': 100, 'start_date': '20240101', 'end_date': '20241231'}
+[2024-12-19T19:51:43.170+0000] {connectionpool.py:1051} DEBUG - Starting new HTTPS connection (1): open.tiktokapis.com:443
+[2024-12-19T19:51:43.668+0000] {connectionpool.py:546} DEBUG - https://open.tiktokapis.com:443 "POST /v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label HTTP/11" 400 168
+[2024-12-19T19:51:43.671+0000] {tiktok_etl.py:204} INFO - Call is done...
+[2024-12-19T19:51:43.672+0000] {tiktok_etl.py:228} INFO - TIKTOK request requests.exceptions.HTTPError
+[2024-12-19T19:51:43.672+0000] {tiktok_etl.py:230} INFO - HTTP error occurred: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.675+0000] {tiktok_etl.py:231} INFO - Status Code: 400
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.678+0000] {tiktok_etl.py:232} INFO - Response Content: {"error":{"code":"invalid_params","message":"the field favourites_count is not a valid field for /research/video/query/","log_id":"20241219195142191521C60CED9011B9BF"}}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.680+0000] {tiktok_etl.py:233} INFO - Response Headers: {'Server': 'nginx', 'Content-Type': 'application/json', 'Content-Length': '168', 'X-Janus-Info': 'EzRcbH4msNN-pgUTKrwmF5d0303inODG_NcrYMSEaIolg9lVrLXfntZUWtdr3QHEDUdABw2H2YmzmWp0BC5S_Rr54WEKgLucHy3CGOcVatjGjcNJwc-Zg3p0yS9w0mox3PMmUPFcuQATVJ52Q12t8sT0ikaEQWdaXdTo_RXbcK0krlI_pVcQ6KQjSekhF1E3_qmPmxRWjkt0jvDezOhTQ88zOsD5Pfi9OMbMZgA5qbFJ2oKiw0I_UlJhtxOsiKi6bignIwVQ6UIPkIJMpT77oY-xine7', 'X-Tt-Logid': '20241219195142191521C60CED9011B9BF', 'x-tt-trace-host': '01e319d294f34508800034e1c707e44b89b18abf3a1fd99af94a0ef5c34712389be4f4e478a005ba4f7c5901e9b518cd30f5916be17f40b3e5eea94b4c72f5c52b54e7d2547a16dd0a23e5348fb03f9025c37bcfa0fc861dcbc0a1ad0a34a04407c6f00fe7c2b21cb338fc626670a45c7d', 'x-tt-trace-id': '00-241219195142191521C60CED9011B9BF-2065E5867CF9F569-00', 'X-Origin-Response-Time': '34,104.96.220.63', 'Expires': 'Thu, 19 Dec 2024 19:51:42 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Thu, 19 Dec 2024 19:51:42 GMT', 'Connection': 'close', 'x-tt-trace-tag': 'id=16;cdn-cache=miss;type=dyn', 'Server-Timing': 'cdn-cache; desc=MISS, edge; dur=326, origin; dur=32, inner; dur=28', 'X-Parent-Response-Time': '354,2.18.41.139'}
+Traceback (most recent call last):
+  File "/opt/airflow/dags/tiktok_etl.py", line 207, in tiktok_get_user_video_info
+    response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://open.tiktokapis.com/v2/research/video/query/?fields=id%2C+video_description%2C+create_time%2C+region_code%2C+share_count%2C+view_count%2C+like_count%2C+comment_count%2C+music_id%2C+hashtag_names%2C+username%2C+effect_ids%2C+playlist_id%2Cvoice_to_text%2C+is_stem_verified%2C+favourites_count%2C+video_duration%2C+hashtag_info_list%2C+video_mention_list%2C+video_label
+[2024-12-19T19:51:43.683+0000] {tiktok_video_dag.py:62} INFO - Successfully fetched data for username: feyenoord
+[2024-12-19T19:51:43.685+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-12-19T19:51:43.686+0000] {__init__.py:77} DEBUG - Lineage called with inlets: [], outlets: []
+[2024-12-19T19:51:43.699+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-19T19:51:43.700+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=tiktok_video_dag, task_id=fetch_all_user_video_data, run_id=manual__2024-12-19T19:51:15.901901+00:00, execution_date=20241219T195115, start_date=20241219T195140, end_date=20241219T195143
+[2024-12-19T19:51:43.812+0000] {cli_action_loggers.py:98} DEBUG - Calling callbacks: []
+[2024-12-19T19:51:43.828+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-19T19:51:43.851+0000] {dagrun.py:968} DEBUG - number of tis tasks for <DagRun tiktok_video_dag @ 2024-12-19 19:51:15.901901+00:00: manual__2024-12-19T19:51:15.901901+00:00, state:running, queued_at: 2024-12-19 19:51:16.366740+00:00. externally triggered: True>: 2 task(s)
+[2024-12-19T19:51:43.853+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-19T19:51:43.968+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -14,7 +14,7 @@ from bson import ObjectId
 #client = pymongo.MongoClient("mongodb://airflow:tiktok@localhost:27017/") use this client if app is running outside the container
 client = pymongo.MongoClient("mongodb://airflow:tiktok@mongodb:27017/")
 db = client["tiktok_db"]  # Database name
-collection = db["user_info"]  # Collection name
+#collection = db["user_info"]  # Collection name
 
 # Set up logging - log to airflow logs & console
 logger = logging.getLogger("airflow.task")
@@ -117,7 +117,8 @@ def is_token_expired(token_info):
     return time.time() >= token_info["expires_at"]
 
 
-def tiktok_get_user_info(username: str,output_dir:str, **context):
+def tiktok_get_user_info(username: str, output_dir:str, **context):
+    collection = db["user_info"]
     if context is None:
         context = {} 
     # Load the token
@@ -132,7 +133,7 @@ def tiktok_get_user_info(username: str,output_dir:str, **context):
 
     logger.info(f"Now in function tiktok_get_user_info, getting {username}")
     url = 'https://open.tiktokapis.com/v2/research/user/info/'
-    params = {"fields": "display_name,bio_description,is_verified,follower_count,following_count,likes_count,video_count"}
+    params = {"fields": "display_name, bio_description, is_verified, follower_count, following_count, likes_count, video_count"}
     body = {"username": username}
     headers = {"Authorization":   token_info["token"], "Content-Type" : "application/json"}
     
@@ -153,7 +154,7 @@ def tiktok_get_user_info(username: str,output_dir:str, **context):
         # file_path = store_data(resp["data"], f"user_info_{username}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json", output_dir)
 
          # Insert data into MongoDB
-        store_data_in_mongodb(resp["data"], username)
+        store_data_in_mongodb(resp["data"], username, collection)
 
         if 'ti' in context:
             resp["data"]["_id"] = str(resp["data"].get("_id", ObjectId()))
@@ -179,8 +180,68 @@ def tiktok_get_user_info(username: str,output_dir:str, **context):
         logger.info("TIKTOK request All Other Exception")
         logger.info(f"An unexpected error occurred: {e}", exc_info=True)
 
+def tiktok_get_user_video_info(username:str, output_dir:str, **context):
+    collection = db["user_video"]
+    if context is None:
+        context = {} 
+    # Load the token
+    token_info = load_token_from_config()
 
- 
+    if is_token_expired(token_info):
+         client_key = config["TIKTOK"]["CLIENT_KEY"]
+         client_secret = config["TIKTOK"]["CLIENT_SECRET"]
+         token_info = get_new_token(client_key, client_secret)
+    
+    
+    logger.info(f"Now in function tiktok_get_user_video_info, getting {username}")
+    url = 'https://open.tiktokapis.com/v2/research/video/query/'
+    headers = {"Authorization" : token_info["token"], "Content-Type" : "application/json"}
+    params = {"fields": "id, video_description, create_time, region_code, share_count, view_count, like_count, comment_count, music_id, hashtag_names, username, effect_ids, playlist_id,voice_to_text, is_stem_verified, video_duration, hashtag_info_list, video_mention_list, video_label"}
+    body = {"query": {"and" : [{"operation": "IN","field_name": "username", "field_values": [username]}]},"max_count": 100, "start_date": "20241123", "end_date": "20241219"}
+
+    try:
+        logger.info(f"Requesting TikTok API with URL: {url}, Headers: {headers}, Body: {body}")
+        # request
+        response = requests.request("POST", url, headers = headers, params = params ,json = body,  timeout=10)
+        logger.info("Call is done...")
+
+        # If the request was successful, process the response
+        response.raise_for_status()  # This will raise an exception for 4xx/5xx errors
+
+        # Access the response data
+        resp = response.json()
+        logger.info(f"Now in function tiktok_get_user_info, getting resp {resp}")
+
+        # add current timestamp to the filename
+        # file_path = store_data(resp["data"], f"user_info_{username}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json", output_dir)
+
+         # Insert data into MongoDB
+        store_data_in_mongodb(resp["data"], username,collection)
+
+        if 'ti' in context:
+            resp["data"]["_id"] = str(resp["data"].get("_id", ObjectId()))
+            context['ti'].xcom_push(key=f'{username}_info_path', value=resp["data"])
+
+        df = pd.DataFrame([resp["data"]])  # Wrap the dictionary in a list to create a single-row DataFrame
+
+        return df
+
+    except requests.exceptions.HTTPError as http_err:
+        logger.info("TIKTOK request requests.exceptions.HTTPError")
+        # Print detailed information about the error
+        logger.info(f"HTTP error occurred: {http_err}", exc_info=True)
+        logger.info(f"Status Code: {response.status_code}", exc_info=True)
+        logger.info(f"Response Content: {response.text}", exc_info=True)
+        logger.info(f"Response Headers: {response.headers}", exc_info=True)
+        
+    except requests.exceptions.RequestException as err:
+        logger.info("TIKTOK request requests.exceptions.RequestException", exc_info=True)
+        logger.info(f"Other error occurred: {err}", exc_info=True)
+
+    except Exception as e:
+        logger.info("TIKTOK request All Other Exception")
+        logger.info(f"An unexpected error occurred: {e}", exc_info=True)
+
 # def store_data(data, file_name, output_dir):
 #     if not os.path.exists(output_dir):
 #         logger.info(f'Creting directory: {output_dir}')
@@ -191,7 +252,7 @@ def tiktok_get_user_info(username: str,output_dir:str, **context):
 #         json.dump(data, f)
 #     return file_path
 
-def store_data_in_mongodb(data, username):
+def store_data_in_mongodb(data, username, collection):
     """
     Insert TikTok user info data into MongoDB collection.
     """

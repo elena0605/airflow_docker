@@ -1,0 +1,1244 @@
+[2024-12-19T19:50:35.377+0000] {processor.py:186} INFO - Started process (PID=26275) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:35.378+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:35.380+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:35.380+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:36.213+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:36.443+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.442+0000] {override.py:1911} INFO - Created Permission View: can edit on DAG:tiktok_video_dag
+[2024-12-19T19:50:36.459+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.459+0000] {override.py:1911} INFO - Created Permission View: can read on DAG:tiktok_video_dag
+[2024-12-19T19:50:36.472+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.471+0000] {override.py:1911} INFO - Created Permission View: can delete on DAG:tiktok_video_dag
+[2024-12-19T19:50:36.492+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.492+0000] {override.py:1911} INFO - Created Permission View: menu access on DAG Run:tiktok_video_dag
+[2024-12-19T19:50:36.506+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.506+0000] {override.py:1911} INFO - Created Permission View: can create on DAG Run:tiktok_video_dag
+[2024-12-19T19:50:36.519+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.518+0000] {override.py:1911} INFO - Created Permission View: can read on DAG Run:tiktok_video_dag
+[2024-12-19T19:50:36.533+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.533+0000] {override.py:1911} INFO - Created Permission View: can delete on DAG Run:tiktok_video_dag
+[2024-12-19T19:50:36.535+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.534+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:50:36.551+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.551+0000] {dag.py:3262} INFO - Creating ORM DAG for tiktok_video_dag
+[2024-12-19T19:50:36.553+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:36.552+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:50:36.630+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.261 seconds
+[2024-12-19T19:50:42.584+0000] {processor.py:186} INFO - Started process (PID=26295) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:42.585+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:42.587+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:42.587+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:43.581+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:43.572+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/tiktok_video_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/tiktok_video_dag.py", line 77, in <module>
+    load_usernames_task >> fetch_user_info_task
+                           ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'fetch_user_info_task' is not defined. Did you mean: 'fetch_user_i_task'?
+[2024-12-19T19:50:43.587+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:43.616+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.050 seconds
+[2024-12-19T19:50:43.768+0000] {processor.py:186} INFO - Started process (PID=26313) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:43.769+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:43.771+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:43.770+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:45.099+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:45.094+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/tiktok_video_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/tiktok_video_dag.py", line 77, in <module>
+    load_usernames_task >> fetch_user_info_task
+                           ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'fetch_user_info_task' is not defined. Did you mean: 'fetch_user_v_task'?
+[2024-12-19T19:50:45.103+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:45.122+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.366 seconds
+[2024-12-19T19:50:49.897+0000] {processor.py:186} INFO - Started process (PID=26322) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:49.899+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:49.902+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:49.901+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:50.982+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:50.973+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/tiktok_video_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/tiktok_video_dag.py", line 77, in <module>
+    load_usernames_task >> fetch_user__task
+                           ^^^^^^^^^^^^^^^^^
+NameError: name 'fetch_user_i_task' is not defined. Did you mean: 'fetch_user_videos_task'?
+[2024-12-19T19:50:50.989+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:51.014+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.135 seconds
+[2024-12-19T19:50:51.972+0000] {processor.py:186} INFO - Started process (PID=26331) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:51.975+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:51.977+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:51.977+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:53.072+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:53.068+0000] {dagbag.py:387} ERROR - Failed to import: /opt/airflow/dags/tiktok_video_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/tiktok_video_dag.py", line 77, in <module>
+    load_usernames_task >> fetch_user_videos_task
+                           ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'fetch_user_vide_task' is not defined. Did you mean: 'fetch_user_videos_task'?
+[2024-12-19T19:50:53.075+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:53.102+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.147 seconds
+[2024-12-19T19:50:58.143+0000] {processor.py:186} INFO - Started process (PID=26349) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:58.144+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:50:58.146+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:58.146+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:58.961+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:50:58.976+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:58.975+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:50:58.991+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:50:58.991+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:50:59.024+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.890 seconds
+[2024-12-19T19:51:29.613+0000] {processor.py:186} INFO - Started process (PID=26384) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:51:29.651+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:51:29.704+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:51:29.693+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:51:39.124+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:51:39.177+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:51:39.176+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:51:39.209+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:51:39.209+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:51:39.243+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 9.978 seconds
+[2024-12-19T19:52:09.465+0000] {processor.py:186} INFO - Started process (PID=26445) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:09.467+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:52:09.471+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:09.470+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:10.285+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:10.315+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:10.314+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:52:10.331+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:10.330+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:52:10.358+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.905 seconds
+[2024-12-19T19:52:40.794+0000] {processor.py:186} INFO - Started process (PID=26488) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:40.796+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:52:40.799+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:40.798+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:41.734+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:52:41.772+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:41.771+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:52:41.793+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:52:41.792+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:52:41.825+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.044 seconds
+[2024-12-19T19:53:12.147+0000] {processor.py:186} INFO - Started process (PID=26521) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:12.149+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:53:12.151+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:12.151+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:12.996+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:13.025+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:13.024+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:53:13.040+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:13.040+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:53:13.068+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.931 seconds
+[2024-12-19T19:53:43.507+0000] {processor.py:186} INFO - Started process (PID=26564) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:43.508+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:53:43.510+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:43.510+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:44.406+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:53:44.456+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:44.455+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:53:44.478+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:53:44.477+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:53:44.511+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.013 seconds
+[2024-12-19T19:54:15.008+0000] {processor.py:186} INFO - Started process (PID=26597) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:15.010+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:54:15.013+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:15.012+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:15.998+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:16.040+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:16.039+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:54:16.057+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:16.057+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:54:16.087+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.091 seconds
+[2024-12-19T19:54:46.589+0000] {processor.py:186} INFO - Started process (PID=26640) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:46.591+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:54:46.594+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:46.594+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:47.502+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:54:47.538+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:47.536+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:54:47.558+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:54:47.558+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:54:47.592+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.012 seconds
+[2024-12-19T19:55:18.007+0000] {processor.py:186} INFO - Started process (PID=26678) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:18.009+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:55:18.012+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:18.011+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:18.809+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:18.837+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:18.837+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:55:18.856+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:18.855+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:55:18.883+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.884 seconds
+[2024-12-19T19:55:49.249+0000] {processor.py:186} INFO - Started process (PID=26716) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:49.250+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:55:49.254+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:49.253+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:50.075+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:55:50.103+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:50.101+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:55:50.120+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:55:50.119+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:55:50.146+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.905 seconds
+[2024-12-19T19:56:20.871+0000] {processor.py:186} INFO - Started process (PID=26754) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:20.876+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:56:20.878+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:20.877+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:21.685+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:21.714+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:21.713+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:56:21.741+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:21.740+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:56:21.768+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.907 seconds
+[2024-12-19T19:56:52.000+0000] {processor.py:186} INFO - Started process (PID=26787) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:52.003+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:56:52.007+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:52.006+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:53.306+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:56:53.337+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:53.336+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:56:53.355+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:56:53.354+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:56:53.539+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.550 seconds
+[2024-12-19T19:57:24.393+0000] {processor.py:186} INFO - Started process (PID=26830) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:24.395+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:57:24.399+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:24.397+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:25.343+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:25.373+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:25.372+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:57:25.388+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:25.388+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:57:25.413+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.028 seconds
+[2024-12-19T19:57:55.617+0000] {processor.py:186} INFO - Started process (PID=26868) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:55.618+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:57:55.624+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:55.620+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:57.164+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:57:57.203+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:57.202+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:57:57.225+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:57:57.224+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:57:57.259+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.660 seconds
+[2024-12-19T19:58:27.482+0000] {processor.py:186} INFO - Started process (PID=26939) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:27.484+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:58:27.487+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:27.487+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:28.318+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:28.348+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:28.347+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:58:28.364+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:28.364+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:58:28.391+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.953 seconds
+[2024-12-19T19:58:58.946+0000] {processor.py:186} INFO - Started process (PID=26977) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:58.948+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:58:58.952+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:58.951+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:59.743+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:58:59.771+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:59.770+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:58:59.785+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:58:59.785+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:58:59.811+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.874 seconds
+[2024-12-19T19:59:30.347+0000] {processor.py:186} INFO - Started process (PID=27016) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:59:30.349+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T19:59:30.351+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:59:30.350+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:59:31.127+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T19:59:31.155+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:59:31.154+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T19:59:31.171+0000] {logging_mixin.py:190} INFO - [2024-12-19T19:59:31.171+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T19:59:31.198+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.858 seconds
+[2024-12-19T20:00:01.841+0000] {processor.py:186} INFO - Started process (PID=27054) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:01.843+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:00:01.845+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:01.845+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:02.592+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:02.621+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:02.619+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:00:02.637+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:02.636+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:00:02.664+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.831 seconds
+[2024-12-19T20:00:33.464+0000] {processor.py:186} INFO - Started process (PID=27092) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:33.466+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:00:33.469+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:33.468+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:34.291+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:00:34.322+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:34.321+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:00:34.340+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:00:34.340+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:00:34.369+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.915 seconds
+[2024-12-19T20:01:04.827+0000] {processor.py:186} INFO - Started process (PID=27130) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:04.830+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:01:04.834+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:04.833+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:05.924+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:05.951+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:05.951+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:01:05.984+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:05.983+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:01:06.014+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.202 seconds
+[2024-12-19T20:01:36.475+0000] {processor.py:186} INFO - Started process (PID=27168) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:36.478+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:01:36.481+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:36.480+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:38.203+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:01:38.248+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:38.247+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:01:38.271+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:01:38.271+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:01:38.302+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.849 seconds
+[2024-12-19T20:02:09.149+0000] {processor.py:186} INFO - Started process (PID=27213) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:09.151+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:02:09.153+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:09.153+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:09.902+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:09.933+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:09.930+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:02:09.947+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:09.946+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:02:09.974+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.833 seconds
+[2024-12-19T20:02:40.663+0000] {processor.py:186} INFO - Started process (PID=27253) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:40.665+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:02:40.667+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:40.666+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:41.466+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:02:41.495+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:41.494+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:02:41.510+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:02:41.510+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:02:41.536+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.881 seconds
+[2024-12-19T20:03:12.080+0000] {processor.py:186} INFO - Started process (PID=27291) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:12.081+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:03:12.084+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:12.083+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:13.672+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:13.708+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:13.707+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:03:13.726+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:13.725+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:03:13.765+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.696 seconds
+[2024-12-19T20:03:44.351+0000] {processor.py:186} INFO - Started process (PID=27329) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:44.353+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:03:44.355+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:44.354+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:45.440+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:03:45.472+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:45.471+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:03:45.491+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:03:45.491+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:03:45.519+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.183 seconds
+[2024-12-19T20:04:16.116+0000] {processor.py:186} INFO - Started process (PID=27367) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:16.118+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:04:16.120+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:16.120+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:16.923+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:16.956+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:16.952+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:04:16.996+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:16.995+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:04:17.023+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.915 seconds
+[2024-12-19T20:04:47.751+0000] {processor.py:186} INFO - Started process (PID=27405) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:47.754+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:04:47.759+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:47.758+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:48.946+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:04:48.979+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:48.978+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:04:48.999+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:04:48.998+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:04:49.030+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.293 seconds
+[2024-12-19T20:05:19.924+0000] {processor.py:186} INFO - Started process (PID=27445) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:19.926+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:05:19.928+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:19.927+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:20.744+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:20.773+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:20.772+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:05:20.788+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:20.788+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:05:20.816+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.899 seconds
+[2024-12-19T20:05:51.451+0000] {processor.py:186} INFO - Started process (PID=27483) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:51.453+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:05:51.455+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:51.455+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:52.275+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:05:52.303+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:52.302+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:05:52.319+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:05:52.319+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:05:52.343+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.903 seconds
+[2024-12-19T20:06:22.894+0000] {processor.py:186} INFO - Started process (PID=27521) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:22.895+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:06:22.897+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:22.897+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:23.675+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:23.703+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:23.701+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:06:23.718+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:23.718+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:06:23.744+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.860 seconds
+[2024-12-19T20:06:54.033+0000] {processor.py:186} INFO - Started process (PID=27559) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:54.035+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:06:54.037+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:54.037+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:54.828+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:06:54.869+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:54.868+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:06:54.891+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:06:54.891+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:06:54.924+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.901 seconds
+[2024-12-19T20:07:25.341+0000] {processor.py:186} INFO - Started process (PID=27602) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:25.343+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:07:25.346+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:25.345+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:26.462+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:26.497+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:26.497+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:07:26.519+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:26.518+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:07:26.550+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.227 seconds
+[2024-12-19T20:07:56.878+0000] {processor.py:186} INFO - Started process (PID=27649) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:56.880+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:07:56.882+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:56.882+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:57.780+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:07:57.815+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:57.814+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:07:57.843+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:07:57.842+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:07:57.906+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.038 seconds
+[2024-12-19T20:08:28.223+0000] {processor.py:186} INFO - Started process (PID=27733) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:08:28.226+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:08:28.228+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:08:28.227+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:08:29.170+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:08:29.207+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:08:29.207+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:08:29.229+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:08:29.228+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:08:29.260+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.046 seconds
+[2024-12-19T20:08:59.910+0000] {processor.py:186} INFO - Started process (PID=27794) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:08:59.911+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:08:59.915+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:08:59.915+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:09:00.849+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:09:00.877+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:09:00.877+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:09:00.900+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:09:00.900+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:09:00.926+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.028 seconds
+[2024-12-19T20:09:31.416+0000] {processor.py:186} INFO - Started process (PID=27835) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:09:31.418+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:09:31.420+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:09:31.420+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:09:32.283+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:09:32.316+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:09:32.315+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:09:32.336+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:09:32.335+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:09:32.364+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.955 seconds
+[2024-12-19T20:10:02.912+0000] {processor.py:186} INFO - Started process (PID=27874) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:02.913+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:10:02.915+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:02.915+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:03.687+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:03.729+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:03.728+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:10:03.749+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:03.749+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:10:03.781+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.878 seconds
+[2024-12-19T20:10:33.890+0000] {processor.py:186} INFO - Started process (PID=27912) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:33.891+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:10:33.895+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:33.893+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:34.741+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:10:34.776+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:34.775+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:10:34.793+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:10:34.792+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:10:34.820+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.942 seconds
+[2024-12-19T20:11:05.324+0000] {processor.py:186} INFO - Started process (PID=27950) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:05.325+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:11:05.331+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:05.328+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:06.168+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:06.206+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:06.205+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:11:06.228+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:06.227+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:11:06.256+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.943 seconds
+[2024-12-19T20:11:36.767+0000] {processor.py:186} INFO - Started process (PID=27988) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:36.768+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:11:36.771+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:36.770+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:37.556+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:11:37.585+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:37.584+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:11:37.600+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:11:37.600+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:11:37.628+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.869 seconds
+[2024-12-19T20:12:08.244+0000] {processor.py:186} INFO - Started process (PID=28026) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:08.246+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:12:08.248+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:08.247+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:09.031+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:09.065+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:09.064+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:12:09.085+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:09.084+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:12:09.111+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.883 seconds
+[2024-12-19T20:12:39.804+0000] {processor.py:186} INFO - Started process (PID=28064) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:39.806+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:12:39.808+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:39.807+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:40.563+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:12:40.591+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:40.591+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:12:40.606+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:12:40.606+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:12:40.633+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.843 seconds
+[2024-12-19T20:13:11.544+0000] {processor.py:186} INFO - Started process (PID=28108) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:11.546+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:13:11.548+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:11.547+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:12.331+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:12.359+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:12.358+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:13:12.377+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:12.377+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:13:12.405+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.869 seconds
+[2024-12-19T20:13:43.128+0000] {processor.py:186} INFO - Started process (PID=28146) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:43.130+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:13:43.132+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:43.132+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:44.232+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:13:44.269+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:44.268+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:13:44.285+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:13:44.284+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:13:44.315+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.200 seconds
+[2024-12-19T20:14:14.660+0000] {processor.py:186} INFO - Started process (PID=28184) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:14.661+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:14:14.665+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:14.665+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:15.880+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:15.918+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:15.918+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:14:15.942+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:15.942+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:14:15.976+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.329 seconds
+[2024-12-19T20:14:46.138+0000] {processor.py:186} INFO - Started process (PID=28222) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:46.139+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:14:46.141+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:46.140+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:47.012+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:14:47.054+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:47.053+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:14:47.078+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:14:47.078+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:14:47.111+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.982 seconds
+[2024-12-19T20:15:17.665+0000] {processor.py:186} INFO - Started process (PID=28260) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:17.666+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:15:17.668+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:17.668+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:18.576+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:18.603+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:18.602+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:15:18.620+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:18.620+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:15:18.650+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.993 seconds
+[2024-12-19T20:15:48.874+0000] {processor.py:186} INFO - Started process (PID=28298) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:48.875+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:15:48.878+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:48.878+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:49.616+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:15:49.646+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:49.646+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:15:49.660+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:15:49.660+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:15:49.685+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.819 seconds
+[2024-12-19T20:16:20.257+0000] {processor.py:186} INFO - Started process (PID=28336) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:20.258+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:16:20.260+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:20.260+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:21.054+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:21.172+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:21.172+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:16:21.187+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:21.187+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:16:21.213+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.964 seconds
+[2024-12-19T20:16:51.727+0000] {processor.py:186} INFO - Started process (PID=28374) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:51.728+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:16:51.730+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:51.730+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:52.521+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:16:52.548+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:52.548+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:16:52.563+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:16:52.563+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:16:52.590+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.871 seconds
+[2024-12-19T20:17:23.434+0000] {processor.py:186} INFO - Started process (PID=28412) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:23.435+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:17:23.437+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:23.437+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:24.217+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:24.245+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:24.244+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:17:24.261+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:24.261+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:17:24.286+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.863 seconds
+[2024-12-19T20:17:54.812+0000] {processor.py:186} INFO - Started process (PID=28450) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:54.815+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:17:54.817+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:54.816+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:55.648+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:17:55.690+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:55.690+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:17:55.710+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:17:55.710+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:17:55.749+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.945 seconds
+[2024-12-19T20:18:26.037+0000] {processor.py:186} INFO - Started process (PID=28488) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:26.039+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:18:26.041+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:26.041+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:26.901+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:26.937+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:26.935+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:18:26.956+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:26.956+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:18:26.986+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.957 seconds
+[2024-12-19T20:18:57.233+0000] {processor.py:186} INFO - Started process (PID=28525) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:57.235+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:18:57.237+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:57.236+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:58.050+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:18:58.078+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:58.077+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:18:58.093+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:18:58.092+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:18:58.129+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.904 seconds
+[2024-12-19T20:19:28.444+0000] {processor.py:186} INFO - Started process (PID=28563) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:19:28.446+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:19:28.448+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:19:28.448+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:19:29.423+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:19:29.456+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:19:29.455+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:19:29.480+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:19:29.479+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:19:29.507+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.072 seconds
+[2024-12-19T20:19:59.722+0000] {processor.py:186} INFO - Started process (PID=28601) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:19:59.723+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:19:59.725+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:19:59.725+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:20:00.530+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:20:00.559+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:20:00.559+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:20:00.574+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:20:00.574+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:20:00.602+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.890 seconds
+[2024-12-19T20:20:30.991+0000] {processor.py:186} INFO - Started process (PID=28640) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:20:30.992+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:20:30.994+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:20:30.994+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:20:31.765+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:20:31.795+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:20:31.794+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:20:31.810+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:20:31.810+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:20:31.837+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.855 seconds
+[2024-12-19T20:21:02.497+0000] {processor.py:186} INFO - Started process (PID=28678) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:02.498+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:21:02.500+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:02.500+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:03.235+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:03.263+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:03.262+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:21:03.276+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:03.276+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:21:03.305+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.817 seconds
+[2024-12-19T20:21:33.457+0000] {processor.py:186} INFO - Started process (PID=28716) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:33.458+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:21:33.460+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:33.459+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:34.276+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:21:34.315+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:34.314+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:21:34.332+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:21:34.332+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:21:34.355+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.906 seconds
+[2024-12-19T20:22:04.502+0000] {processor.py:186} INFO - Started process (PID=28754) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:04.505+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:22:04.507+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:04.507+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:05.310+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:05.340+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:05.339+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:22:05.355+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:05.355+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:22:05.380+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.889 seconds
+[2024-12-19T20:22:35.480+0000] {processor.py:186} INFO - Started process (PID=28792) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:35.481+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:22:35.483+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:35.483+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:36.499+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:22:36.530+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:36.529+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:22:36.545+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:22:36.545+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:22:36.578+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.107 seconds
+[2024-12-19T20:23:06.860+0000] {processor.py:186} INFO - Started process (PID=28830) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:06.862+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:23:06.865+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:06.864+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:07.678+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:07.706+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:07.706+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:23:07.727+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:07.727+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:23:07.767+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.914 seconds
+[2024-12-19T20:23:38.543+0000] {processor.py:186} INFO - Started process (PID=28868) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:38.545+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:23:38.556+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:38.555+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:39.328+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:23:39.358+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:39.357+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:23:39.373+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:23:39.373+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:23:39.400+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.879 seconds
+[2024-12-19T20:24:10.125+0000] {processor.py:186} INFO - Started process (PID=28906) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:10.127+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:24:10.129+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:10.128+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:10.867+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:10.894+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:10.894+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:24:10.916+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:10.915+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:24:10.947+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.831 seconds
+[2024-12-19T20:24:41.623+0000] {processor.py:186} INFO - Started process (PID=28951) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:41.625+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:24:41.629+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:41.628+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:42.515+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:24:42.546+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:42.543+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:24:42.561+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:24:42.561+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:24:42.587+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.973 seconds
+[2024-12-19T20:25:13.101+0000] {processor.py:186} INFO - Started process (PID=28989) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:13.102+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:25:13.104+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:13.104+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:14.010+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:14.045+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:14.044+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:25:14.071+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:14.071+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:25:14.101+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.011 seconds
+[2024-12-19T20:25:44.649+0000] {processor.py:186} INFO - Started process (PID=29032) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:44.651+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:25:44.653+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:44.652+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:45.612+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:25:45.645+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:45.644+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:25:45.660+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:25:45.659+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:25:45.697+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.056 seconds
+[2024-12-19T20:26:16.129+0000] {processor.py:186} INFO - Started process (PID=29070) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:16.131+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:26:16.135+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:16.134+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:17.050+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:17.080+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:17.079+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:26:17.097+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:17.097+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:26:17.118+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.004 seconds
+[2024-12-19T20:26:47.472+0000] {processor.py:186} INFO - Started process (PID=29108) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:47.474+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:26:47.476+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:47.476+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:48.602+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:26:48.633+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:48.632+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:26:48.647+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:26:48.646+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:26:48.672+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.213 seconds
+[2024-12-19T20:27:18.954+0000] {processor.py:186} INFO - Started process (PID=29146) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:18.956+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:27:18.958+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:18.957+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:19.721+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:19.748+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:19.747+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:27:19.767+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:19.767+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:27:19.792+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.847 seconds
+[2024-12-19T20:27:49.992+0000] {processor.py:186} INFO - Started process (PID=29184) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:49.994+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:27:49.996+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:49.995+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:50.759+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:27:50.788+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:50.787+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:27:50.803+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:27:50.803+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:27:50.831+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.848 seconds
+[2024-12-19T20:28:21.605+0000] {processor.py:186} INFO - Started process (PID=29222) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:21.607+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:28:21.610+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:21.609+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:22.623+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:22.661+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:22.660+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:28:22.692+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:22.691+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:28:22.724+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.132 seconds
+[2024-12-19T20:28:53.174+0000] {processor.py:186} INFO - Started process (PID=29260) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:53.176+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:28:53.178+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:53.178+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:53.952+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:28:53.980+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:53.979+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:28:53.996+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:28:53.995+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:28:54.025+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.861 seconds
+[2024-12-19T20:29:24.660+0000] {processor.py:186} INFO - Started process (PID=29298) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:24.662+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:29:24.664+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:24.663+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:25.413+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:25.441+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:25.440+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:29:25.458+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:25.458+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:29:25.483+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.832 seconds
+[2024-12-19T20:29:56.284+0000] {processor.py:186} INFO - Started process (PID=29336) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:56.285+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:29:56.289+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:56.289+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:57.453+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:29:57.496+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:57.495+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:29:57.518+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:29:57.517+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:29:57.555+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.284 seconds
+[2024-12-19T20:30:27.772+0000] {processor.py:186} INFO - Started process (PID=29374) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:30:27.774+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:30:27.776+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:30:27.775+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:30:28.708+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:30:28.758+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:30:28.757+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:30:28.780+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:30:28.780+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:30:28.813+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.056 seconds
+[2024-12-19T20:30:59.195+0000] {processor.py:186} INFO - Started process (PID=29413) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:30:59.196+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:30:59.198+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:30:59.198+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:31:00.010+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:31:00.043+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:31:00.043+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:31:00.062+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:31:00.062+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:31:00.102+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.916 seconds
+[2024-12-19T20:31:30.747+0000] {processor.py:186} INFO - Started process (PID=29451) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:31:30.749+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:31:30.751+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:31:30.750+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:31:31.500+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:31:31.528+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:31:31.528+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:31:31.546+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:31:31.545+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:31:31.573+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.835 seconds
+[2024-12-19T20:32:02.423+0000] {processor.py:186} INFO - Started process (PID=29489) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:02.424+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:32:02.427+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:02.426+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:03.246+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:03.275+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:03.274+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:32:03.291+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:03.291+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:32:03.317+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.903 seconds
+[2024-12-19T20:32:34.086+0000] {processor.py:186} INFO - Started process (PID=29528) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:34.088+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:32:34.090+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:34.089+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:34.837+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:32:34.865+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:34.864+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:32:34.882+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:32:34.882+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:32:34.910+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.834 seconds
+[2024-12-19T20:33:05.436+0000] {processor.py:186} INFO - Started process (PID=29566) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:05.438+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:33:05.442+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:05.441+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:06.364+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:06.412+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:06.411+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:33:06.441+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:06.441+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:33:06.478+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.051 seconds
+[2024-12-19T20:33:36.723+0000] {processor.py:186} INFO - Started process (PID=29604) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:36.724+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:33:36.726+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:36.726+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:37.573+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:33:37.605+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:37.604+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:33:37.623+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:33:37.623+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:33:37.650+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.936 seconds
+[2024-12-19T20:34:08.034+0000] {processor.py:186} INFO - Started process (PID=29643) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:08.037+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:34:08.040+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:08.039+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:08.957+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:08.991+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:08.990+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:34:09.028+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:09.028+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:34:09.059+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.036 seconds
+[2024-12-19T20:34:39.179+0000] {processor.py:186} INFO - Started process (PID=29681) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:39.181+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:34:39.184+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:39.183+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:40.600+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:34:40.635+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:40.635+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:34:40.663+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:34:40.662+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:34:40.699+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.532 seconds
+[2024-12-19T20:35:11.478+0000] {processor.py:186} INFO - Started process (PID=29719) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:11.480+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:35:11.484+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:11.483+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:12.957+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:13.046+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:13.045+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:35:13.100+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:13.100+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:35:13.188+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.726 seconds
+[2024-12-19T20:35:43.561+0000] {processor.py:186} INFO - Started process (PID=29764) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:43.566+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:35:43.569+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:43.568+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:45.102+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:35:45.161+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:45.159+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:35:45.209+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:35:45.209+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:35:45.280+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.748 seconds
+[2024-12-19T20:36:15.514+0000] {processor.py:186} INFO - Started process (PID=29802) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:15.516+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:36:15.529+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:15.519+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:16.538+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:16.571+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:16.571+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:36:16.589+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:16.589+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:36:16.620+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.131 seconds
+[2024-12-19T20:36:46.931+0000] {processor.py:186} INFO - Started process (PID=29839) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:46.933+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:36:46.936+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:46.935+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:47.754+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:36:47.797+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:47.797+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:36:47.818+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:36:47.818+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:36:47.855+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.933 seconds
+[2024-12-19T20:37:18.172+0000] {processor.py:186} INFO - Started process (PID=29877) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:18.174+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:37:18.176+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:18.176+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:18.897+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:18.943+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:18.942+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:37:18.964+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:18.963+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:37:18.995+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.834 seconds
+[2024-12-19T20:37:49.358+0000] {processor.py:186} INFO - Started process (PID=29915) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:49.360+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:37:49.362+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:49.362+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:50.301+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:37:50.340+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:50.339+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:37:50.363+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:37:50.362+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:37:50.394+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.047 seconds
+[2024-12-19T20:38:20.909+0000] {processor.py:186} INFO - Started process (PID=29954) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:20.911+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:38:20.913+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:20.913+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:21.629+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:21.667+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:21.666+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:38:21.688+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:21.688+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:38:21.725+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.827 seconds
+[2024-12-19T20:38:52.192+0000] {processor.py:186} INFO - Started process (PID=29992) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:52.194+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:38:52.196+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:52.195+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:53.289+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:38:53.340+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:53.339+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:38:53.364+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:38:53.364+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:38:53.399+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.218 seconds
+[2024-12-19T20:39:23.702+0000] {processor.py:186} INFO - Started process (PID=30030) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:23.703+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:39:23.707+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:23.707+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:24.843+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:24.922+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:24.921+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:39:24.948+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:24.948+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:39:24.993+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.302 seconds
+[2024-12-19T20:39:55.189+0000] {processor.py:186} INFO - Started process (PID=30068) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:55.191+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:39:55.193+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:55.193+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:56.062+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:39:56.100+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:56.099+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:39:56.123+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:39:56.123+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:39:56.161+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.983 seconds
+[2024-12-19T20:40:26.289+0000] {processor.py:186} INFO - Started process (PID=30106) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:26.291+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:40:26.293+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:26.293+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:27.003+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:27.050+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:27.050+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:40:27.076+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:27.076+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:40:27.117+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.839 seconds
+[2024-12-19T20:40:58.199+0000] {processor.py:186} INFO - Started process (PID=30144) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:58.201+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:40:58.203+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:58.203+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:58.912+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:40:58.950+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:58.949+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:40:58.971+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:40:58.971+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:40:59.003+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.814 seconds
+[2024-12-19T20:41:29.195+0000] {processor.py:186} INFO - Started process (PID=30182) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:41:29.197+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:41:29.200+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:41:29.199+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:41:29.935+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:41:29.973+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:41:29.972+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:41:29.994+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:41:29.993+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:41:30.027+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.841 seconds
+[2024-12-19T20:42:00.639+0000] {processor.py:186} INFO - Started process (PID=30220) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:00.640+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:42:00.643+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:00.642+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:01.387+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:01.423+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:01.422+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:42:01.445+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:01.445+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:42:01.476+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.847 seconds
+[2024-12-19T20:42:32.090+0000] {processor.py:186} INFO - Started process (PID=30258) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:32.092+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:42:32.095+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:32.094+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:33.014+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:42:33.071+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:33.070+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:42:33.092+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:42:33.092+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:42:33.121+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.041 seconds
+[2024-12-19T20:43:04.198+0000] {processor.py:186} INFO - Started process (PID=30295) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:04.200+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:43:04.203+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:04.202+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:04.996+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:05.035+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:05.034+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:43:05.083+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:05.082+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:43:05.125+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.938 seconds
+[2024-12-19T20:43:35.678+0000] {processor.py:186} INFO - Started process (PID=30333) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:35.682+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:43:35.687+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:35.686+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:36.648+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:43:36.697+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:36.697+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:43:36.722+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:43:36.722+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:43:36.754+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.096 seconds
+[2024-12-19T20:44:07.308+0000] {processor.py:186} INFO - Started process (PID=30371) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:07.310+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:44:07.313+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:07.312+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:08.083+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:08.120+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:08.119+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:44:08.143+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:08.143+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:44:08.181+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.885 seconds
+[2024-12-19T20:44:38.999+0000] {processor.py:186} INFO - Started process (PID=30409) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:39.001+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:44:39.003+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:39.003+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:39.712+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:44:39.751+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:39.750+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:44:39.774+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:44:39.774+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:44:39.817+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.829 seconds
+[2024-12-19T20:45:10.264+0000] {processor.py:186} INFO - Started process (PID=30447) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:10.266+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:45:10.269+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:10.268+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:11.060+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:11.097+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:11.096+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:45:11.119+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:11.118+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:45:11.164+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.915 seconds
+[2024-12-19T20:45:42.123+0000] {processor.py:186} INFO - Started process (PID=30491) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:42.125+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:45:42.127+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:42.126+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:43.316+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:45:43.359+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:43.358+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:45:43.385+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:45:43.385+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:45:43.422+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.308 seconds
+[2024-12-19T20:46:14.254+0000] {processor.py:186} INFO - Started process (PID=30529) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:14.256+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:46:14.259+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:14.259+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:15.047+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:15.085+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:15.084+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:46:15.132+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:15.132+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:46:15.164+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.925 seconds
+[2024-12-19T20:46:45.819+0000] {processor.py:186} INFO - Started process (PID=30573) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:45.821+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:46:45.824+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:45.823+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:46.984+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:46:47.064+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:47.062+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:46:47.115+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:46:47.114+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:46:47.177+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.371 seconds
+[2024-12-19T20:47:17.530+0000] {processor.py:186} INFO - Started process (PID=30612) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:17.532+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:47:17.535+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:17.534+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:18.303+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:18.342+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:18.340+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:47:18.363+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:18.362+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:47:18.397+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.879 seconds
+[2024-12-19T20:47:48.983+0000] {processor.py:186} INFO - Started process (PID=30650) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:48.985+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:47:48.987+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:48.987+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:49.969+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:47:50.064+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:50.063+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:47:50.087+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:47:50.086+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:47:50.123+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.151 seconds
+[2024-12-19T20:48:21.189+0000] {processor.py:186} INFO - Started process (PID=30691) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:21.191+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:48:21.194+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:21.193+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:22.027+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:22.076+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:22.075+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:48:22.100+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:22.100+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:48:22.149+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.972 seconds
+[2024-12-19T20:48:52.871+0000] {processor.py:186} INFO - Started process (PID=30729) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:52.873+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:48:52.877+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:52.876+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:54.022+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:48:54.070+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:54.069+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:48:54.095+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:48:54.094+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:48:54.134+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.276 seconds
+[2024-12-19T20:49:24.891+0000] {processor.py:186} INFO - Started process (PID=30767) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:24.893+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:49:24.896+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:24.895+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:25.752+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:25.789+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:25.788+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:49:25.818+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:25.818+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:49:25.861+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.986 seconds
+[2024-12-19T20:49:56.633+0000] {processor.py:186} INFO - Started process (PID=30811) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:56.635+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:49:56.638+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:56.637+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:57.376+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:49:57.413+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:57.412+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:49:57.433+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:49:57.433+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:49:57.484+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.862 seconds
+[2024-12-19T20:50:27.978+0000] {processor.py:186} INFO - Started process (PID=30849) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:50:27.980+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:50:27.982+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:50:27.981+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:50:28.692+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:50:28.728+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:50:28.728+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:50:28.755+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:50:28.755+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:50:28.822+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.855 seconds
+[2024-12-19T20:50:59.299+0000] {processor.py:186} INFO - Started process (PID=30887) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:50:59.301+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:50:59.305+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:50:59.303+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:51:00.026+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:51:00.067+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:51:00.067+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:51:00.088+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:51:00.087+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:51:00.117+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.831 seconds
+[2024-12-19T20:51:30.327+0000] {processor.py:186} INFO - Started process (PID=30926) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:51:30.329+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:51:30.332+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:51:30.331+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:51:31.068+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:51:31.107+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:51:31.106+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:51:31.128+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:51:31.128+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:51:31.161+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.844 seconds
+[2024-12-19T20:52:01.905+0000] {processor.py:186} INFO - Started process (PID=30964) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:01.906+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:52:01.909+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:01.908+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:02.783+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:02.824+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:02.823+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:52:02.849+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:02.849+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:52:02.889+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.001 seconds
+[2024-12-19T20:52:33.601+0000] {processor.py:186} INFO - Started process (PID=31002) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:33.603+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:52:33.605+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:33.605+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:34.376+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:52:34.429+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:34.427+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:52:34.461+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:52:34.461+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:52:34.519+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.929 seconds
+[2024-12-19T20:53:05.044+0000] {processor.py:186} INFO - Started process (PID=31040) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:05.046+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:53:05.048+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:05.048+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:05.835+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:05.874+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:05.873+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:53:05.894+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:05.894+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:53:05.932+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.904 seconds
+[2024-12-19T20:53:36.624+0000] {processor.py:186} INFO - Started process (PID=31078) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:36.626+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:53:36.629+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:36.629+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:37.407+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:53:37.444+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:37.443+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:53:37.465+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:53:37.464+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:53:37.499+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.885 seconds
+[2024-12-19T20:54:08.114+0000] {processor.py:186} INFO - Started process (PID=31116) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:08.115+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:54:08.118+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:08.117+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:08.914+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:08.950+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:08.949+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:54:08.972+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:08.972+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:54:09.006+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.903 seconds
+[2024-12-19T20:54:39.542+0000] {processor.py:186} INFO - Started process (PID=31154) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:39.543+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:54:39.546+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:39.545+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:40.534+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:54:40.684+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:40.683+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:54:40.756+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:54:40.756+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:54:40.832+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.301 seconds
+[2024-12-19T20:55:11.321+0000] {processor.py:186} INFO - Started process (PID=31192) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:11.323+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:55:11.326+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:11.326+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:12.151+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:12.190+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:12.189+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:55:12.210+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:12.210+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:55:12.246+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.936 seconds
+[2024-12-19T20:55:43.015+0000] {processor.py:186} INFO - Started process (PID=31231) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:43.016+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:55:43.019+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:43.018+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:43.974+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:55:44.044+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:44.043+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:55:44.125+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:55:44.125+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:55:44.232+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.230 seconds
+[2024-12-19T20:56:15.143+0000] {processor.py:186} INFO - Started process (PID=31269) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:15.146+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:56:15.149+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:15.148+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:16.319+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:16.366+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:16.365+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:56:16.395+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:16.394+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:56:16.464+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.343 seconds
+[2024-12-19T20:56:47.333+0000] {processor.py:186} INFO - Started process (PID=31314) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:47.340+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:56:47.343+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:47.343+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:48.552+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:56:48.603+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:48.602+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:56:48.638+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:56:48.638+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:56:48.683+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.372 seconds
+[2024-12-19T20:57:19.247+0000] {processor.py:186} INFO - Started process (PID=31352) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:19.248+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:57:19.251+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:19.250+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:20.004+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:20.042+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:20.042+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:57:20.063+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:20.063+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:57:20.104+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.868 seconds
+[2024-12-19T20:57:50.695+0000] {processor.py:186} INFO - Started process (PID=31390) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:50.697+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:57:50.700+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:50.699+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:51.417+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:57:51.455+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:51.454+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:57:51.477+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:57:51.477+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:57:51.512+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.827 seconds
+[2024-12-19T20:58:22.130+0000] {processor.py:186} INFO - Started process (PID=31428) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:22.132+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:58:22.134+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:22.134+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:22.894+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:22.931+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:22.931+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:58:22.953+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:22.952+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:58:22.986+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.866 seconds
+[2024-12-19T20:58:53.605+0000] {processor.py:186} INFO - Started process (PID=31466) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:53.607+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:58:53.613+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:53.611+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:54.435+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:58:54.481+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:54.480+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:58:54.505+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:58:54.505+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:58:54.539+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.953 seconds
+[2024-12-19T20:59:25.241+0000] {processor.py:186} INFO - Started process (PID=31504) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:25.242+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:59:25.245+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:25.245+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:25.997+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:26.038+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:26.037+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:59:26.060+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:26.059+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:59:26.095+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.866 seconds
+[2024-12-19T20:59:56.621+0000] {processor.py:186} INFO - Started process (PID=31542) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:56.623+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T20:59:56.626+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:56.626+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:57.429+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T20:59:57.466+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:57.465+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T20:59:57.491+0000] {logging_mixin.py:190} INFO - [2024-12-19T20:59:57.491+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T20:59:57.541+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.933 seconds
+[2024-12-19T21:00:28.234+0000] {processor.py:186} INFO - Started process (PID=31580) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:00:28.236+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:00:28.239+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:00:28.238+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:00:29.002+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:00:29.044+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:00:29.043+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:00:29.065+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:00:29.065+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:00:29.096+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 0.875 seconds
+[2024-12-19T21:00:59.804+0000] {processor.py:186} INFO - Started process (PID=31623) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:00:59.806+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:00:59.808+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:00:59.807+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:01:00.663+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:01:00.714+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:01:00.714+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:01:01.081+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:01:01.081+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:01:01.134+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.345 seconds
+[2024-12-19T21:01:31.952+0000] {processor.py:186} INFO - Started process (PID=31661) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:01:31.954+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:01:31.956+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:01:31.956+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:01:32.715+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:01:33.103+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:01:32.754+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:01:33.122+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:01:33.121+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:01:33.189+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.247 seconds
+[2024-12-19T21:02:03.417+0000] {processor.py:186} INFO - Started process (PID=31699) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:03.419+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:02:03.422+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:03.421+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:04.655+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:04.699+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:04.697+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:02:04.722+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:04.722+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:02:04.770+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.364 seconds
+[2024-12-19T21:02:34.935+0000] {processor.py:186} INFO - Started process (PID=31737) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:34.937+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:02:34.940+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:34.939+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:35.930+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:02:35.966+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:35.965+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:02:35.987+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:02:35.987+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:02:36.044+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.121 seconds
+[2024-12-19T21:03:06.307+0000] {processor.py:186} INFO - Started process (PID=31775) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:06.309+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:03:06.312+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:06.311+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:07.361+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:07.398+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:07.397+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:03:07.627+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:07.626+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:03:07.663+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.366 seconds
+[2024-12-19T21:03:37.812+0000] {processor.py:186} INFO - Started process (PID=31813) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:37.814+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:03:37.817+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:37.816+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:38.531+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:03:38.769+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:38.570+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:03:38.790+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:03:38.789+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:03:38.829+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.027 seconds
+[2024-12-19T21:04:09.661+0000] {processor.py:186} INFO - Started process (PID=31851) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:04:09.663+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:04:09.666+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:04:09.665+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:04:10.578+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:04:10.612+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:04:10.611+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:04:10.638+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:04:10.638+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:04:10.671+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.020 seconds
+[2024-12-19T21:59:16.743+0000] {processor.py:186} INFO - Started process (PID=31891) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:16.757+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:59:16.771+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:16.770+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:24.466+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:24.663+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:24.652+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:59:24.741+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:24.741+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:59:24.879+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 8.180 seconds
+[2024-12-19T21:59:55.636+0000] {processor.py:186} INFO - Started process (PID=31934) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:55.640+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T21:59:55.646+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:55.645+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:57.393+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T21:59:57.451+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:57.450+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T21:59:57.996+0000] {logging_mixin.py:190} INFO - [2024-12-19T21:59:57.996+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T21:59:58.078+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 2.464 seconds
+[2024-12-19T22:00:28.969+0000] {processor.py:186} INFO - Started process (PID=31981) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:00:28.971+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:00:28.975+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:00:28.974+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:00:30.206+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:00:30.504+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:00:30.503+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:00:30.579+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:00:30.579+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:00:30.754+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.803 seconds
+[2024-12-19T22:01:00.916+0000] {processor.py:186} INFO - Started process (PID=32019) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:00.917+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:01:00.920+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:00.919+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:01.976+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:02.014+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:02.013+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:01:02.039+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:02.039+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:01:02.079+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.176 seconds
+[2024-12-19T22:01:32.206+0000] {processor.py:186} INFO - Started process (PID=32075) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:32.209+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:01:32.213+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:32.212+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:33.386+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:01:33.439+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:33.437+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:01:33.759+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:01:33.758+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:01:33.794+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.605 seconds
+[2024-12-19T22:02:04.234+0000] {processor.py:186} INFO - Started process (PID=32158) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:04.236+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:02:04.238+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:04.238+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:05.379+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:05.436+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:05.435+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:02:05.461+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:05.459+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:02:05.515+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.293 seconds
+[2024-12-19T22:02:36.357+0000] {processor.py:186} INFO - Started process (PID=32196) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:36.368+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:02:36.372+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:36.371+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:39.183+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:02:39.264+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:39.257+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:02:39.345+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:02:39.344+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:02:39.414+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 3.086 seconds
+[2024-12-19T22:03:09.758+0000] {processor.py:186} INFO - Started process (PID=32248) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:09.764+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:03:09.769+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:09.768+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:13.587+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:13.856+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:13.854+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:03:14.144+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:14.144+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:03:14.369+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 4.645 seconds
+[2024-12-19T22:03:45.252+0000] {processor.py:186} INFO - Started process (PID=32295) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:45.255+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:03:45.258+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:45.257+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:47.387+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:03:47.436+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:47.435+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:03:47.462+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:03:47.462+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:03:47.498+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 2.270 seconds
+[2024-12-19T22:04:18.609+0000] {processor.py:186} INFO - Started process (PID=32334) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:18.619+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:04:18.634+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:18.630+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:21.459+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:21.580+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:21.579+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:04:21.603+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:21.603+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:04:21.640+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 3.127 seconds
+[2024-12-19T22:04:52.080+0000] {processor.py:186} INFO - Started process (PID=32372) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:52.082+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:04:52.087+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:52.086+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:53.743+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:04:53.783+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:53.781+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:04:53.814+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:04:53.813+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:04:53.846+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.786 seconds
+[2024-12-19T22:05:24.179+0000] {processor.py:186} INFO - Started process (PID=32410) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:24.180+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:05:24.183+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:24.182+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:25.528+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:25.579+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:25.578+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:05:25.603+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:25.603+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:05:25.637+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.472 seconds
+[2024-12-19T22:05:56.475+0000] {processor.py:186} INFO - Started process (PID=32448) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:56.477+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:05:56.480+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:56.479+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:58.058+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:05:58.104+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:58.103+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:05:58.129+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:05:58.129+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:05:58.192+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.734 seconds
+[2024-12-19T22:06:28.332+0000] {processor.py:186} INFO - Started process (PID=32486) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:06:28.334+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:06:28.337+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:06:28.337+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:06:29.918+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:06:29.989+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:06:29.988+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:06:30.039+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:06:30.038+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:06:30.137+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.823 seconds
+[2024-12-19T22:07:00.366+0000] {processor.py:186} INFO - Started process (PID=32524) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:00.368+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:07:00.371+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:00.370+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:02.065+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:02.111+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:02.110+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:07:02.133+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:02.132+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:07:02.168+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.817 seconds
+[2024-12-19T22:07:33.118+0000] {processor.py:186} INFO - Started process (PID=32562) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:33.124+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:07:33.128+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:33.127+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:35.135+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:07:35.199+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:35.198+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:07:35.240+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:07:35.240+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:07:35.292+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 2.226 seconds
+[2024-12-19T22:08:05.585+0000] {processor.py:186} INFO - Started process (PID=32609) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:05.587+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:08:05.595+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:05.590+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:07.487+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:07.551+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:07.550+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:08:07.619+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:07.619+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:08:07.662+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 2.107 seconds
+[2024-12-19T22:08:37.943+0000] {processor.py:186} INFO - Started process (PID=32664) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:37.946+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:08:37.950+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:37.949+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:39.483+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:08:39.574+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:39.561+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:08:39.681+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:08:39.680+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:08:39.776+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.847 seconds
+[2024-12-19T22:09:10.132+0000] {processor.py:186} INFO - Started process (PID=32703) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:10.135+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:09:10.138+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:10.137+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:11.447+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:11.491+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:11.490+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:09:11.516+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:11.516+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:09:11.568+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.454 seconds
+[2024-12-19T22:09:42.049+0000] {processor.py:186} INFO - Started process (PID=32741) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:42.052+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:09:42.055+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:42.054+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:43.418+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:09:43.473+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:43.472+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:09:43.507+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:09:43.507+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:09:43.559+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.527 seconds
+[2024-12-19T22:10:14.222+0000] {processor.py:186} INFO - Started process (PID=32779) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:14.224+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:10:14.228+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:14.227+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:17.173+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:17.431+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:17.416+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:10:17.597+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:17.597+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:10:17.656+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 3.455 seconds
+[2024-12-19T22:10:47.965+0000] {processor.py:186} INFO - Started process (PID=32823) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:47.968+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:10:47.973+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:47.972+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:49.506+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:10:49.616+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:49.614+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:10:49.692+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:10:49.692+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:10:49.797+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.851 seconds
+[2024-12-19T22:11:20.184+0000] {processor.py:186} INFO - Started process (PID=32862) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:20.186+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:11:20.188+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:20.187+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:21.672+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:21.719+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:21.718+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:11:21.754+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:21.754+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:11:21.815+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.643 seconds
+[2024-12-19T22:11:52.486+0000] {processor.py:186} INFO - Started process (PID=32900) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:52.488+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:11:52.491+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:52.490+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:53.942+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:11:53.986+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:53.985+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:11:54.013+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:11:54.012+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:11:54.054+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.594 seconds
+[2024-12-19T22:12:24.428+0000] {processor.py:186} INFO - Started process (PID=32943) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:24.430+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:12:24.433+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:24.433+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:25.827+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:25.878+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:25.877+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:12:25.908+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:25.907+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:12:25.967+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.554 seconds
+[2024-12-19T22:12:56.476+0000] {processor.py:186} INFO - Started process (PID=32981) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:56.483+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:12:56.486+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:56.485+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:58.141+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:12:58.213+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:58.211+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:12:58.250+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:12:58.250+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:12:58.292+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 1.840 seconds
+[2024-12-19T22:13:29.057+0000] {processor.py:186} INFO - Started process (PID=33019) to work on /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:13:29.059+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_video_dag.py for tasks to queue
+[2024-12-19T22:13:29.076+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:13:29.075+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:13:31.911+0000] {processor.py:925} INFO - DAG(s) 'tiktok_video_dag' retrieved from /opt/airflow/dags/tiktok_video_dag.py
+[2024-12-19T22:13:32.024+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:13:32.022+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2024-12-19T22:13:32.124+0000] {logging_mixin.py:190} INFO - [2024-12-19T22:13:32.123+0000] {dag.py:4180} INFO - Setting next_dagrun for tiktok_video_dag to None, run_after=None
+[2024-12-19T22:13:32.182+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_video_dag.py took 3.173 seconds

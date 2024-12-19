@@ -5401,3 +5401,328 @@ IndentationError: unexpected indent
 [2024-12-18T21:58:07.306+0000] {logging_mixin.py:190} INFO - [2024-12-18T21:58:07.305+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
 [2024-12-18T21:58:08.831+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
 [2024-12-18T21:58:08.871+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.591 seconds
+[2024-12-18T21:58:39.033+0000] {processor.py:186} INFO - Started process (PID=5424) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:58:39.036+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T21:58:39.038+0000] {logging_mixin.py:190} INFO - [2024-12-18T21:58:39.038+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:58:41.556+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:58:41.671+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 2.665 seconds
+[2024-12-18T21:59:12.766+0000] {processor.py:186} INFO - Started process (PID=5454) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:12.777+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T21:59:12.782+0000] {logging_mixin.py:190} INFO - [2024-12-18T21:59:12.781+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:14.266+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:14.303+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.564 seconds
+[2024-12-18T21:59:45.283+0000] {processor.py:186} INFO - Started process (PID=5483) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:45.286+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T21:59:45.293+0000] {logging_mixin.py:190} INFO - [2024-12-18T21:59:45.291+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:46.534+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T21:59:46.560+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.295 seconds
+[2024-12-18T22:00:16.931+0000] {processor.py:186} INFO - Started process (PID=5512) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:16.933+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:00:16.936+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:00:16.935+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:17.856+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:17.877+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.963 seconds
+[2024-12-18T22:00:48.312+0000] {processor.py:186} INFO - Started process (PID=5541) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:48.315+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:00:48.319+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:00:48.317+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:50.092+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:00:50.216+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.926 seconds
+[2024-12-18T22:01:21.547+0000] {processor.py:186} INFO - Started process (PID=5570) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:21.571+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:01:21.580+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:01:21.579+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:24.655+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:24.698+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 3.186 seconds
+[2024-12-18T22:01:55.300+0000] {processor.py:186} INFO - Started process (PID=5599) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:55.314+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:01:55.320+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:01:55.319+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:56.391+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:01:56.415+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.155 seconds
+[2024-12-18T22:02:27.281+0000] {processor.py:186} INFO - Started process (PID=5628) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:02:27.285+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:02:27.291+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:02:27.290+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:02:28.791+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:02:28.818+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.567 seconds
+[2024-12-18T22:02:59.513+0000] {processor.py:186} INFO - Started process (PID=5657) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:02:59.517+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:02:59.527+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:02:59.519+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:03:01.218+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:03:01.245+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.757 seconds
+[2024-12-18T22:03:31.537+0000] {processor.py:186} INFO - Started process (PID=5686) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:03:31.541+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:03:31.553+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:03:31.552+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:03:32.601+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:03:32.637+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.137 seconds
+[2024-12-18T22:04:02.892+0000] {processor.py:186} INFO - Started process (PID=5715) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:02.895+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:04:02.903+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:04:02.900+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:04.209+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:04.247+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.381 seconds
+[2024-12-18T22:04:34.697+0000] {processor.py:186} INFO - Started process (PID=5750) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:34.699+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:04:34.703+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:04:34.703+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:36.433+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:04:36.500+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.819 seconds
+[2024-12-18T22:05:07.545+0000] {processor.py:186} INFO - Started process (PID=5779) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:07.547+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:05:07.550+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:05:07.549+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:08.513+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:08.538+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.006 seconds
+[2024-12-18T22:05:39.147+0000] {processor.py:186} INFO - Started process (PID=5808) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:39.152+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:05:39.156+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:05:39.155+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:40.061+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:05:40.088+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.956 seconds
+[2024-12-18T22:06:10.249+0000] {processor.py:186} INFO - Started process (PID=5838) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:10.251+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:06:10.261+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:06:10.260+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:11.465+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:11.497+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.264 seconds
+[2024-12-18T22:06:41.876+0000] {processor.py:186} INFO - Started process (PID=5866) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:41.883+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:06:41.888+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:06:41.887+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:43.432+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:06:43.467+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.610 seconds
+[2024-12-18T22:07:14.007+0000] {processor.py:186} INFO - Started process (PID=5895) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:14.009+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:07:14.012+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:07:14.012+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:15.704+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:15.740+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.761 seconds
+[2024-12-18T22:07:46.496+0000] {processor.py:186} INFO - Started process (PID=5924) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:46.544+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:07:46.553+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:07:46.552+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:49.765+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:07:49.841+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 3.370 seconds
+[2024-12-18T22:08:20.425+0000] {processor.py:186} INFO - Started process (PID=5954) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:20.440+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:08:20.450+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:08:20.449+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:22.009+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:22.050+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.660 seconds
+[2024-12-18T22:08:52.766+0000] {processor.py:186} INFO - Started process (PID=5983) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:52.769+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:08:52.774+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:08:52.773+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:54.726+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:08:54.770+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 2.022 seconds
+[2024-12-18T22:09:25.196+0000] {processor.py:186} INFO - Started process (PID=6012) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:25.209+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:09:25.212+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:09:25.211+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:26.604+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:26.646+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.496 seconds
+[2024-12-18T22:09:56.856+0000] {processor.py:186} INFO - Started process (PID=6040) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:56.863+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:09:56.867+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:09:56.866+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:57.837+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:09:57.862+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.025 seconds
+[2024-12-18T22:10:28.315+0000] {processor.py:186} INFO - Started process (PID=6069) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:10:28.317+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:10:28.320+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:10:28.320+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:10:29.359+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:10:29.387+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.095 seconds
+[2024-12-18T22:10:59.874+0000] {processor.py:186} INFO - Started process (PID=6098) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:10:59.876+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:10:59.879+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:10:59.878+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:11:01.467+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:11:01.501+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.648 seconds
+[2024-12-18T22:11:32.182+0000] {processor.py:186} INFO - Started process (PID=6127) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:11:32.184+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:11:32.189+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:11:32.187+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:11:33.679+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:11:33.728+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.565 seconds
+[2024-12-18T22:12:04.412+0000] {processor.py:186} INFO - Started process (PID=6156) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:04.417+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:12:04.421+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:12:04.420+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:05.778+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:05.908+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.513 seconds
+[2024-12-18T22:12:36.215+0000] {processor.py:186} INFO - Started process (PID=6191) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:36.221+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:12:36.226+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:12:36.225+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:37.406+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:12:37.435+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.238 seconds
+[2024-12-18T22:13:07.807+0000] {processor.py:186} INFO - Started process (PID=6220) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:07.824+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:13:07.832+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:13:07.831+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:09.168+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:09.223+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.438 seconds
+[2024-12-18T22:13:40.054+0000] {processor.py:186} INFO - Started process (PID=6249) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:40.056+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:13:40.061+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:13:40.060+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:41.943+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:13:41.992+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.959 seconds
+[2024-12-18T22:14:12.620+0000] {processor.py:186} INFO - Started process (PID=6278) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:12.633+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:14:12.640+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:14:12.639+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:14.257+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:14.295+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.700 seconds
+[2024-12-18T22:14:44.771+0000] {processor.py:186} INFO - Started process (PID=6312) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:44.773+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:14:44.778+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:14:44.777+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:46.091+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:14:46.126+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.373 seconds
+[2024-12-18T22:15:16.510+0000] {processor.py:186} INFO - Started process (PID=6341) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:16.512+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:15:16.517+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:15:16.516+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:17.511+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:17.538+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.046 seconds
+[2024-12-18T22:15:48.116+0000] {processor.py:186} INFO - Started process (PID=6370) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:48.120+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:15:48.123+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:15:48.123+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:49.060+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:15:49.091+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.999 seconds
+[2024-12-18T22:16:20.134+0000] {processor.py:186} INFO - Started process (PID=6399) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:20.136+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:16:20.141+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:16:20.140+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:21.239+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:21.265+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.146 seconds
+[2024-12-18T22:16:51.483+0000] {processor.py:186} INFO - Started process (PID=6428) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:51.487+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:16:51.492+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:16:51.491+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:52.795+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:16:52.826+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.368 seconds
+[2024-12-18T22:17:22.988+0000] {processor.py:186} INFO - Started process (PID=6457) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:22.992+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:17:22.996+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:17:22.995+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:24.114+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:24.144+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.180 seconds
+[2024-12-18T22:17:54.441+0000] {processor.py:186} INFO - Started process (PID=6486) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:54.449+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:17:54.455+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:17:54.453+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:57.375+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:17:57.448+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 3.034 seconds
+[2024-12-18T22:18:27.776+0000] {processor.py:186} INFO - Started process (PID=6515) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:27.778+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:18:27.782+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:18:27.781+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:28.731+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:28.761+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.996 seconds
+[2024-12-18T22:18:58.925+0000] {processor.py:186} INFO - Started process (PID=6544) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:58.926+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:18:58.929+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:18:58.929+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:59.845+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:18:59.880+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.971 seconds
+[2024-12-18T22:19:30.042+0000] {processor.py:186} INFO - Started process (PID=6574) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:19:30.045+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:19:30.049+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:19:30.047+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:19:31.495+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:19:31.519+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.492 seconds
+[2024-12-18T22:20:01.727+0000] {processor.py:186} INFO - Started process (PID=6603) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:01.731+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:20:01.734+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:20:01.733+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:02.878+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:02.910+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.201 seconds
+[2024-12-18T22:20:33.197+0000] {processor.py:186} INFO - Started process (PID=6632) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:33.200+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:20:33.204+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:20:33.203+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:35.223+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:20:35.251+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 2.067 seconds
+[2024-12-18T22:21:05.457+0000] {processor.py:186} INFO - Started process (PID=6661) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:05.460+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:21:05.463+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:21:05.462+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:06.427+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:06.452+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.020 seconds
+[2024-12-18T22:21:37.272+0000] {processor.py:186} INFO - Started process (PID=6696) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:37.274+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:21:37.278+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:21:37.278+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:38.212+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:21:38.243+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.987 seconds
+[2024-12-18T22:22:08.516+0000] {processor.py:186} INFO - Started process (PID=6725) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:08.519+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:22:08.522+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:22:08.521+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:09.349+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:09.384+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.880 seconds
+[2024-12-18T22:22:40.277+0000] {processor.py:186} INFO - Started process (PID=6754) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:40.280+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:22:40.282+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:22:40.282+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:42.016+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:22:42.044+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.782 seconds
+[2024-12-18T22:23:12.377+0000] {processor.py:186} INFO - Started process (PID=6783) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:12.380+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:23:12.386+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:23:12.385+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:14.405+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:14.474+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 2.125 seconds
+[2024-12-18T22:23:45.298+0000] {processor.py:186} INFO - Started process (PID=6812) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:45.320+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:23:45.326+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:23:45.324+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:46.371+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:23:46.404+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.150 seconds
+[2024-12-18T22:24:16.788+0000] {processor.py:186} INFO - Started process (PID=6841) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:16.789+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:24:16.792+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:24:16.792+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:17.807+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:17.835+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.070 seconds
+[2024-12-18T22:24:48.107+0000] {processor.py:186} INFO - Started process (PID=6865) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:48.113+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:24:48.122+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:24:48.121+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:49.197+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:24:49.232+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.157 seconds
+[2024-12-18T22:25:20.016+0000] {processor.py:186} INFO - Started process (PID=6897) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:20.018+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:25:20.023+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:25:20.022+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:20.997+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:21.042+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.042 seconds
+[2024-12-18T22:25:51.510+0000] {processor.py:186} INFO - Started process (PID=6923) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:51.539+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:25:51.553+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:25:51.550+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:53.764+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:25:53.795+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 2.465 seconds
+[2024-12-18T22:26:24.848+0000] {processor.py:186} INFO - Started process (PID=6957) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:24.850+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:26:24.853+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:26:24.853+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:25.717+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:25.745+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.912 seconds
+[2024-12-18T22:26:55.980+0000] {processor.py:186} INFO - Started process (PID=6986) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:55.982+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:26:55.985+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:26:55.984+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:56.870+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:26:56.897+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.932 seconds
+[2024-12-18T22:27:27.601+0000] {processor.py:186} INFO - Started process (PID=7013) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:27.603+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:27:27.606+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:27:27.606+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:28.434+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:28.464+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.881 seconds
+[2024-12-18T22:27:58.593+0000] {processor.py:186} INFO - Started process (PID=7035) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:58.594+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:27:58.597+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:27:58.596+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:59.269+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:27:59.290+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.708 seconds
+[2024-12-18T22:28:29.582+0000] {processor.py:186} INFO - Started process (PID=7064) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:28:29.584+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:28:29.586+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:28:29.586+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:28:30.215+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:28:30.239+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.668 seconds
+[2024-12-18T22:29:00.332+0000] {processor.py:186} INFO - Started process (PID=7093) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:00.334+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:29:00.337+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:29:00.336+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:01.641+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:01.683+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.366 seconds
+[2024-12-18T22:29:31.995+0000] {processor.py:186} INFO - Started process (PID=7122) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:31.997+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:29:32.001+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:29:32.000+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:32.860+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:29:32.898+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.914 seconds
+[2024-12-18T22:30:03.315+0000] {processor.py:186} INFO - Started process (PID=7151) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:03.317+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:30:03.320+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:30:03.319+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:04.171+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:04.206+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.902 seconds
+[2024-12-18T22:30:34.931+0000] {processor.py:186} INFO - Started process (PID=7180) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:34.933+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:30:34.937+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:30:34.936+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:35.837+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:30:36.391+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.475 seconds
+[2024-12-18T22:31:06.823+0000] {processor.py:186} INFO - Started process (PID=7209) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:06.824+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:31:06.828+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:31:06.827+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:07.563+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:07.586+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.778 seconds
+[2024-12-18T22:31:38.623+0000] {processor.py:186} INFO - Started process (PID=7238) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:38.625+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:31:38.628+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:31:38.627+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:39.429+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:31:39.451+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.841 seconds
+[2024-12-18T22:32:09.817+0000] {processor.py:186} INFO - Started process (PID=7273) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:09.819+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:32:09.822+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:32:09.821+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:10.641+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:10.666+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 0.861 seconds
+[2024-12-18T22:32:41.059+0000] {processor.py:186} INFO - Started process (PID=7302) to work on /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:41.061+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/tiktok_etl.py for tasks to queue
+[2024-12-18T22:32:41.063+0000] {logging_mixin.py:190} INFO - [2024-12-18T22:32:41.062+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:42.034+0000] {processor.py:927} WARNING - No viable dags retrieved from /opt/airflow/dags/tiktok_etl.py
+[2024-12-18T22:32:43.017+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/tiktok_etl.py took 1.969 seconds
