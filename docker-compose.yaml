@@ -73,7 +73,7 @@ x-airflow-common: &airflow-common
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
-   
+
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     postgres:
@@ -107,15 +107,43 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: tiktok
     restart: always
     healthcheck:
-     test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
-     interval: 10s
-     timeout: 10s
-     retries: 5
-     start_period: 30s
-    
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    volumes:
+      - neo4j-logs:/logs
+      - neo4j-config:/config
+      - neo4j-data:/data
+      - neo4j-plugins:/plugins
+    environment:
+      - NEO4J_AUTH=neo4j/tiktokgraph # Replace 'your_password' with your actual password
+    ports:
+      - "7474:7474" # HTTP port
+      - "7687:7687" # Bolt protocol port (for connecting to Neo4j)
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "cypher-shell",
+          "-u",
+          "neo4j",
+          "-p",
+          "your_password",
+          "RETURN 1",
+        ]
+      interval: 30s
+      retries: 3
+      start_period: 10s
 
   airflow-webserver:
-    <<: *airflow-common 
+    <<: *airflow-common
     command: webserver
     ports:
       - "8080:8080"
@@ -149,7 +177,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-  
 
   airflow-triggerer:
     <<: *airflow-common
@@ -254,4 +281,8 @@ services:
 volumes:
   postgres-db-volume:
   mongodb-data:
-     #driver: local
+  neo4j-logs:
+  neo4j-config:
+  neo4j-data:
+  neo4j-plugins:
+    #driver: local
