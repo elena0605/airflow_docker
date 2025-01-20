@@ -5,6 +5,7 @@ from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 import logging
 import system as sy
+from pymongo.errors import BulkWriteError
 import youtube_etl as ye
 
 # Set up logging
@@ -48,6 +49,8 @@ with DAG(
             db = client.airflow_db
             collection = db.youtube_channel_videos
 
+            collection.create_index("video_id", unique=True )
+
             channels_ids = context['ti'].xcom_pull(key='channels_ids')
             logger.info(f"channels_ids pulled from XCom: {channels_ids}")
 
@@ -63,10 +66,13 @@ with DAG(
 
                 try:
                     videos = ye.get_videos_by_date(channel_id, start_date, end_date)
-
                     if videos:
-                        collection.insert_many(videos)
-                        logger.info(f"Inserted {len(videos)} videos for {username} (channel_id: {channel_id}) into MongoDB.")
+                        try:
+                            collection.insert_many(videos, ordered=False)
+                            logger.info(f"Videos for {username} with channel_id: {channel_id} inserted into MongoDB successfully.")
+
+                        except BulkWriteError as e:
+                            logger.info(f"Some videos already exist and were skipped. Error details: {e.details}")  
                     else:
                         logger.info(f"No videos found for {username} (channel_id: {channel_id}) in 2024.")
                 
@@ -85,6 +91,7 @@ with DAG(
             with driver.session() as session:
                 documents = collection.find({})
                 for doc in documents:
+                    thumbnails = doc.get("thumbnails", {})
                     session.run(
                         """
                         MERGE(c:YouTubeChannel {channel_id: $channel_id})
@@ -95,7 +102,10 @@ with DAG(
                            v.published_at = $published_at,
                            v.channel_id = $channel_id,
                            v.video_description = $video_description,
-                           v.channel_title = $channel_title
+                           v.channel_title = $channel_title,
+                           v.thumbnail_url = $thumbnail_url,
+                           v.thumbnail_width = $thumbnail_width,
+                           v.thumbnail_height = $thumbnail_height
                         MERGE (c)-[:POSTEDONYOUTUBE]->(v)
                         """,
                         video_title = doc.get("video_title"),
@@ -103,7 +113,10 @@ with DAG(
                         published_at = doc.get("published_at"),
                         channel_id = doc.get("channel_id"),
                         video_description = doc.get("video_description", ""),
-                        channel_title = doc.get("channel_title", "")
+                        channel_title = doc.get("channel_title", ""),
+                        thumbnail_url=thumbnails.get("url"),
+                        thumbnail_width=thumbnails.get("width"),
+                        thumbnail_height=thumbnails.get("height")
                     )
 
 

@@ -222,10 +222,29 @@ def tiktok_get_user_video_info(username: str, **context):
             videos = resp.get("data", {}).get("videos", [])
             search_id = resp.get("data", {}).get("search_id", "")
             for video in videos:
-                video["_search_id"] = search_id
-                video["_id"] = str(video.get("video_id", ObjectId())) 
-                video["username"] = username
-                all_video_data.append(video)               
+                extracted_video = {
+                    "search_id": search_id,
+                    "username": username,
+                    "video_id": video.get("id"),
+                    "video_description": video.get("video_description"),
+                    "create_time": video.get("create_time"),
+                    "region_code": video.get("region_code"),
+                    "share_count": video.get("share_count"),
+                    "view_count": video.get("view_count"),
+                    "like_count": video.get("like_count"),
+                    "comment_count": video.get("comment_count"),
+                    "music_id": video.get("music_id"),
+                    "hashtag_names": video.get("hashtag_names"),
+                    "effect_ids": video.get("effect_ids"),
+                    "playlist_id": video.get("playlist_id"),
+                    "voice_to_text": video.get("voice_to_text"),
+                    "is_stem_verified": video.get("is_stem_verified"),
+                    "video_duration": video.get("video_duration"),
+                    "hashtag_info_list": video.get("hashtag_info_list"),
+                    "video_mention_list": video.get("video_mention_list"),
+                    "video_label": video.get("video_label")
+                }
+                all_video_data.append(extracted_video)               
             
         except requests.exceptions.HTTPError as http_err:
             logger.error(f"HTTP error occurred: {http_err}", exc_info=True)

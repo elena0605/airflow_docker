@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
+from pymongo.errors import BulkWriteError
 import os
 import logging
 import system as sy
@@ -54,12 +55,15 @@ with DAG(
         db = client.airflow_db
         collection = db.tiktok_user_video
 
+        collection.create_index("video_id", unique=True)
+     
         usernames = context['ti'].xcom_pull(key='usernames')
         logger.info(f"Usernames pulled from XCom: {usernames}")
 
         if not usernames:
             logger.warning("No usernames found, skipping data fetch and storage.")
             return
+
         all_videos = []
 
         for username in usernames:
@@ -79,9 +83,17 @@ with DAG(
             except Exception as e:
                 logger.error(f"Error processing data for username {username} : {e}", exc_info=True)
 
-        if all_videos:
-            collection.insert_many(all_videos)
-            logger.info(f"Stored {len(all_videos)} videos in MongoDB successfully.")
+        if all_videos: 
+            try:
+                collection.insert_many(all_videos, ordered=False)
+                logger.info(f"Stored {len(all_videos)} videos in MongoDB successfully.")
+
+            except BulkWriteError as e:
+                logger.info(f"Some videos already exist and were skipped. Error details: {e.details}")
+
+
+                          
+                
 
 
     def transform_to_graph(**context):
@@ -99,7 +111,7 @@ with DAG(
          documents = collection.find({})
          for doc in documents:
             username = doc.get("username")
-            video_id = doc.get("id")
+            video_id = doc.get("video_id")
 
             if not username or not video_id:
                 logging.warning(f"Skipping invalid document with username {username} or video_id {video_id}.")
@@ -125,7 +137,8 @@ with DAG(
                        v.hashtag_info_list = $hashtag_info_list,
                        v.hashtag_names = $hashtag_names,
                        v.video_mention_list = $video_mention_list,
-                       v.video_label = $video_label
+                       v.video_label = $video_label,
+                       v.search_id = $search_id
                     MERGE (u)-[:POSTEDONTIKTOK]->(v)  
                     """,
                     username=username,
@@ -145,7 +158,8 @@ with DAG(
                     hashtag_info_list = json.dumps(doc.get("hashtag_info_list", [])),
                     hashtag_names = json.dumps(doc.get("hashtag_names", [])),
                     video_mention_list = json.dumps(doc.get("video_mention_list", [])),
-                    video_label=json.dumps(doc.get("video_label", {})),                                                     
+                    video_label=json.dumps(doc.get("video_label", {})), 
+                    search_id = doc.get("search_id")                                                    
                 )
                 logging.info(f"Data for username {username} and video_id {video_id} stored in Neo4j successfully.")
             except Exception as e:

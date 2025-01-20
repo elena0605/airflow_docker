@@ -87,6 +87,7 @@ def get_videos_by_date(channel_id, start_date, end_date):
             published_at = item['snippet']['publishedAt']
             video_description = item['snippet']['description']
             channelTitle = item['snippet']['channelTitle']
+            thumbnails = item['snippet']['thumbnails']['high']
 
             videos.append({
                           'video_title': video_title, 
@@ -94,7 +95,8 @@ def get_videos_by_date(channel_id, start_date, end_date):
                           'published_at': published_at, 
                           'channel_id': channel_id, 
                           'video_description': video_description, 
-                          'channel_title' : channelTitle
+                          'channel_title' : channelTitle,
+                          'thumbnails': thumbnails
                            })
 
         next_page_token = data.get('nextPageToken')
@@ -108,6 +110,93 @@ def get_videos_by_date(channel_id, start_date, end_date):
 
     logger.info(f"Total videos fetched: {len(videos)}")
     return videos
+
+
+
+def get_top_level_comments(video_id):
+    url = "https://www.googleapis.com/youtube/v3/commentThreads"
+    params = {
+        'part': 'snippet',
+        'videoId': video_id,
+        'maxResults': 100, 
+        'key': API_KEY
+    }
+
+    comments = []
+    next_page_token = None
+
+    logger.debug(f"Starting to fetch top-level comments for video_id: {video_id}")
+
+    while True:
+        if next_page_token:
+            params['pageToken'] = next_page_token
+        
+        response = requests.get(url, params=params)
+        
+        if response.status_code == 200:
+            data = response.json()
+            logger.debug(f"Fetched {len(data.get('items', []))} comments for video_id: {video_id}")
+            for item in data.get('items', []):
+                top_comment = {
+                    'comment_id': item['snippet']['topLevelComment']['id'],
+                    'channel_id': item['snippet']['channelId'],
+                    'video_id': item['snippet']['videoId'],
+                    'canReply': item['snippet']['canReply'],
+                    'totalReplyCount': item['snippet']['totalReplyCount'],
+                    'text': item['snippet']['topLevelComment']['snippet']['textDisplay'],
+                    'authorDisplayName': item['snippet']['topLevelComment']['snippet']['authorDisplayName'],
+                    'authorProfileImageUrl': item['snippet']['topLevelComment']['snippet']['authorProfileImageUrl'],
+                    'authorChannelUrl': item['snippet']['topLevelComment']['snippet']['authorChannelUrl'],
+                    'canRate': item['snippet']['topLevelComment']['snippet']['canRate'],
+                    'viewerRating': item['snippet']['topLevelComment']['snippet']['viewerRating'],
+                    'likeCount': item['snippet']['topLevelComment']['snippet']['likeCount'],
+                    'publishedAt': item['snippet']['topLevelComment']['snippet']['publishedAt'],
+                    'updatedAt': item['snippet']['topLevelComment']['snippet']['updatedAt'],
+                }
+                comments.append(top_comment)
+
+            next_page_token = data.get('nextPageToken')
+            if not next_page_token:
+                logger.info(f"Completed fetching comments for video_id: {video_id}")
+                break
+        else:
+            logger.error(f"Error fetching top-level comments for video_id: {video_id}, status code: {response.status_code}")
+            break
+    logger.debug(f"Total comments fetched for video_id: {video_id}: {len(comments)}")     
+    return comments
+
+def get_replies(parent_id):
+    url = "https://www.googleapis.com/youtube/v3/comments"
+    params = {
+        'part': 'snippet',
+        'parentId': parent_id,
+        'maxResults': 100,
+        'key': API_KEY
+    }
+
+    replies = []
+    next_page_token = None
+
+    while True:
+        if next_page_token:
+            params['pageToken'] = next_page_token
+
+        response = requests.get(url, params=params)
+        
+        if response.status_code == 200:
+            data = response.json()
+            for item in data.get('items', []):
+                reply = item['snippet']['textDisplay']
+                replies.append(reply)
+
+            next_page_token = data.get('nextPageToken')
+            if not next_page_token:
+                break
+        else:
+            print(f"Error fetching replies: {response.status_code}")
+            break
+
+    return replies
 
 
 

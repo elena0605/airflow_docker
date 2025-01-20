@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 import logging
+from pymongo.errors import DuplicateKeyError
 import system as sy
 import youtube_etl as ye
 
@@ -48,6 +49,8 @@ with DAG(
              db = client.airflow_db
              collection = db.youtube_channel_stats
 
+             collection.create_index("channel_id", unique=True )
+
              channels_ids = context['ti'].xcom_pull(key='channels_ids')
              logger.info(f"channels_ids pulled from XCom: {channels_ids}")
 
@@ -61,8 +64,13 @@ with DAG(
                     logger.info(f"Fetching channel stats for channel with username: {username} and channel_id: {channel_id}")
                     channel_stats = ye.get_channels_statistics(channel_id)
                     channel_stats['timestamp'] = datetime.now()
-                    collection.insert_one(channel_stats)
-                    logger.info(f"Data for {username} stored in MongoDB successfully.")
+                    try:
+                        collection.insert_one(channel_stats)
+                        logger.info(f"Channel stats for {username} inserted into MongoDB successfully.")
+
+                    except DuplicateKeyError as e: 
+                         logger.info(f"Channel stats for channel_id {channel_id} already exist. Skipping insertion. Error: {e}")                    
+                    
                 except Exception as e:
                     logger.error(f"Error fetching stats for {username} (channel_id: {channel_id}): {e}")
 

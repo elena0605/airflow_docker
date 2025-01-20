@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
+from pymongo.errors import DuplicateKeyError
 import os
 import logging
 import system as sy
@@ -73,6 +74,8 @@ with DAG(
         db = client.airflow_db
         collection = db.tiktok_user_info
 
+        collection.create_index("username", unique=True)
+
         # Fetch all usernames from XCom
         usernames = context['ti'].xcom_pull(task_ids='load_usernames', key='usernames')
         logger.info(f"Usernames pulled from XCom: {usernames}")
@@ -91,8 +94,13 @@ with DAG(
                 user_data["timestamp"] = datetime.now()
 
                 # Insert data into MongoDB
-                collection.insert_one(user_data)
-                logger.info(f"Data for {username} inserted into MongoDB successfully.")
+                try:
+                    collection.insert_one(user_data)
+                    logger.info(f"TikTok info for {username} inserted into MongoDB successfully.")
+
+                except DuplicateKeyError as e:
+                    logger.info(f"User Info for username: {username} already exist. Skipping insertion. Error: {e}")               
+                
             except Exception as e:
                 logger.error(f"Error inserting data into MongoDB for {username}: {e}", exc_info=True)
          else:
