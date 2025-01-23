@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
+from callbacks import task_failure_callback, task_success_callback
 from pymongo.errors import BulkWriteError
 import os
 import logging
@@ -21,6 +22,8 @@ default_args = {
     "email_on_retry": False,
     "retries": 3,
     "retry_delay": timedelta(minutes=5),
+    "on_failure_callback": task_failure_callback,
+    "on_success_callback": task_success_callback,
 }
 
 # File and directories paths
@@ -91,11 +94,6 @@ with DAG(
             except BulkWriteError as e:
                 logger.info(f"Some videos already exist and were skipped. Error details: {e.details}")
 
-
-                          
-                
-
-
     def transform_to_graph(**context):
         # Connect to MongoDB
      mongo_hook = MongoHook(mongo_conn_id="mongo_default")
@@ -164,7 +162,7 @@ with DAG(
                 logging.info(f"Data for username {username} and video_id {video_id} stored in Neo4j successfully.")
             except Exception as e:
                 logging.error(f"Error processing data for username {username}and video_id {video_id}: {e}", exc_info=True)     
-    
+      
 
     load_usernames_task = PythonOperator(
         task_id='load_usernames',

@@ -242,7 +242,8 @@ def tiktok_get_user_video_info(username: str, **context):
                     "video_duration": video.get("video_duration"),
                     "hashtag_info_list": video.get("hashtag_info_list"),
                     "video_mention_list": video.get("video_mention_list"),
-                    "video_label": video.get("video_label")
+                    "video_label": video.get("video_label"),
+                    "fetched_time": datetime.now()
                 }
                 all_video_data.append(extracted_video)               
             

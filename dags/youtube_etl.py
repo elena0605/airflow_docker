@@ -1,6 +1,7 @@
 import requests
 import configparser
 import logging
+from datetime import datetime
 
 
 # Set up logging - log to airflow logs & console
@@ -96,7 +97,9 @@ def get_videos_by_date(channel_id, start_date, end_date):
                           'channel_id': channel_id, 
                           'video_description': video_description, 
                           'channel_title' : channelTitle,
-                          'thumbnails': thumbnails
+                          'thumbnails': thumbnails,
+                          "fetched_time":datetime.now()
+                
                            })
 
         next_page_token = data.get('nextPageToken')
@@ -152,6 +155,7 @@ def get_top_level_comments(video_id):
                     'likeCount': item['snippet']['topLevelComment']['snippet']['likeCount'],
                     'publishedAt': item['snippet']['topLevelComment']['snippet']['publishedAt'],
                     'updatedAt': item['snippet']['topLevelComment']['snippet']['updatedAt'],
+                    'fetched_time': datetime.now()
                 }
                 comments.append(top_comment)
 

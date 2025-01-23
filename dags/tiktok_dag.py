@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from pymongo.errors import DuplicateKeyError
+from callbacks import task_failure_callback, task_success_callback
 import os
 import logging
 import system as sy
@@ -18,8 +19,10 @@ default_args = {
     "depends_on_past": False,
     "email_on_failure": False,
     "email_on_retry": False,
-    "retries": 1,
-    "retry_delay": timedelta(minutes=3),
+    "retries": 3,
+    "retry_delay": timedelta(minutes=5),
+    "on_failure_callback": task_failure_callback,
+    "on_success_callback": task_success_callback,
 }
 
 # File and directories paths

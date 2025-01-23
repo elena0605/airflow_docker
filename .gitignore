@@ -11,3 +11,5 @@ airflow-webserver.pid
 dags/__pycache__/
 plugins/__pycache__/
 
+*.pyc
+__pycache

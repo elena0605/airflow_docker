@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
+from callbacks import task_failure_callback, task_success_callback
 import logging
 import requests
 from pymongo.errors import BulkWriteError
@@ -18,6 +19,8 @@ default_args = {
     "email_on_retry": False,
     "retries": 1,
     "retry_delay": timedelta(minutes=3),
+    "on_failure_callback": task_failure_callback,
+    "on_success_callback": task_success_callback,
 }
 
 with DAG(
