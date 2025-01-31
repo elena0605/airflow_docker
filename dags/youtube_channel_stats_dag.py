@@ -8,6 +8,9 @@ import logging
 from pymongo.errors import DuplicateKeyError
 import system as sy
 import youtube_etl as ye
+from airflow.exceptions import AirflowFailException
+
+
 
 # Set up logging
 logger = logging.getLogger("airflow.task")
@@ -38,6 +41,7 @@ with DAG(
 ) as dag:
         def load_channels_ids(file_path, **context):
             try:
+                
                 channels_ids = sy.read_channel_ids_from_csv(file_path)
                 logger.info(f"Successfully loaded channels ids from {file_path}")
                 logger.info(f"Usernames loaded: {channels_ids}")
@@ -47,6 +51,7 @@ with DAG(
                 raise
 
         def fetch_and_store_channel_stats(**context):
+             task_instance = context['task_instance']
              hook = MongoHook(mongo_conn_id="mongo_default")
              client = hook.get_conn()
              db = client.airflow_db
@@ -66,16 +71,21 @@ with DAG(
                     channel_id = channels_ids[username]
                     logger.info(f"Fetching channel stats for channel with username: {username} and channel_id: {channel_id}")
                     channel_stats = ye.get_channels_statistics(channel_id)
-                    channel_stats['timestamp'] = datetime.now()
+
+                    if channel_stats is None:
+                       raise AirflowFailException(f"Failed to fetch statistics for channel ID: {channel_id}")             
+
+                    channel_stats['timestamp'] = datetime.now()                   
                     try:
                         collection.insert_one(channel_stats)
                         logger.info(f"Channel stats for {username} inserted into MongoDB successfully.")
 
                     except DuplicateKeyError as e: 
-                         logger.info(f"Channel stats for channel_id {channel_id} already exist. Skipping insertion. Error: {e}")                    
-                    
+                         logger.info(f"Channel stats for channel_id {channel_id} already exist. Skipping insertion. Error: {e}")     
+                                                     
                 except Exception as e:
                     logger.error(f"Error fetching stats for {username} (channel_id: {channel_id}): {e}")
+                    raise e
 
         def transform_to_graph():
              mongo_hook = MongoHook(mongo_conn_id="mongo_default")

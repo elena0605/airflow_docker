@@ -70,6 +70,7 @@ with DAG(
                 logger.info(f"Successfully fetched data for username: {username}")
             except Exception as e:
                 logger.error(f"Error fetching data for username {username}: {e}", exc_info=True)
+                raise
     
     def store_user_data(**context):
         hook = MongoHook(mongo_conn_id="mongo_default")
@@ -106,6 +107,7 @@ with DAG(
                 
             except Exception as e:
                 logger.error(f"Error inserting data into MongoDB for {username}: {e}", exc_info=True)
+                raise
          else:
             logger.warning(f"No data found in XCom for username {username}, skipping insertion.")
     

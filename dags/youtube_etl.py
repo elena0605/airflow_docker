@@ -2,7 +2,7 @@ import requests
 import configparser
 import logging
 from datetime import datetime
-
+from airflow.exceptions import AirflowFailException
 
 # Set up logging - log to airflow logs & console
 logger = logging.getLogger("airflow.task")
@@ -18,9 +18,11 @@ if not logger.hasHandlers():  # Avoid duplicate handlers
 # config = configparser.ConfigParser()
 # config.read('/opt/airflow/dags/config.ini')
 # api_key = config["YOUTUBE"]["API_KEY"]
-API_KEY = 'AIzaSyCu9avifWhxwAiGCrOhhkcsMIfXdVIVdX0'
+#API_KEY = 'AIzaSyCu9avifWhxwAiGCrOhhkcsMIfXdVIVdX0'
+API_KEY = 'AIzaSyBB6dXRFOT2LnlF1TabeR9OEwRF50dR_rs'
 
 def get_channels_statistics(channel_id):
+
     logger.debug(f"Fetching statistics for channel ID: {channel_id}")
     url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings&id={channel_id}&key={API_KEY}'
 
@@ -29,17 +31,13 @@ def get_channels_statistics(channel_id):
         response.raise_for_status()  
         data = response.json()
         logger.debug(f"Received data for channel ID: {channel_id} - {data}")
-    except requests.exceptions.RequestException as e:
-          logger.error(f"Request failed for channel ID: {channel_id} - {e}")
-          return {
-            'channel_id': channel_id,
-            'title': 'Unknown',
-            'view_count': '0',
-            'subscriber_count': '0',
-            'video_count': '0',
-            'hidden_subscriber_count': False
-          }
-       
+
+    except requests.exceptions.HTTPError as http_err:
+        raise Exception(f"HTTP error occurred: {http_err}") from http_err
+        
+    except requests.exceptions.RequestException as req_err:
+          raise Exception(f"Request failed for channel ID: {channel_id} - {req_err}") from req_err
+             
     if 'items' in data and len(data['items']) > 0:
         item = data['items'][0]
         stats = item.get('statistics', {})
@@ -56,15 +54,8 @@ def get_channels_statistics(channel_id):
 
         }
     else:
-        logger.warning(f"No items found for channel ID: {channel_id}")
-        return{
-            'channel_id': channel_id,
-            'title': 'Unknown',
-            'view_count': '0',
-            'subscriber_count': '0',
-            'video_count': '0',
-            'hidden_subscriber_count': False
-        }
+        raise Exception(f"No items found for channel ID: {channel_id}")
+        
 
 
 def get_videos_by_date(channel_id, start_date, end_date):
@@ -79,6 +70,7 @@ def get_videos_by_date(channel_id, start_date, end_date):
             url += f'&pageToken={next_page_token}'
      try:
         response = requests.get(url)
+        response.raise_for_status()  
         data = response.json()
         logger.debug(f"Fetched {len(data.get('items', []))} videos from page.")
 
@@ -107,9 +99,17 @@ def get_videos_by_date(channel_id, start_date, end_date):
             logger.info("No more pages to fetch.")
             break
 
-     except requests.exceptions.RequestException as e:
-        logger.error(f"Error fetching videos: {e}")
-        break
+     except requests.exceptions.HTTPError as http_err:
+            logger.error(f"HTTP error occurred: {http_err}")
+            raise AirflowFailException(f"HTTP error fetching videos for channel {channel_id}: {http_err}")
+
+     except requests.exceptions.RequestException as req_err:
+            logger.error(f"Request failed: {req_err}")
+            raise AirflowFailException(f"Request failed for channel {channel_id}: {req_err}")
+
+     except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            raise AirflowFailException(f"Unexpected error fetching videos for channel {channel_id}: {e}")    
 
     logger.info(f"Total videos fetched: {len(videos)}")
     return videos
@@ -133,12 +133,13 @@ def get_top_level_comments(video_id):
     while True:
         if next_page_token:
             params['pageToken'] = next_page_token
-        
-        response = requests.get(url, params=params)
-        
-        if response.status_code == 200:
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status() 
+
             data = response.json()
             logger.debug(f"Fetched {len(data.get('items', []))} comments for video_id: {video_id}")
+
             for item in data.get('items', []):
                 top_comment = {
                     'comment_id': item['snippet']['topLevelComment']['id'],
@@ -163,9 +164,14 @@ def get_top_level_comments(video_id):
             if not next_page_token:
                 logger.info(f"Completed fetching comments for video_id: {video_id}")
                 break
-        else:
-            logger.error(f"Error fetching top-level comments for video_id: {video_id}, status code: {response.status_code}")
-            break
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(f"HTTP error occurred: {http_err}")
+            raise AirflowFailException(f"HTTP error while fetching comments for video_id {video_id}: {http_err}")
+
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            raise  AirflowFailException(f"Network error while fetching comments for video_id {video_id}: {e}")    
+
     logger.debug(f"Total comments fetched for video_id: {video_id}: {len(comments)}")     
     return comments
 
@@ -180,26 +186,52 @@ def get_replies(parent_id):
 
     replies = []
     next_page_token = None
+    
 
     while True:
         if next_page_token:
             params['pageToken'] = next_page_token
-
-        response = requests.get(url, params=params)
-        
-        if response.status_code == 200:
+        try:
+            logger.debug(f"Starting to fetch replies for a comment id: {parent_id}")
+            response = requests.get(url, params=params)
+            response.raise_for_status() 
             data = response.json()
-            for item in data.get('items', []):
-                reply = item['snippet']['textDisplay']
-                replies.append(reply)
 
+            for item in data.get('items', []):
+                reply = {
+                    'reply_id': item['id'],
+                    'authorDisplayName': item['snippet']['authorDisplayName'],
+                    'authorProfileImageUrl': item['snippet']['authorProfileImageUrl'],
+                    'authorChannelUrl': item['snippet']['authorChannelUrl'],
+                    'channel_id': item['snippet']['channelId'],
+                    'text': item['snippet']['textDisplay'],
+                    'parent_id': item['snippet']['parentId'],
+                    'canRate': item['snippet']['canRate'],
+                    'viewerRating': item['snippet']['viewerRating'],
+                    'likeCount': item['snippet']['likeCount'],
+                    'publishedAt': item['snippet']['publishedAt'],
+                    'updatedAt': item['snippet']['updatedAt'],
+                    'fetched_time': datetime.now()
+                }                
+                replies.append(reply)
+            
+                # nested_replies = get_replies(reply['reply_id'])
+                # replies.extend(nested_replies)
+            
             next_page_token = data.get('nextPageToken')
             if not next_page_token:
                 break
-        else:
-            print(f"Error fetching replies: {response.status_code}")
-            break
+            
 
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(f"HTTP error occurred: {http_err}")
+            raise AirflowFailException(f"HTTP error while fetching replies for comment with comment_id {parent_id}: {http_err}")
+
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            raise  AirflowFailException(f"Network error while fetching replies for comment with comment_id: {parent_id}: {e}")    
+
+    logger.debug(f"Replies were fetched for comment: {parent_id}")             
     return replies
 
 

@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from callbacks import task_failure_callback, task_success_callback
+from airflow.exceptions import AirflowFailException
 import logging
 import requests
 from pymongo.errors import BulkWriteError
@@ -66,14 +67,19 @@ with DAG(
                     else:
                         logger.info(f"No comments found for video_id: {video_id}")
 
-                except requests.exceptions.RequestException as e: 
-                        logger.error(f"Network error while fetching comments for video_id {video_id}: {e}")
+                except AirflowFailException as ae:
+                       #logger.error(f"Failure occurred while fetching video comments with video_id: {video_id}: {ae}")
+                       raise               
                 except Exception as e:
                         logger.error(f"Unexpected error while processing video_id {video_id}: {e}")
+                        raise
 
-            logger.info("Finished fetching and storing comments for all videos.")     
+            logger.info("Finished fetching and storing comments for all videos.")  
+
           except Exception as e:
-              logger.error(f"Error in fetching video comments process: {e}")       
+              logger.error(f"Error in fetching video comments process: {e}") 
+              raise AirflowFailException(f"Failed to fetch and store video comments: {e}")
+
 
         
         def transform_to_graph():
@@ -133,6 +139,7 @@ with DAG(
 
          except Exception as e:  
                     logger.error(f"Error in transforming comments to Neo4j: {e}")
+                    raise
 
         fetch_and_store_video_comments_task = PythonOperator(
             task_id = 'fetch_and_store_video_comments',

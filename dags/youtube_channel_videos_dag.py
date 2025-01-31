@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from callbacks import task_failure_callback, task_success_callback
+from airflow.exceptions import AirflowFailException
 import logging
 import system as sy
 from pymongo.errors import BulkWriteError
@@ -78,9 +79,14 @@ with DAG(
                             logger.info(f"Some videos already exist and were skipped for username: {username}. Error details: {e.details}")  
                     else:
                         logger.info(f"No videos found for {username} (channel_id: {channel_id}) in 2024.")
-                
+
+                except AirflowFailException as e:
+                    logger.error(f"Critical failure while fetching videos for {username} (channel_id: {channel_id}): {e}")
+                    raise  # Re-raise to fail the task in Airflow
+
                 except Exception as e:
                     logger.error(f"Error fetching or storing videos for {username} (channel_id: {channel_id}): {e}")
+                    raise AirflowFailException(f"Unexpected error in fetch_and_store_channel_videos: {e}") from e
         
 
         def transform_to_graph():

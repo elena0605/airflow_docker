@@ -168,14 +168,17 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
         logger.info(f"Status Code: {response.status_code}", exc_info=True)
         logger.info(f"Response Content: {response.text}", exc_info=True)
         logger.info(f"Response Headers: {response.headers}", exc_info=True)
+        raise
         
     except requests.exceptions.RequestException as err:
         logger.info("TIKTOK request requests.exceptions.RequestException", exc_info=True)
         logger.info(f"Other error occurred: {err}", exc_info=True)
+        raise
 
     except Exception as e:
         logger.info("TIKTOK request All Other Exception")
         logger.info(f"An unexpected error occurred: {e}", exc_info=True)
+        raise
 
 
 def tiktok_get_user_video_info(username: str, **context):
@@ -249,10 +252,13 @@ def tiktok_get_user_video_info(username: str, **context):
             
         except requests.exceptions.HTTPError as http_err:
             logger.error(f"HTTP error occurred: {http_err}", exc_info=True)
+            raise
         except requests.exceptions.RequestException as err:
             logger.error(f"Other error occurred: {err}", exc_info=True)
+            raise
         except Exception as e:
             logger.error(f"An unexpected error occurred: {e}", exc_info=True)  
+            raise
 
     #if 'ti' in context:
               #context['ti'].xcom_push(key=f'{username}_info_path', value=all_video_data)

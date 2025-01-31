@@ -85,6 +85,7 @@ with DAG(
 
             except Exception as e:
                 logger.error(f"Error processing data for username {username} : {e}", exc_info=True)
+                raise
 
         if all_videos: 
             try:

@@ -2,43 +2,57 @@ import os
 from airflow.exceptions import AirflowFailException
 
 def check_logs_for_errors(context):
-    log_base_path = os.getenv("AIRFLOW__CORE__BASE_LOG_FOLDER", "/opt/airflow/logs")
     task_instance = context['task_instance']
 
-    # Construct the log file path
+    # Retrieve the necessary components for the log file path
+    dag_id = task_instance.dag_id  # DAG ID from the task instance
+    run_id = task_instance.run_id  # Current run ID
+    task_id = task_instance.task_id  # Task ID from the task instance
+    try_number = task_instance.try_number
+
+    # Construct log file path
+    log_base_path = os.getenv("AIRFLOW__CORE__BASE_LOG_FOLDER", "/opt/airflow/logs")
+    print(f"Base log folder: {log_base_path}")
     log_file_path = os.path.join(
         log_base_path,
-        "scheduler",
-        task_instance.execution_date.strftime("%Y-%m-%d"),
-        f"{task_instance.dag_id}.py.log"
+        f"dag_id={dag_id}",     
+        f"run_id={run_id}",    
+        f"task_id={task_id}",   
+        f"attempt={try_number}.log"
     )
-    task_instance.log.info(f"Checking logs for errors in: {log_file_path}")
+ 
+    task_instance.log.info(f"Constructed log file path: {log_file_path}")
 
     try:
         # Check if the log file exists
         if not os.path.isfile(log_file_path):
             raise FileNotFoundError(f"Log file not found: {log_file_path}")
 
-        # Open and read the log file
+        # Read log file contents
         with open(log_file_path, "r") as log_file:
-            log_lines = log_file.readlines()
+            log_lines = [line.strip() for line in log_file if line.strip()]
 
-        # Check for actual errors (not just "ERROR" mentions)
+        # Check for error lines
         error_lines = [line for line in log_lines if "ERROR" in line and "Exception" in line]
-        
+        http_error_lines = [
+            line for line in log_lines
+            if any(f"HTTP {http_code}" in line for http_code in ["500", "404", "403", "502", "503"])
+        ]
+
         if error_lines:
             task_instance.log.error(f"Found error lines: {error_lines}")
             raise AirflowFailException(f"Errors found in log file: {log_file_path}")
 
-    except AirflowFailException as e:
-        # Log and propagate specific Airflow errors
-        task_instance.log.error(f"Airflow error detected: {e}")
-        raise e
- 
+        if http_error_lines:
+            task_instance.log.error(f"Found HTTP error lines: {http_error_lines}")
+            raise AirflowFailException(f"HTTP Error Lines: {http_error_lines}")
+
+    except FileNotFoundError as e:
+        task_instance.log.error(f"Log file not found: {e}")
     except Exception as e:
-        # Catch all other exceptions and re-raise them as Airflow exceptions
-        task_instance.log.error(f"Unexpected error: {e}")
-        raise AirflowFailException(f"Unexpected error: {e}")
+        task_instance.log.error(f"Unexpected error while checking logs: {e}")
+        
+
 
 
 def task_failure_callback(context):
@@ -50,7 +64,7 @@ def task_failure_callback(context):
         f"Task {task_instance.task_id} in DAG {task_instance.dag_id} failed "
         f"on {task_instance.execution_date}. See logs for details."
     )
-
+    check_logs_for_errors(context)
 
 def task_success_callback(context):
     """
