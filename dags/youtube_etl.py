@@ -3,6 +3,8 @@ import configparser
 import logging
 from datetime import datetime
 from airflow.exceptions import AirflowFailException
+import gridfs
+from pymongo import MongoClient
 
 # Set up logging - log to airflow logs & console
 logger = logging.getLogger("airflow.task")
@@ -20,6 +22,19 @@ if not logger.hasHandlers():  # Avoid duplicate handlers
 # api_key = config["YOUTUBE"]["API_KEY"]
 #API_KEY = 'AIzaSyCu9avifWhxwAiGCrOhhkcsMIfXdVIVdX0'
 API_KEY = 'AIzaSyBB6dXRFOT2LnlF1TabeR9OEwRF50dR_rs'
+
+def save_thumbnail(image_url, video_id, channel_title):
+    client = MongoClient("mongodb://airflow:tiktok@mongodb:27017/")
+    db = client["airflow_db"]
+    fs = gridfs.GridFS(db)
+    try:
+        response = requests.get(image_url)
+        response.raise_for_status()
+        filename = f"{video_id}_{channel_title.replace(' ', '_')}_{image_url.split('/')[-1]}"
+        return fs.put(response.content, filename=filename, video_id = video_id, channel_title = channel_title)
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Failed to download image: {image_url}, Error: {e}")
+        return None
 
 def get_channels_statistics(channel_id):
 
@@ -80,7 +95,10 @@ def get_videos_by_date(channel_id, start_date, end_date):
             published_at = item['snippet']['publishedAt']
             video_description = item['snippet']['description']
             channelTitle = item['snippet']['channelTitle']
-            thumbnails = item['snippet']['thumbnails']['high']
+            thumbnails = item['snippet']['thumbnails']['high']['url']
+             
+            # Save thumbnail and get GridFS ID
+            thumbnail_id = save_thumbnail(thumbnails, video_id, channelTitle)
 
             videos.append({
                           'video_title': video_title, 
@@ -89,9 +107,8 @@ def get_videos_by_date(channel_id, start_date, end_date):
                           'channel_id': channel_id, 
                           'video_description': video_description, 
                           'channel_title' : channelTitle,
-                          'thumbnails': thumbnails,
-                          "fetched_time":datetime.now()
-                
+                          'thumbnails': {'gridfs_id': thumbnail_id},
+                          "fetched_time":datetime.now()       
                            })
 
         next_page_token = data.get('nextPageToken')

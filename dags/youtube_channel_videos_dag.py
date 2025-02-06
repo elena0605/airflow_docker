@@ -10,6 +10,7 @@ import system as sy
 from pymongo.errors import BulkWriteError
 import youtube_etl as ye
 
+
 # Set up logging
 logger = logging.getLogger("airflow.task")
 
@@ -51,9 +52,9 @@ with DAG(
             hook = MongoHook(mongo_conn_id="mongo_default")
             client = hook.get_conn()
             db = client.airflow_db
-            collection = db.youtube_channel_videos
-
-            collection.create_index("video_id", unique=True )
+            collection = db.youtube_channel_videos           
+        
+            collection.create_index("video_id", unique=True)
 
             channels_ids = context['ti'].xcom_pull(key='channels_ids')
             logger.info(f"channels_ids pulled from XCom: {channels_ids}")
@@ -90,6 +91,7 @@ with DAG(
         
 
         def transform_to_graph():
+         try:   
             mongo_hook = MongoHook(mongo_conn_id="mongo_default")
             mongo_client = mongo_hook.get_conn()
             db = mongo_client.airflow_db
@@ -100,7 +102,9 @@ with DAG(
             with driver.session() as session:
                 documents = collection.find({})
                 for doc in documents:
-                    thumbnails = doc.get("thumbnails", {})
+                 try:
+                    thumbnail_ref = doc.get("thumbnails", {}).get("gridfs_id")
+                    thumbnail_gridfs_id = str(thumbnail_ref) if thumbnail_ref else None
                     session.run(
                         """
                         MERGE(c:YouTubeChannel {channel_id: $channel_id})
@@ -112,9 +116,7 @@ with DAG(
                            v.channel_id = $channel_id,
                            v.video_description = $video_description,
                            v.channel_title = $channel_title,
-                           v.thumbnail_url = $thumbnail_url,
-                           v.thumbnail_width = $thumbnail_width,
-                           v.thumbnail_height = $thumbnail_height
+                           v.thumbnail_gridfs_id = $thumbnail_gridfs_id
                         MERGE (c)-[:POSTEDONYOUTUBE]->(v)
                         """,
                         video_title = doc.get("video_title"),
@@ -123,10 +125,15 @@ with DAG(
                         channel_id = doc.get("channel_id"),
                         video_description = doc.get("video_description", ""),
                         channel_title = doc.get("channel_title", ""),
-                        thumbnail_url=thumbnails.get("url"),
-                        thumbnail_width=thumbnails.get("width"),
-                        thumbnail_height=thumbnails.get("height")
+                        thumbnail_gridfs_id = thumbnail_gridfs_id 
                     )
+                 except Exception as e:
+                       logger.error(f"Failed to process document {doc.get('video_id')}: {e}")
+                       raise
+         except Exception as e:
+            logger.error(f"Error occurred during the graph transformation: {e}")
+            raise
+
 
 
         load_channels_ids_task = PythonOperator(
