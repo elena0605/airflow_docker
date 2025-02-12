@@ -105,6 +105,10 @@ with DAG(
                  try:
                     thumbnail_ref = doc.get("thumbnails", {}).get("gridfs_id")
                     thumbnail_gridfs_id = str(thumbnail_ref) if thumbnail_ref else None
+                    # Convert string counts to integers with default 0
+                    view_count = int(doc.get("view_count", 0))
+                    like_count = int(doc.get("like_count", 0))
+                    comment_count = int(doc.get("comment_count", 0))
                     session.run(
                         """
                         MERGE(c:YouTubeChannel {channel_id: $channel_id})
@@ -116,7 +120,11 @@ with DAG(
                            v.channel_id = $channel_id,
                            v.video_description = $video_description,
                            v.channel_title = $channel_title,
-                           v.thumbnail_gridfs_id = $thumbnail_gridfs_id
+                           v.thumbnail_gridfs_id = $thumbnail_gridfs_id,
+                           v.view_count = $view_count,
+                           v.like_count = $like_count,
+                           v.comment_count = $comment_count,
+                           v.topic_categories = $topic_categories
                         MERGE (c)-[:POSTEDONYOUTUBE]->(v)
                         """,
                         video_title = doc.get("video_title"),
@@ -125,7 +133,11 @@ with DAG(
                         channel_id = doc.get("channel_id"),
                         video_description = doc.get("video_description", ""),
                         channel_title = doc.get("channel_title", ""),
-                        thumbnail_gridfs_id = thumbnail_gridfs_id 
+                        thumbnail_gridfs_id = thumbnail_gridfs_id,
+                        view_count = view_count,
+                        like_count = like_count,
+                        comment_count = comment_count,
+                        topic_categories = doc.get("topic_categories", []),
                     )
                  except Exception as e:
                        logger.error(f"Failed to process document {doc.get('video_id')}: {e}")

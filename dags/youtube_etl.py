@@ -5,6 +5,10 @@ from datetime import datetime
 from airflow.exceptions import AirflowFailException
 import gridfs
 from pymongo import MongoClient
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import Flow
+import pickle
+import os
 
 # Set up logging - log to airflow logs & console
 logger = logging.getLogger("airflow.task")
@@ -21,7 +25,7 @@ if not logger.hasHandlers():  # Avoid duplicate handlers
 # config.read('/opt/airflow/dags/config.ini')
 # api_key = config["YOUTUBE"]["API_KEY"]
 #API_KEY = 'AIzaSyCu9avifWhxwAiGCrOhhkcsMIfXdVIVdX0'
-API_KEY = 'AIzaSyBB6dXRFOT2LnlF1TabeR9OEwRF50dR_rs'
+API_KEY = 'AIzaSyCHgaAQ8cCXmaTc9K8TK_zdou1JIgij44k'
 
 def save_thumbnail(image_url, video_id, channel_title):
     client = MongoClient("mongodb://airflow:tiktok@mongodb:27017/")
@@ -39,7 +43,7 @@ def save_thumbnail(image_url, video_id, channel_title):
 def get_channels_statistics(channel_id):
 
     logger.debug(f"Fetching statistics for channel ID: {channel_id}")
-    url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings&id={channel_id}&key={API_KEY}'
+    url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings,topicDetails&id={channel_id}&key={API_KEY}'
 
     try:
         response = requests.get(url)
@@ -58,6 +62,10 @@ def get_channels_statistics(channel_id):
         stats = item.get('statistics', {})
         branding = item.get('brandingSettings', {}).get('channel', {})
         title = branding.get('title', 'Unknown')
+        description = branding.get('description', 'Unknown')
+        keywords = branding.get('keywords', [])
+        country = branding.get('country', 'Unknown')
+        topic_categories = item.get('topicDetails', {}).get('topicCategories', [])
         logger.info(f"Statistics fetched successfully for channel ID: {channel_id}")
         return {
              'channel_id': channel_id,
@@ -65,17 +73,45 @@ def get_channels_statistics(channel_id):
              'view_count': stats.get('viewCount', '0'),
              'subscriber_count': stats.get('subscriberCount', '0'),
              'video_count': stats.get('videoCount', '0'),
-             'hidden_subscriber_count': stats.get('hiddenSubscriberCount', False)
-
+             'hidden_subscriber_count': stats.get('hiddenSubscriberCount', False),
+             'description': description,
+             'keywords': keywords,
+             'country': country,
+             'topic_categories': topic_categories
         }
     else:
         raise Exception(f"No items found for channel ID: {channel_id}")
         
-
+def get_video_details(video_ids):   
+    """
+    Fetch additional details for videos using the videos endpoint
+    """
+    # YouTube API limits: max 50 video IDs per request
+    video_ids_chunks = [video_ids[i:i + 50] for i in range(0, len(video_ids), 50)]
+    video_details = {}
+    
+    for chunk in video_ids_chunks:
+        url = f'https://www.googleapis.com/youtube/v3/videos?part=statistics,topicDetails&id={",".join(chunk)}&key={API_KEY}'
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            
+            for item in data.get('items', []):
+                video_details[item['id']] = {
+                    'statistics': item.get('statistics', {}),
+                    'topicDetails': item.get('topicDetails', {})
+                }
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error fetching video details: {e}")
+            raise AirflowFailException(f"Failed to fetch video details: {e}")
+            
+    return video_details
 
 def get_videos_by_date(channel_id, start_date, end_date):
     base_url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&type=video&order=date&maxResults=50&key={API_KEY}'
     videos = []
+    video_ids = []
     next_page_token = None
     logger.info(f"Fetching videos for channel_id: {channel_id} from {start_date} to {end_date}")
 
@@ -90,8 +126,10 @@ def get_videos_by_date(channel_id, start_date, end_date):
         logger.debug(f"Fetched {len(data.get('items', []))} videos from page.")
 
         for item in data.get('items', []):
-            video_title = item['snippet']['title']
             video_id = item['id']['videoId']
+            video_ids.append(video_id)
+            
+            video_title = item['snippet']['title']
             published_at = item['snippet']['publishedAt']
             video_description = item['snippet']['description']
             channelTitle = item['snippet']['channelTitle']
@@ -126,8 +164,23 @@ def get_videos_by_date(channel_id, start_date, end_date):
 
      except Exception as e:
             logger.error(f"Unexpected error: {e}")
-            raise AirflowFailException(f"Unexpected error fetching videos for channel {channel_id}: {e}")    
+            raise AirflowFailException(f"Unexpected error fetching videos for channel {channel_id}: {e}")   
 
+    if video_ids:
+        video_details = get_video_details(video_ids)
+        
+        # Merge the details into the videos list
+        for video in videos:
+            video_id = video['video_id']
+            if video_id in video_details:
+                details = video_details[video_id]
+                video.update({
+                    'view_count': details['statistics'].get('viewCount', '0'),
+                    'like_count': details['statistics'].get('likeCount', '0'),
+                    'comment_count': details['statistics'].get('commentCount', '0'),
+                    'topic_categories': details['topicDetails'].get('topicCategories', [])
+                    
+                })
     logger.info(f"Total videos fetched: {len(videos)}")
     return videos
 
@@ -253,4 +306,178 @@ def get_replies(parent_id):
 
 
 
+def get_youtube_credentials():
+    """
+    Get or refresh OAuth 2.0 credentials
+    """
+    creds = None
+    token_path = '/opt/airflow/config/credentials/token.pickle'
+    
+    if os.path.exists(token_path):
+        with open(token_path, 'rb') as token:
+            creds = pickle.load(token)
+            
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            try:
+                creds.refresh(Request())
+            except Exception as e:
+                logger.error(f"Failed to refresh token: {e}")
+                raise AirflowFailException("Token refresh failed")
+        else:
+            raise AirflowFailException(
+                "No valid credentials found. Please run the authentication setup script."
+            )
+            
+    return creds
 
+# def get_captions(video_id):
+#     """
+#     Fetch captions using OAuth authentication
+#     """
+#     creds = get_youtube_credentials()
+    
+#     # First, get the caption tracks available for the video
+#     captions_url = "https://www.googleapis.com/youtube/v3/captions"
+#     params = {
+#         'part': 'snippet',
+#         'videoId': video_id     
+#     }
+
+#     headers = {
+#         'Authorization': f'Bearer {creds.token}',
+#         'Accept': 'application/json'
+#     }
+
+#     captions_list = []
+    
+#     try:
+#         # Get list of available captions
+#         response = requests.get(captions_url, params=params, headers=headers)
+#         response.raise_for_status()
+#         data = response.json() 
+
+#         logger.info(f"Available captions for video {video_id}: {data}") 
+
+#         for item in data.get('items', []):
+#             caption_info = {
+#                 'caption_id': item['id'],
+#                 'video_id': video_id,
+#                 'language': item['snippet']['language'],
+#                 'language_name': item['snippet'].get('name', ''),
+#                 'track_kind': item['snippet']['trackKind'],
+#                 'is_auto': item['snippet']['trackKind'] == 'ASR',
+#                 'is_draft': item['snippet'].get('isDraft', False),
+#                 'fetched_time': datetime.now()
+#             }
+            
+#             # Get the actual caption content
+#             caption_download_url = f"{captions_url}/{item['id']}"
+#             download_params = {
+#                 'tfmt': 'srt'
+                
+                  
+#             }
+#             download_headers = {
+#                 'Authorization': f'Bearer {creds.token}',
+#                 'Accept': 'application/octet-stream'
+#             }
+            
+#             try:
+#                 caption_response = requests.get(
+#                     caption_download_url, 
+#                     params=download_params,
+#                     headers=download_headers,
+#                     stream=True 
+#                 )
+#                 logger.info(f"Caption download response status: {caption_response.status_code}")
+#                 logger.info(f"Caption download response headers: {caption_response.headers}")
+#                 if caption_response.status_code == 403:
+#                     logger.error(f"Full error response: {caption_response.text}")
+
+#                 caption_response.raise_for_status()
+#                 caption_info['caption_content'] = caption_response.content.decode('utf-8')
+                
+#             except requests.exceptions.RequestException as e:
+#                 logger.error(f"Failed to download caption content: {e}")
+#                 caption_info['caption_content'] = None
+                
+#             captions_list.append(caption_info)
+            
+#         return captions_list
+        
+#     except Exception as e:
+#         logger.error(f"Failed to fetch captions: {e}")
+#         raise AirflowFailException(f"Caption fetching failed: {e}")
+  
+
+def get_captions(video_id):
+    """
+    Fetch captions following YouTube API documentation
+    """
+    creds = get_youtube_credentials()
+    
+    # Step 1: Get caption track ID
+    list_url = "https://www.googleapis.com/youtube/v3/captions"
+    list_params = {
+        'part': 'snippet',
+        'videoId': video_id
+    }
+    headers = {
+        'Authorization': f'Bearer {creds.token}'
+    }
+    
+    try:
+        # Get list of available captions
+        response = requests.get(list_url, params=list_params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Find English caption or auto-generated caption
+        caption_id = None
+        for item in data.get('items', []):
+            if item['snippet']['language'] == 'en':
+                caption_id = item['id']
+                break
+        
+        if not caption_id:
+            logger.info(f"No English captions found for video {video_id}")
+            return None
+            
+        # Step 2: Download the caption using the ID
+        download_url = f"https://www.googleapis.com/youtube/v3/captions/{caption_id}"
+        download_params = {
+            'tfmt': 'srt'  # Request in SubRip format
+        }
+        download_headers = {
+            'Authorization': f'Bearer {creds.token}',
+            'Accept': 'application/octet-stream'  # As specified in docs
+        }
+        
+        caption_response = requests.get(
+            download_url,
+            params=download_params,
+            headers=download_headers
+        )
+        caption_response.raise_for_status()
+        
+        return {
+            'caption_id': caption_id,
+            'video_id': video_id,
+            'language': 'en',
+            'caption_content': caption_response.content.decode('utf-8'),
+            'fetched_time': datetime.now()
+        }
+        
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 403:
+            logger.error(f"Permission denied for video {video_id}: {e.response.text}")
+        elif e.response.status_code == 404:
+            logger.error(f"Caption not found for video {video_id}")
+        else:
+            logger.error(f"HTTP error occurred: {e}")
+        return None
+        
+    except Exception as e:
+        logger.error(f"Failed to fetch captions: {e}")
+        return None

@@ -98,6 +98,8 @@ with DAG(
              with driver.session() as session:
                 documents = collection.find({})
                 for doc in documents:
+                    topic_categories = doc.get("topic_categories", [])
+                
                     session.run(
                         """
                         MERGE(c:YouTubeChannel {channel_id: $channel_id})
@@ -106,7 +108,11 @@ with DAG(
                             c.view_count = $view_count,
                             c.subscriber_count = $subscriber_count,
                             c.video_count = $video_count,
-                            c.hidden_subscriber_count = $hidden_subscriber_count
+                            c.hidden_subscriber_count = $hidden_subscriber_count,
+                            c.description = $description,
+                            c.keywords = $keywords,
+                            c.country = $country,
+                            c.topic_categories = $topics
                         """,
                         channel_id = doc.get("channel_id"),
                         title = doc.get("title"),
@@ -114,7 +120,10 @@ with DAG(
                         subscriber_count = doc.get("subscriber_count", 0),
                         video_count = doc.get("video_count", 0),
                         hidden_subscriber_count = doc.get("hidden_subscriber_count", False),
-
+                        description = doc.get("description", ""),
+                        keywords = doc.get("keywords", []),
+                        country = doc.get("country", "Unknown"),
+                        topics = doc.get("topic_categories", []) 
                     )
 
         load_channels_ids_task = PythonOperator(
