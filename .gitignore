@@ -13,3 +13,5 @@ plugins/__pycache__/
 
 *.pyc
 __pycache
+
+config/credentials/client_secrets.json
