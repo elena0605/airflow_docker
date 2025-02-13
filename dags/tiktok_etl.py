@@ -7,6 +7,7 @@ import json
 import logging
 import time
 import configparser
+from airflow.exceptions import AirflowFailException
 # import pymongo
 from bson import ObjectId
 from neo4j import GraphDatabase
@@ -267,3 +268,89 @@ def tiktok_get_user_video_info(username: str, **context):
     return df
 
 
+def tiktok_get_video_comments(video_id):
+    token_info = load_token_from_config()
+
+    if is_token_expired(token_info):
+         client_key = config["TIKTOK"]["CLIENT_KEY"]
+         client_secret = config["TIKTOK"]["CLIENT_SECRET"]
+         token_info = get_new_token(client_key, client_secret)
+
+    url = 'https://open.tiktokapis.com/v2/research/video/comment/list/'
+    headers = {
+        "Authorization": token_info["token"],
+        "Content-Type": "application/json"
+    }
+    params = {
+        "fields": "id,text,video_id,parent_comment_id,like_count,reply_count,create_time"
+    }
+
+    all_comments = []
+    cursor = 0
+    max_count = 100  # Maximum allowed by API
+
+    while True:
+        try:
+            body = {
+                "video_id": video_id,
+                "max_count": max_count,
+                "cursor": cursor
+            }
+
+            logger.info(f"Fetching comments for video {video_id} with cursor {cursor}")
+            response = requests.post(url, headers=headers, params=params, json=body)
+            response.raise_for_status()
+            resp = response.json()
+
+            # Extract comments from response
+            comments = resp.get("data", {}).get("comments", [])
+            if not comments:
+                logger.info(f"No more comments found for video {video_id}")
+                break
+
+            # Add fetched time to each comment
+            for comment in comments:
+                structured_comment = {
+                    "id": comment.get("id"),
+                    "video_id": comment.get("video_id"),
+                    "text": comment.get("text", ""),
+                    "like_count": comment.get("like_count", 0),
+                    "reply_count": comment.get("reply_count", 0),
+                    "parent_comment_id": comment.get("parent_comment_id"),
+                    "create_time": datetime.fromtimestamp(comment.get("create_time", 0)),
+                    "fetched_time": datetime.now()                 
+                }
+
+                all_comments.append(structured_comment)
+
+            # Check if there are more comments
+            has_more = resp.get("data", {}).get("has_more", False)
+            if not has_more:
+                logger.info(f"No more comments to fetch for video {video_id}")
+                break
+
+            # Update cursor for next batch
+            cursor = resp.get("data", {}).get("cursor")
+            if not cursor:
+                logger.info(f"No cursor found for video {video_id}")
+                break
+
+            # API limit: only top 1000 comments can be retrieved
+            if cursor >= 1000:
+                logger.info(f"Reached 1000 comment limit for video {video_id}")
+                break
+
+        except requests.exceptions.HTTPError as http_err:
+            logger.error(f"HTTP error occurred while fetching comments: {http_err}")
+            raise AirflowFailException(f"Failed to fetch comments: {http_err}")
+            
+        except requests.exceptions.RequestException as req_err:
+            logger.error(f"Request error occurred while fetching comments: {req_err}")
+            raise AirflowFailException(f"Failed to fetch comments: {req_err}")
+            
+        except Exception as e:
+            logger.error(f"Unexpected error occurred while fetching comments: {e}")
+            raise AirflowFailException(f"Failed to fetch comments: {e}")
+
+    logger.info(f"Successfully fetched {len(all_comments)} comments for video {video_id}")
+    return all_comments

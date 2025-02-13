@@ -137,7 +137,8 @@ with DAG(
                        v.hashtag_names = $hashtag_names,
                        v.video_mention_list = $video_mention_list,
                        v.video_label = $video_label,
-                       v.search_id = $search_id
+                       v.search_id = $search_id,
+                       v.username = $username
                     MERGE (u)-[:POSTEDONTIKTOK]->(v)  
                     """,
                     username=username,
