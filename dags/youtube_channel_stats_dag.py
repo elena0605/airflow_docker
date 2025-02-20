@@ -51,7 +51,6 @@ with DAG(
                 raise
 
         def fetch_and_store_channel_stats(**context):
-             task_instance = context['task_instance']
              hook = MongoHook(mongo_conn_id="mongo_default")
              client = hook.get_conn()
              db = client.airflow_db
@@ -65,6 +64,8 @@ with DAG(
              if not channels_ids:
                logger.warning("No channels_ids found, skipping data fetch and storage.")
                return
+
+             new_channel_ids = []  # Track new channels 
              
              for username in channels_ids:
                 try:
@@ -73,21 +74,45 @@ with DAG(
                     channel_stats = ye.get_channels_statistics(channel_id)
 
                     if channel_stats is None:
-                       raise AirflowFailException(f"Failed to fetch statistics for channel ID: {channel_id}")             
+                       raise AirflowFailException(f"Failed to fetch statistics for channel ID: {channel_id}") 
 
-                    channel_stats['timestamp'] = datetime.now()                   
+                    channel_stats['transformed_to_neo4j'] = False
+                    channel_stats['timestamp'] = datetime.now()  
+
                     try:
                         collection.insert_one(channel_stats)
-                        logger.info(f"Channel stats for {username} inserted into MongoDB successfully.")
+                        new_channel_ids.append(channel_id)  # Track successful insert
+                        logger.info(f"Stored new channel: {username}")
 
                     except DuplicateKeyError as e: 
-                         logger.info(f"Channel stats for channel_id {channel_id} already exist. Skipping insertion. Error: {e}")     
-                                                     
-                except Exception as e:
-                    logger.error(f"Error fetching stats for {username} (channel_id: {channel_id}): {e}")
-                    raise e
+                        # Check if it needs transformation
+                        existing_doc = collection.find_one(
+                            {"channel_id": channel_id, "transformed_to_neo4j": False}
+                        )
+                        if existing_doc:
+                            new_channel_ids.append(channel_id)
+                            logger.info(f"Channel {username} exists but needs transformation")    
+                        else:
+                            logger.info(f"Channel {username} already exists, skipping")
 
-        def transform_to_graph():
+                except Exception as e:
+                    logger.error(f"Error processing {username}: {e}")
+                    raise e
+             # Pass new channels to transform task
+             context['task_instance'].xcom_push(key='new_channel_ids', value=new_channel_ids)
+             logger.info(f"Stored {len(new_channel_ids)} new channels")
+
+        def transform_to_graph(**context):
+            # Get new channel IDs from previous task
+             new_channel_ids = context['task_instance'].xcom_pull(
+                task_ids='fetch_and_store_channel_stats',
+                key='new_channel_ids'
+             )
+             if not new_channel_ids:
+                logger.info("No new channels to transform")
+                return
+             logger.info(f"Transforming {len(new_channel_ids)} new channels to graph") 
+
              mongo_hook = MongoHook(mongo_conn_id="mongo_default")
              mongo_client = mongo_hook.get_conn()
              db = mongo_client.airflow_db
@@ -96,8 +121,16 @@ with DAG(
              hook = Neo4jHook(conn_id="neo4j_default") 
              driver = hook.get_conn() 
              with driver.session() as session:
-                documents = collection.find({})
-                for doc in documents:
+                 # Only fetch new channels from MongoDB
+                 documents = collection.find({
+                    "channel_id": {"$in": new_channel_ids},
+                    "transformed_to_neo4j": False  # Only get untransformed channels
+                 })
+
+                 channels_processed = 0
+
+                 for doc in documents:
+                  try:  
                     topic_categories = doc.get("topic_categories", [])
                 
                     session.run(
@@ -125,6 +158,19 @@ with DAG(
                         country = doc.get("country", "Unknown"),
                         topics = doc.get("topic_categories", []) 
                     )
+                    # Mark as transformed in MongoDB
+                    collection.update_one(
+                       {"channel_id": doc.get("channel_id")},
+                       {"$set": {"transformed_to_neo4j": True}}
+                    )
+                    channels_processed += 1
+                    logger.info(f"Transformed channel {doc.get('channel_id')} to Neo4j")
+
+                  except Exception as e:
+                    logger.error(f"Error transforming channel {doc.get('channel_id')}: {e}")
+                    raise
+
+                 logger.info(f"Successfully processed {channels_processed} channels to Neo4j")  
 
         load_channels_ids_task = PythonOperator(
             task_id = 'load_channels_ids',
@@ -140,7 +186,7 @@ with DAG(
         transform_to_graph_task = PythonOperator(
             task_id="transform_to_graph",
             python_callable=transform_to_graph,
-    )
+        )
 
         load_channels_ids_task >> fetch_and_store_channel_stats_task >> transform_to_graph_task
 

@@ -1,5 +1,4 @@
 import requests
-import configparser
 import logging
 from datetime import datetime
 from airflow.exceptions import AirflowFailException
@@ -7,6 +6,7 @@ import gridfs
 from pymongo import MongoClient
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import Flow
+from airflow.models import Variable
 import pickle
 import os
 
@@ -20,15 +20,12 @@ stream_handler.setFormatter(formatter)
 if not logger.hasHandlers():  # Avoid duplicate handlers
     logger.addHandler(stream_handler)
 
-# Reading the config file for accessing the API keys
-# config = configparser.ConfigParser()
-# config.read('/opt/airflow/dags/config.ini')
-# api_key = config["YOUTUBE"]["API_KEY"]
-#API_KEY = 'AIzaSyCu9avifWhxwAiGCrOhhkcsMIfXdVIVdX0'
-API_KEY = 'AIzaSyCHgaAQ8cCXmaTc9K8TK_zdou1JIgij44k'
+
+YOUTUBE_API_KEY = Variable.get("YOUTUBE_API_KEY")
+MONGO_URI = Variable.get("MONGO_URI")
 
 def save_thumbnail(image_url, video_id, channel_title):
-    client = MongoClient("mongodb://airflow:tiktok@mongodb:27017/")
+    client = MongoClient(MONGO_URI)
     db = client["airflow_db"]
     fs = gridfs.GridFS(db)
     try:
@@ -43,7 +40,7 @@ def save_thumbnail(image_url, video_id, channel_title):
 def get_channels_statistics(channel_id):
 
     logger.debug(f"Fetching statistics for channel ID: {channel_id}")
-    url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings,topicDetails&id={channel_id}&key={API_KEY}'
+    url = f'https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings,topicDetails&id={channel_id}&key={YOUTUBE_API_KEY}'
 
     try:
         response = requests.get(url)
@@ -91,7 +88,7 @@ def get_video_details(video_ids):
     video_details = {}
     
     for chunk in video_ids_chunks:
-        url = f'https://www.googleapis.com/youtube/v3/videos?part=statistics,topicDetails&id={",".join(chunk)}&key={API_KEY}'
+        url = f'https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet,topicDetails&id={",".join(chunk)}&key={YOUTUBE_API_KEY}'
         try:
             response = requests.get(url)
             response.raise_for_status()
@@ -100,7 +97,8 @@ def get_video_details(video_ids):
             for item in data.get('items', []):
                 video_details[item['id']] = {
                     'statistics': item.get('statistics', {}),
-                    'topicDetails': item.get('topicDetails', {})
+                    'topicDetails': item.get('topicDetails', {}),
+                    'snippet': item.get('snippet', {})
                 }
         except requests.exceptions.RequestException as e:
             logger.error(f"Error fetching video details: {e}")
@@ -109,7 +107,7 @@ def get_video_details(video_ids):
     return video_details
 
 def get_videos_by_date(channel_id, start_date, end_date):
-    base_url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&type=video&order=date&maxResults=50&key={API_KEY}'
+    base_url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&type=video&order=date&maxResults=50&key={YOUTUBE_API_KEY}'
     videos = []
     video_ids = []
     next_page_token = None
@@ -145,8 +143,7 @@ def get_videos_by_date(channel_id, start_date, end_date):
                           'channel_id': channel_id, 
                           'video_description': video_description, 
                           'channel_title' : channelTitle,
-                          'thumbnails': {'gridfs_id': thumbnail_id},
-                          "fetched_time":datetime.now()       
+                          'thumbnails': {'gridfs_id': thumbnail_id}       
                            })
 
         next_page_token = data.get('nextPageToken')
@@ -178,7 +175,8 @@ def get_videos_by_date(channel_id, start_date, end_date):
                     'view_count': details['statistics'].get('viewCount', '0'),
                     'like_count': details['statistics'].get('likeCount', '0'),
                     'comment_count': details['statistics'].get('commentCount', '0'),
-                    'topic_categories': details['topicDetails'].get('topicCategories', [])
+                    'topic_categories': details['topicDetails'].get('topicCategories', []),
+                    'tags': details['snippet'].get('tags', [])  
                     
                 })
     logger.info(f"Total videos fetched: {len(videos)}")
@@ -192,7 +190,7 @@ def get_top_level_comments(video_id):
         'part': 'snippet',
         'videoId': video_id,
         'maxResults': 100, 
-        'key': API_KEY
+        'key': YOUTUBE_API_KEY
     }
 
     comments = []
@@ -225,8 +223,7 @@ def get_top_level_comments(video_id):
                     'viewerRating': item['snippet']['topLevelComment']['snippet']['viewerRating'],
                     'likeCount': item['snippet']['topLevelComment']['snippet']['likeCount'],
                     'publishedAt': item['snippet']['topLevelComment']['snippet']['publishedAt'],
-                    'updatedAt': item['snippet']['topLevelComment']['snippet']['updatedAt'],
-                    'fetched_time': datetime.now()
+                    'updatedAt': item['snippet']['topLevelComment']['snippet']['updatedAt']         
                 }
                 comments.append(top_comment)
 
@@ -251,7 +248,7 @@ def get_replies(parent_id):
         'part': 'snippet',
         'parentId': parent_id,
         'maxResults': 100,
-        'key': API_KEY
+        'key': YOUTUBE_API_KEY
     }
 
     replies = []

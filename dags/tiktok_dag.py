@@ -25,13 +25,9 @@ default_args = {
     "on_success_callback": task_success_callback,
 }
 
-# File and directories paths
-#BASE_DIR = os.path.expanduser("~/airflow/tiktok_dag")
-#BASE_DIR = os.path.expanduser("~/airflow_docker/dags")
-#INPUT_PATH = os.path.join(BASE_DIR, "influencers.csv")
+
 INPUT_PATH = "/opt/airflow/dags/influencers.csv"
 OUTPUT_DIR = "/opt/airflow/dags/data/tiktok"
-# OUTPUT_DIR = os.path.join(BASE_DIR, "data/tiktok")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
@@ -63,6 +59,9 @@ with DAG(
         if not usernames:
             logger.warning("No usernames found, skipping data fetch.")
             return
+           # Strip leading/trailing spaces from each username
+        usernames = [username.strip() for username in usernames] 
+        
         for username in usernames:
             logger.info(f"Fetching data for username: {username}")
             try:
@@ -78,11 +77,14 @@ with DAG(
         db = client.airflow_db
         collection = db.tiktok_user_info
 
+        # Track new users
+        new_usernames = []
+
         collection.create_index("username", unique=True)
 
-        # Fetch all usernames from XCom
+        # Get usernames from previous task
         usernames = context['ti'].xcom_pull(task_ids='load_usernames', key='usernames')
-        logger.info(f"Usernames pulled from XCom: {usernames}")
+        logger.info(f"Processing {len(usernames)} users")
     
         if not usernames:
            logger.warning("No usernames found, skipping data storage.")
@@ -91,6 +93,7 @@ with DAG(
         for username in usernames:
            # Retrieve the fetched data for this username from XCom
          user_data = context['ti'].xcom_pull(key=f'{username}_info_path')
+
          if user_data:
             try:
                 # Prepare the data to be inserted into MongoDB
@@ -100,7 +103,8 @@ with DAG(
                 # Insert data into MongoDB
                 try:
                     collection.insert_one(user_data)
-                    logger.info(f"TikTok info for {username} inserted into MongoDB successfully.")
+                    new_usernames.append(username)
+                    logger.info(f"New user stored: {username}")
 
                 except DuplicateKeyError as e:
                     logger.info(f"User Info for username: {username} already exist. Skipping insertion. Error: {e}")               
@@ -110,9 +114,21 @@ with DAG(
                 raise
          else:
             logger.warning(f"No data found in XCom for username {username}, skipping insertion.")
-    
-    def transform_to_graph(**context):
 
+        context['task_instance'].xcom_push(key='new_usernames', value=new_usernames)
+        logger.info(f"Stored {len(new_usernames)} new users")
+
+    def transform_to_graph(**context):
+     # Get newly added usernames from XCom
+     new_usernames = context['task_instance'].xcom_pull(
+            task_ids='store_user_data',
+            key='new_usernames'
+        )
+     if not new_usernames:
+            logger.info("No new users to transform")
+            return
+            
+     logger.info(f"Transforming {len(new_usernames)} new users to graph")      
      # Connect to MongoDB
      mongo_hook = MongoHook(mongo_conn_id="mongo_default")
      mongo_client = mongo_hook.get_conn()
@@ -125,8 +141,8 @@ with DAG(
      with driver.session() as session:
        
         # Fetch all user data from MongoDB
-        user_data = collection.find({})
-        for user in user_data:
+        documents = collection.find({"username": {"$in": new_usernames}})
+        for doc in documents:
             # Create or update User nodes in Neo4j
             session.run(
                 """
@@ -141,16 +157,16 @@ with DAG(
                     u.video_count = $video_count,
                     u.is_verified = $is_verified   
                 """,
-                username=user.get("username"),
-                display_name=user.get("display_name"),
-                bio_description=user.get("bio_description"),
-                bio_url=user.get("bio_url"),
-                avatar_url=user.get("avatar_url"),
-                follower_count=user.get("follower_count", 0),
-                following_count=user.get("following_count", 0),
-                likes_count=user.get("likes_count", 0),
-                video_count=user.get("video_count", 0),
-                is_verified=user.get("is_verified", False),
+                username=doc.get("username"),
+                display_name=doc.get("display_name"),
+                bio_description=doc.get("bio_description"),
+                bio_url=doc.get("bio_url"),
+                avatar_url=doc.get("avatar_url"),
+                follower_count=doc.get("follower_count", 0),
+                following_count=doc.get("following_count", 0),
+                likes_count=doc.get("likes_count", 0),
+                video_count=doc.get("video_count", 0),
+                is_verified=doc.get("is_verified", False),
             )
         
 

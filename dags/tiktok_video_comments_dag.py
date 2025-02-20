@@ -42,11 +42,20 @@ with DAG(
 
         # Create indexes
         comments_collection.create_index("id", unique=True)
+        comments_collection.create_index("video_id") # For faster lookups
         
-        try:
-            # Get all video IDs from the videos collection
-            video_documents = videos_collection.find({}, {"video_id": 1, "username": 1, "_id": 0})
+        try:        
+            # Get only videos that don't have comments fetched yet
+            video_documents = videos_collection.find(
+             {
+                "comments_fetched": {"$ne": True}  # Only get videos where comments haven't been fetched
+             }, 
+             {"video_id": 1, "username": 1, "_id": 0}
+            )  
             
+            videos_processed = 0
+            new_comments_count = 0
+
             for video_doc in video_documents:
                 video_id = video_doc.get("video_id")
                 username = video_doc.get("username")  
@@ -63,25 +72,63 @@ with DAG(
                     if comments:
                         for comment in comments:
                             comment["username"] = username
+                            comment["fetched_at"] = datetime.now()
                         try:
                             # Insert comments with ordered=False to continue on duplicate key errors
-                            comments_collection.insert_many(comments, ordered=False)
-                            logger.info(f"Stored {len(comments)} comments for video {video_id}")
+                           result = comments_collection.insert_many(comments, ordered=False)
+                           new_comments = len(result.inserted_ids)
+                           new_comments_count += new_comments
+                           logger.info(f"Stored {new_comments} new comments for video {video_id}")
+
                         except BulkWriteError as bwe:
-                            logger.info(f"Some comments for video {video_id} already exist and were skipped. "
-                                      f"Error details: {bwe.details}")
+                            # Count successful inserts even if some were duplicates
+                            successful_inserts = len(comments) - len(bwe.details.get('writeErrors', []))
+                            new_comments_count += successful_inserts
+                            logger.info(f"Stored {successful_inserts} new comments for video {video_id} (some were duplicates)")
+                           
                     else:
                         logger.info(f"No comments found for video {video_id}")
+                    
+                    # Mark video as processed
+                    videos_collection.update_one(
+                      {"video_id": video_id},
+                      {
+                        "$set": {
+                            "comments_fetched": True,
+                            "comments_fetched_at": datetime.now(),
+                            "comments_count": len(comments) if comments else 0
+                        }
+                      }
+                    )
+                    videos_processed += 1
 
                 except Exception as e:
                     logger.error(f"Error processing comments for video {video_id}: {e}", exc_info=True)
                     continue
+
+            logger.info(f"Processed {videos_processed} videos, fetched {new_comments_count} new comments total")
+
+            # Store stats in XCom
+            context['task_instance'].xcom_push(key='comments_stats', value={
+            'videos_processed': videos_processed,
+            'new_comments_count': new_comments_count
+            })
 
         except Exception as e:
             logger.error(f"Error in fetch_and_store_comments: {e}", exc_info=True)
             raise
 
     def transform_comments_to_graph(**context):
+        # Get stats from previous task
+        stats = context['task_instance'].xcom_pull(
+            task_ids='fetch_and_store_comments',
+            key='comments_stats'
+        )
+
+        if not stats or stats.get('new_comments_count', 0) == 0:
+            logger.info("No new comments to transform")
+            return
+              
         # Connect to MongoDB
         mongo_hook = MongoHook(mongo_conn_id="mongo_default")
         mongo_client = mongo_hook.get_conn()
@@ -94,9 +141,12 @@ with DAG(
 
         with driver.session() as session:
             try:
-                # Fetch all comments from MongoDB
-                comments = comments_collection.find({})
-                
+                # Fetch only comments that haven't been processed for Neo4j
+                comments = comments_collection.find(
+                {"processed_for_neo4j": {"$ne": True}}
+                )
+                comments_processed = 0
+
                 for comment in comments:
                     try:
                         # Create comment node and relationships
@@ -124,12 +174,20 @@ with DAG(
                             create_time=comment.get("create_time"),
                             username=comment.get("username") 
                         )
+                        # Mark comment as processed
+                        comments_collection.update_one(
+                            {"_id": comment["_id"]},
+                            {"$set": {"processed_for_neo4j": True}}
+                        )
+                        comments_processed += 1
                         logger.debug(f"Processed comment {comment.get('id')} for video {comment.get('video_id')}")
                         
                     except Exception as e:
                         logger.error(f"Error processing comment {comment.get('id')}: {e}", exc_info=True)
                         continue  # Continue with next comment even if one fails
 
+                logger.info(f"Successfully processed {comments_processed} comments to Neo4j")
+                
             except Exception as e:
                 logger.error(f"Error in transform_comments_to_graph: {e}", exc_info=True)
                 raise

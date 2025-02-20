@@ -58,6 +58,7 @@ with DAG(
         db = client.airflow_db
         collection = db.tiktok_user_video
 
+
         collection.create_index("video_id", unique=True)
      
         usernames = context['ti'].xcom_pull(key='usernames')
@@ -68,6 +69,7 @@ with DAG(
             return
 
         all_videos = []
+        new_video_ids = set() 
 
         for username in usernames:
             try:
@@ -89,13 +91,37 @@ with DAG(
 
         if all_videos: 
             try:
-                collection.insert_many(all_videos, ordered=False)
-                logger.info(f"Stored {len(all_videos)} videos in MongoDB successfully.")
+                # Try to insert all videos
+                result = collection.insert_many(all_videos, ordered=False)
+
+                # Track successfully inserted video IDs
+                new_video_ids = set([all_videos[i]["video_id"] for i in range(len(all_videos)) 
+                               if all_videos[i]["video_id"] not in [str(e["op"]["_id"]) 
+                               for e in getattr(e, "details", {}).get("writeErrors", [])]])
+
+                logger.info(f"Stored {len(new_video_ids)} videos in MongoDB successfully.")
 
             except BulkWriteError as e:
-                logger.info(f"Some videos already exist and were skipped. Error details: {e.details}")
+                 # Get successfully inserted video IDs even when some failed
+                new_video_ids = set([all_videos[i]["video_id"] for i in range(len(all_videos)) 
+                                   if all_videos[i]["video_id"] not in [str(err["op"]["_id"]) 
+                                  for err in e.details.get("writeErrors", [])]])
+                logger.info(f"Stored {len(new_video_ids)} new videos. Some videos already existed and were skipped.")
+
+            # Store new video IDs in XCom for the transform task
+            context['task_instance'].xcom_push(key='new_video_ids', value=list(new_video_ids))
+
 
     def transform_to_graph(**context):
+        # Get only new video IDs from previous task
+     new_video_ids = context['task_instance'].xcom_pull(
+        task_ids='fetch_and_store_user_video',
+        key='new_video_ids'
+     )
+     if not new_video_ids:
+        logger.info("No new videos to transform")
+        return
+
         # Connect to MongoDB
      mongo_hook = MongoHook(mongo_conn_id="mongo_default")
      mongo_client = mongo_hook.get_conn()
@@ -106,8 +132,8 @@ with DAG(
      hook = Neo4jHook(conn_id="neo4j_default") 
      driver = hook.get_conn() 
      with driver.session() as session:
-        # Fetch video documents from MongoDB
-         documents = collection.find({})
+        # Fetch new video documents from MongoDB
+         documents = collection.find({"video_id": {"$in": new_video_ids}})
          for doc in documents:
             username = doc.get("username")
             video_id = doc.get("video_id")
@@ -139,7 +165,7 @@ with DAG(
                        v.video_label = $video_label,
                        v.search_id = $search_id,
                        v.username = $username
-                    MERGE (u)-[:POSTEDONTIKTOK]->(v)  
+                    MERGE (u)-[:PUBLISHED_ON_TIKTOK]->(v)  
                     """,
                     username=username,
                     video_id=video_id,

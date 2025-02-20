@@ -34,7 +34,7 @@ with DAG(
      tags=['youtube_video_comments'],
 
 ) as dag:
-        def fetch_and_store_video_comments():
+        def fetch_and_store_video_comments(**context):
           try:  
             hook = MongoHook(mongo_conn_id="mongo_default")
             client = hook.get_conn()
@@ -44,61 +44,119 @@ with DAG(
             comment_collection = db.youtube_video_comments
 
             comment_collection.create_index("comment_id", unique=True)
+            comment_collection.create_index("video_id")  # For faster lookups
+            comment_collection.create_index("transformed_to_neo4j") 
             
 
-            videos = video_collection.find({}, {"video_id": 1, "_id": 0})
-            video_ids = [video["video_id"] for video in videos]
+            # Get videos that haven't had comments fetched yet
+            video_documents = video_collection.find(
+              {"comments_fetched": {"$ne": True}},
+              {"video_id": 1, "channel_id": 1, "_id": 0}
+            )
 
-            logger.info(f"Found {len(video_ids)} videos to fetch comments for.")
+            videos_processed = 0
+            new_comment_ids = []         
 
-            for video_id in video_ids:
+            for video_doc in video_documents:
+                video_id = video_doc.get("video_id")
+                channel_id = video_doc.get("channel_id")
+
+                if not video_id:
+                    continue
+
                 logger.info(f"Fetching comments for video_id: {video_id}")
+
                 try:
                     comments = ye.get_top_level_comments(video_id)
 
                     if comments:
-                        logger.info(f"Storing {len(comments)} comments for video_id: {video_id}")
+                        for comment in comments:
+                            comment["fetched_at"] = datetime.now()
+                            comment["transformed_to_neo4j"] = False                    
                         try:
-                            comment_collection.insert_many(comments,ordered=False) 
-                            logger.info(f"Comments for video_id: {video_id} inserted into MongoDB successfully.")
+                            result = comment_collection.insert_many(comments,ordered=False) 
+                            new_comment_ids.extend([c['comment_id'] for c in comments])
+                            logger.info(f"Stored {len(comments)} new comments for video {video_id}")
                             
                         except BulkWriteError as e:
-                            logger.info(f"Some comments for video_id {video_id} already exist and were skipped. Error: {e}")                                            
-                    else:
-                        logger.info(f"No comments found for video_id: {video_id}")
+                            for comment in comments:
+                             try:
+                                comment_collection.update_one(
+                                    {"comment_id": comment['comment_id']},
+                                    {"$setOnInsert": {
+                                        "transformed_to_neo4j": False,
+                                        "channel_id": channel_id
+                                    }},
+                                    upsert=True
+                                )
+                                existing = comment_collection.find_one({
+                                    "comment_id": comment['comment_id'],
+                                    "transformed_to_neo4j": False
+                                })
+                                if existing:
+                                    new_comment_ids.append(comment['comment_id'])
+                             except Exception as e:
+                                logger.error(f"Error checking comment {comment.get('comment_id')}: {e}")
+                                continue                                          
+                    # Mark video as processed
+                    video_collection.update_one(
+                      {"video_id": video_id},
+                      {
+                        "$set": {
+                            "comments_fetched": True,
+                            "comments_fetched_at": datetime.now(),
+                            "comments_count": len(comments) if comments else 0
+                        }
+                      }
+                    )
+                    videos_processed += 1
 
-                except AirflowFailException as ae:
-                       #logger.error(f"Failure occurred while fetching video comments with video_id: {video_id}: {ae}")
-                       raise               
                 except Exception as e:
-                        logger.error(f"Unexpected error while processing video_id {video_id}: {e}")
-                        raise
+                 logger.error(f"Error processing video {video_id}: {e}")
+                 continue
 
-            logger.info("Finished fetching and storing comments for all videos.")  
+            logger.info(f"Processed {videos_processed} videos, found {len(new_comment_ids)} comments")
+            context['task_instance'].xcom_push(key='new_comment_ids', value=new_comment_ids) 
 
           except Exception as e:
-              logger.error(f"Error in fetching video comments process: {e}") 
-              raise AirflowFailException(f"Failed to fetch and store video comments: {e}")
+            logger.error(f"Error in fetch_and_store_comments: {e}")
+            raise
 
 
         
-        def transform_to_graph():
-         try:  
+        def transform_to_graph(**context):
+         try: 
+             # Get new comment IDs from previous task
+            new_comment_ids = context['task_instance'].xcom_pull(
+                task_ids='fetch_and_store_video_comments',
+                key='new_comment_ids'
+            )
+
+            if not new_comment_ids:
+                logger.info("No new comments to transform")
+                return
+
+            logger.info(f"Transforming {len(new_comment_ids)} comments to graph")
+
             mongo_hook = MongoHook(mongo_conn_id="mongo_default")
             mongo_client = mongo_hook.get_conn()
             db = mongo_client.airflow_db
-            collection = db.youtube_video_comments
-
-            logger.info("Fetching documents from MongoDB...")
+            collection = db.youtube_video_comments           
 
             hook = Neo4jHook(conn_id="neo4j_default") 
             driver = hook.get_conn()
 
             with driver.session() as session:
-                documents = collection.find({})              
+                # Only fetch untransformed comments
+                documents = collection.find({
+                  "comment_id": {"$in": new_comment_ids},
+                  "transformed_to_neo4j": False
+                })            
+
+                comments_processed = 0
 
                 for doc in documents:
-                    logger.debug(f"Processing comment: {doc.get('comment_id')}")
+                 try:  
                     session.run(
                         """
                         MERGE(c:YouTubeVideoComment {comment_id: $comment_id})
@@ -118,7 +176,7 @@ with DAG(
                           c.likeCount = $likeCount,
                           c.publishedAt =$publishedAt,
                           c.updatedAt = $updatedAt
-                          MERGE (c)-[:COMMENTONYOUTUBEVIDEO]->(v)
+                          MERGE (c)-[:COMMENT_ON_YOUTUBE_VIDEO]->(v)
                         """,
                         comment_id = doc.get("comment_id"),
                         channel_id = doc.get("channel_id"),
@@ -135,8 +193,19 @@ with DAG(
                         publishedAt = doc.get("publishedAt"),
                         updatedAt = doc.get("updatedAt"),
                     )
-                    logger.info(f"Processed comment: {doc.get('comment_id')} for video: {doc.get('video_id')}")
+                    # Mark as transformed in MongoDB
+                    collection.update_one(
+                        {"comment_id": doc["comment_id"]},
+                        {"$set": {"transformed_to_neo4j": True}}
+                    )
+                    comments_processed += 1
+                    logger.info(f"Transformed comment {doc.get('comment_id')} for video {doc.get('video_id')}")
 
+                 except Exception as e:
+                    logger.error(f"Error transforming comment {doc.get('comment_id')}: {e}")
+                    continue
+
+            logger.info(f"Successfully transformed {comments_processed} comments to Neo4j")
          except Exception as e:  
                     logger.error(f"Error in transforming comments to Neo4j: {e}")
                     raise

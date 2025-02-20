@@ -6,11 +6,13 @@ import csv
 import json
 import logging
 import time
-import configparser
 from airflow.exceptions import AirflowFailException
-# import pymongo
+from airflow.models import Variable
 from bson import ObjectId
 from neo4j import GraphDatabase
+
+TIKTOK_CLIENT_KEY = Variable.get("TIKTOK_CLIENT_KEY")
+TIKTOK_CLIENT_SECRET = Variable.get("TIKTOK_CLIENT_SECRET")
 
 
 # Set up logging - log to airflow logs & console
@@ -23,9 +25,7 @@ stream_handler.setFormatter(formatter)
 if not logger.hasHandlers():  # Avoid duplicate handlers
     logger.addHandler(stream_handler)
 
-# Reading the config file for accessing the API keys
-config = configparser.ConfigParser()
-config.read('/opt/airflow/dags/config.ini')
+
 
 def generate_date_ranges(start_date, end_date, days_range=30):
     ranges = []
@@ -35,49 +35,39 @@ def generate_date_ranges(start_date, end_date, days_range=30):
         start_date = range_end + timedelta(days=1)
     return ranges
 
-def load_token_from_config():
+def load_token_from_airflow():
+    """    
+    Load token information from Airflow variables.
     """
-    Load token information from the config.ini file.
-    """
-    if "TIKTOK" in config:
-        token = config["TIKTOK"].get("TOKEN", None)
-        expires_at_str = config["TIKTOK"].get("EXPIRES_AT", None)
+    token = Variable.get("TIKTOK_TOKEN", default_var=None)
+    expires_at = Variable.get("TIKTOK_TOKEN_EXPIRES_AT", default_var=None)
 
+    if expires_at is not None:
         try:
-            expires_at = float(expires_at_str) if expires_at_str else None
+            expires_at = float(expires_at)
         except (ValueError, TypeError):
-            logger.info(f"load_token_from_config: Invalid EXPIRES_AT value in config.ini: {expires_at_str}. Resetting to None.")
+            logger.warning(f"Invalid TIKTOK_TOKEN_EXPIRES_AT value: {expires_at}. Resetting to None.")
             expires_at = None
 
-        return {
-            "token": token,
-            "expires_at": expires_at
-        }
-    return {"token": None, "expires_at": None}
+    return {
+        "token": token,
+        "expires_at": expires_at
+    }
 
 
-def save_token_to_config(token_info):
+def save_token_to_airflow(token_info):
     """
-    Save token information to the config.ini file.
+    Save token information to Airflow variables.
     """
-    if "TIKTOK" not in config:
-        config["TIKTOK"] = {}
+    Variable.set("TIKTOK_TOKEN", token_info["token"])
+    Variable.set("TIKTOK_TOKEN_EXPIRES_AT", token_info["expires_at"])
 
-    # Save the token
-    config["TIKTOK"]["TOKEN"] = token_info["token"]
-
-    # Save the expiration timestamp as a string
-    expires_at = token_info.get("expires_at")
-    config["TIKTOK"]["EXPIRES_AT"] = str(expires_at) if expires_at else ""
-
-    # Write the updated configuration back to the file
-    with open("config.ini", "w") as configfile:
-        config.write(configfile)
 
 
 def get_new_token(client_key, client_secret):
     """
     Fetch a new token using TikTok API.
+
     """
     logger.info("Fetching new token...")
     url = "https://open.tiktokapis.com/v2/oauth/token/"
@@ -102,10 +92,10 @@ def get_new_token(client_key, client_secret):
             "expires_at": expires_at
         }
 
-        # Save the token and expiration time to the config
-        save_token_to_config(token_info)
+        # Save the token and expiration time to airflow
+        save_token_to_airflow(token_info)
 
-        logger.info(f"New token obtained: {token_info['token']}, expires at {datetime.fromtimestamp(expires_at)}")
+        logger.info(f"New token obtained, expires at {datetime.fromtimestamp(expires_at)}")
         return token_info
 
     except Exception as e:
@@ -117,21 +107,20 @@ def is_token_expired(token_info):
     Check if the current token is expired.
     """
     logger.info(f"Checking token expiry: {token_info}")
-    if token_info["token"] is None or token_info["expires_at"] is None:
+    if not token_info.get("expires_at"):
         return True
-    return time.time() >= token_info["expires_at"]
+    return time.time() >= token_info["expires_at"]  
 
 
 def tiktok_get_user_info(username: str, output_dir:str, **context):
-    # collection = db["user_info"]
     if context is None:
         context = {} 
     # Load the token
-    token_info = load_token_from_config()
+    token_info = load_token_from_airflow()
 
     if is_token_expired(token_info):
-         client_key = config["TIKTOK"]["CLIENT_KEY"]
-         client_secret = config["TIKTOK"]["CLIENT_SECRET"]
+         client_key = TIKTOK_CLIENT_KEY
+         client_secret = TIKTOK_CLIENT_SECRET
          token_info = get_new_token(client_key, client_secret)
 
     logger.info(f"Now in function tiktok_get_user_info, getting {username}")
@@ -169,17 +158,18 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
         logger.info(f"Status Code: {response.status_code}", exc_info=True)
         logger.info(f"Response Content: {response.text}", exc_info=True)
         logger.info(f"Response Headers: {response.headers}", exc_info=True)
-        raise
+        return None # Return None to avoid raising an exception and task failure
         
     except requests.exceptions.RequestException as err:
         logger.info("TIKTOK request requests.exceptions.RequestException", exc_info=True)
         logger.info(f"Other error occurred: {err}", exc_info=True)
-        raise
+        return None # Return None to avoid raising an exception
+
 
     except Exception as e:
         logger.info("TIKTOK request All Other Exception")
         logger.info(f"An unexpected error occurred: {e}", exc_info=True)
-        raise
+        return None # Return None to avoid raising an exception and task failure
 
 
 def tiktok_get_user_video_info(username: str, **context):
@@ -188,11 +178,11 @@ def tiktok_get_user_video_info(username: str, **context):
         context = {}
 
     # Load the token
-    token_info = load_token_from_config()
+    token_info = load_token_from_airflow()
 
     if is_token_expired(token_info):
-        client_key = config["TIKTOK"]["CLIENT_KEY"]
-        client_secret = config["TIKTOK"]["CLIENT_SECRET"]
+        client_key = TIKTOK_CLIENT_KEY
+        client_secret = TIKTOK_CLIENT_SECRET
         token_info = get_new_token(client_key, client_secret)
 
     logger.info(f"Now in function tiktok_get_user_video_info, fetching videos for {username}")
@@ -269,11 +259,11 @@ def tiktok_get_user_video_info(username: str, **context):
 
 
 def tiktok_get_video_comments(video_id):
-    token_info = load_token_from_config()
+    token_info = load_token_from_airflow()
 
     if is_token_expired(token_info):
-         client_key = config["TIKTOK"]["CLIENT_KEY"]
-         client_secret = config["TIKTOK"]["CLIENT_SECRET"]
+         client_key = TIKTOK_CLIENT_KEY
+         client_secret = TIKTOK_CLIENT_SECRET
          token_info = get_new_token(client_key, client_secret)
 
     url = 'https://open.tiktokapis.com/v2/research/video/comment/list/'
@@ -317,8 +307,7 @@ def tiktok_get_video_comments(video_id):
                     "like_count": comment.get("like_count", 0),
                     "reply_count": comment.get("reply_count", 0),
                     "parent_comment_id": comment.get("parent_comment_id"),
-                    "create_time": datetime.fromtimestamp(comment.get("create_time", 0)),
-                    "fetched_time": datetime.now()                 
+                    "create_time": datetime.fromtimestamp(comment.get("create_time", 0))                             
                 }
 
                 all_comments.append(structured_comment)
