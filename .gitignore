@@ -15,3 +15,7 @@ plugins/__pycache__/
 __pycache
 
 config/credentials/client_secrets.json
+
+.env
+
+.DS_Store
