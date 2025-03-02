@@ -44,9 +44,10 @@ with DAG(
     def load_usernames(file_path, **context):
         try:
             usernames = sy.read_usernames_from_csv(file_path)
-            logger.info(f"Successfully loaded {len(usernames)} usernames from {file_path}")
-            logger.info(f"Usernames loaded: {usernames}")
-            context['ti'].xcom_push(key='usernames', value=usernames)
+            clean_usernames = [username.strip() for username in usernames if username.strip()]
+            logger.info(f"Successfully loaded {len(clean_usernames)} usernames from {file_path}")
+            logger.info(f"Usernames loaded: {clean_usernames}")
+            context['ti'].xcom_push(key='usernames', value=clean_usernames)
         except Exception as e:
             logger.error(f"Error while loading usernames: {e}")
             raise
@@ -58,9 +59,7 @@ with DAG(
 
         if not usernames:
             logger.warning("No usernames found, skipping data fetch.")
-            return
-           # Strip leading/trailing spaces from each username
-        usernames = [username.strip() for username in usernames] 
+            return    
         
         for username in usernames:
             logger.info(f"Fetching data for username: {username}")
@@ -91,14 +90,16 @@ with DAG(
            return
 
         for username in usernames:
+         clean_username = username.strip()
            # Retrieve the fetched data for this username from XCom
-         user_data = context['ti'].xcom_pull(key=f'{username}_info_path')
+         user_data = context['ti'].xcom_pull(key=f'{clean_username}_info_path')
 
          if user_data:
             try:
                 # Prepare the data to be inserted into MongoDB
-                user_data["username"] = username
+                user_data["username"] = clean_username 
                 user_data["timestamp"] = datetime.now()
+                user_data["transformed_to_neo4j"] = False
 
                 # Insert data into MongoDB
                 try:
@@ -141,7 +142,7 @@ with DAG(
      with driver.session() as session:
        
         # Fetch all user data from MongoDB
-        documents = collection.find({"username": {"$in": new_usernames}})
+        documents = collection.find({"username": {"$in": new_usernames}, "transformed_to_neo4j": False})
         for doc in documents:
             # Create or update User nodes in Neo4j
             session.run(
@@ -168,6 +169,10 @@ with DAG(
                 video_count=doc.get("video_count", 0),
                 is_verified=doc.get("is_verified", False),
             )
+            collection.update_one(
+                {"username": doc.get("username")},
+                {"$set": {"transformed_to_neo4j": True}}
+            )   
         
 
     load_usernames_task = PythonOperator(
@@ -186,9 +191,9 @@ with DAG(
         python_callable= store_user_data,
     )
 
-    transform_to_graph_task = PythonOperator(
-    task_id="transform_to_graph",
-    python_callable=transform_to_graph,
-    )
+    # transform_to_graph_task = PythonOperator(
+    # task_id="transform_to_graph",
+    # python_callable=transform_to_graph,
+    # )
 
-    load_usernames_task >> fetch_user_info_task >> store_user_data_task >> transform_to_graph_task
+    load_usernames_task >> fetch_user_info_task >> store_user_data_task #>> transform_to_graph_task

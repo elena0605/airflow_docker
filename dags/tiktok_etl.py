@@ -127,7 +127,7 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
     url = 'https://open.tiktokapis.com/v2/research/user/info/'
     params = {"fields": "display_name, bio_description, is_verified, follower_count, following_count, likes_count, video_count, bio_url, avatar_url"}
     body = {"username": username}
-    headers = {"Authorization":   token_info["token"], "Content-Type" : "application/json"}
+    headers = {"Authorization": token_info["token"], "Content-Type" : "application/json"}
     
     try:
         logger.info(f"Requesting TikTok API with URL: {url}, Headers: {headers}, Body: {body}")
@@ -144,8 +144,9 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
 
 
         if 'ti' in context:
+            clean_username = username.strip()
             resp["data"]["_id"] = str(resp["data"].get("_id", ObjectId()))
-            context['ti'].xcom_push(key=f'{username}_info_path', value=resp["data"])
+            context['ti'].xcom_push(key=f'{clean_username}_info_path', value=resp["data"])
 
         df = pd.DataFrame([resp["data"]])  # Wrap the dictionary in a list to create a single-row DataFrame
 
@@ -172,8 +173,10 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
         return None # Return None to avoid raising an exception and task failure
 
 
+
+
+
 def tiktok_get_user_video_info(username: str, **context):
-    # collection = db["user_video"]
     if context is None:
         context = {}
 
@@ -257,7 +260,6 @@ def tiktok_get_user_video_info(username: str, **context):
     df = pd.DataFrame(all_video_data)
     return df
 
-
 def tiktok_get_video_comments(video_id):
     token_info = load_token_from_airflow()
 
@@ -289,6 +291,13 @@ def tiktok_get_video_comments(video_id):
 
             logger.info(f"Fetching comments for video {video_id} with cursor {cursor}")
             response = requests.post(url, headers=headers, params=params, json=body)
+            # Check for rate limit before raising other status errors
+            if response.status_code == 429:
+                logger.warning("Rate limit reached")
+                raise requests.exceptions.HTTPError(
+                    "429 Client Error: Too Many Requests", 
+                    response=response
+                )
             response.raise_for_status()
             resp = response.json()
 
@@ -330,8 +339,11 @@ def tiktok_get_video_comments(video_id):
                 break
 
         except requests.exceptions.HTTPError as http_err:
+            if http_err.response.status_code == 429:
+                # Let the calling function handle the rate limit
+                raise
             logger.error(f"HTTP error occurred while fetching comments: {http_err}")
-            raise AirflowFailException(f"Failed to fetch comments: {http_err}")
+            return None
             
         except requests.exceptions.RequestException as req_err:
             logger.error(f"Request error occurred while fetching comments: {req_err}")

@@ -7,6 +7,8 @@ from callbacks import task_failure_callback, task_success_callback
 from pymongo.errors import BulkWriteError
 import logging
 import tiktok_etl as te
+from time import sleep
+from requests.exceptions import HTTPError
 
 # Set up logging
 logger = logging.getLogger("airflow.task")
@@ -42,19 +44,18 @@ with DAG(
 
         # Create indexes
         comments_collection.create_index("id", unique=True)
-        comments_collection.create_index("video_id") # For faster lookups
+        comments_collection.create_index("video_id")
         
         try:        
             # Get only videos that don't have comments fetched yet
             video_documents = videos_collection.find(
-             {
-                "comments_fetched": {"$ne": True}  # Only get videos where comments haven't been fetched
-             }, 
-             {"video_id": 1, "username": 1, "_id": 0}
-            )  
+                {"comments_fetched": {"$ne": True}},
+                {"video_id": 1, "username": 1, "_id": 0}
+            )  # Process in smaller batches
             
             videos_processed = 0
             new_comments_count = 0
+            wait_time = 2 # Initial wait time between requests
 
             for video_doc in video_documents:
                 video_id = video_doc.get("video_id")
@@ -62,6 +63,11 @@ with DAG(
 
                 if not video_id or not username:
                     continue
+
+                # Add delay between requests
+                if videos_processed > 0:
+                    logger.info(f"Waiting {wait_time} seconds before next request...")
+                    sleep(wait_time)
 
                 logger.info(f"Fetching comments for video: {video_id}")
                 
@@ -73,15 +79,15 @@ with DAG(
                         for comment in comments:
                             comment["username"] = username
                             comment["fetched_at"] = datetime.now()
+                            comment["transformed_to_neo4j"] = False
                         try:
                             # Insert comments with ordered=False to continue on duplicate key errors
-                           result = comments_collection.insert_many(comments, ordered=False)
-                           new_comments = len(result.inserted_ids)
-                           new_comments_count += new_comments
-                           logger.info(f"Stored {new_comments} new comments for video {video_id}")
+                            result = comments_collection.insert_many(comments, ordered=False)
+                            new_comments = len(result.inserted_ids)
+                            new_comments_count += new_comments
+                            logger.info(f"Stored {new_comments} new comments for video {video_id}")
 
                         except BulkWriteError as bwe:
-                            # Count successful inserts even if some were duplicates
                             successful_inserts = len(comments) - len(bwe.details.get('writeErrors', []))
                             new_comments_count += successful_inserts
                             logger.info(f"Stored {successful_inserts} new comments for video {video_id} (some were duplicates)")
@@ -91,16 +97,27 @@ with DAG(
                     
                     # Mark video as processed
                     videos_collection.update_one(
-                      {"video_id": video_id},
-                      {
-                        "$set": {
-                            "comments_fetched": True,
-                            "comments_fetched_at": datetime.now(),
-                            "comments_count": len(comments) if comments else 0
+                        {"video_id": video_id},
+                        {
+                            "$set": {
+                                "comments_fetched": True,
+                                "comments_fetched_at": datetime.now(),
+                                "comments_count": len(comments) if comments else 0
+                            }
                         }
-                      }
                     )
                     videos_processed += 1
+                    wait_time = 2  # Reset wait time after success
+
+                except HTTPError as e:
+                    if e.response.status_code == 429:  # Rate limit hit
+                        wait_time = min(wait_time * 2, 1800) # Double the wait time
+                        logger.warning(f"Rate limit hit for video {video_id}, increasing wait time to {wait_time} seconds")
+                        sleep(wait_time)    
+                        continue  # Try the same video again after waiting
+                    else:
+                        logger.error(f"Error processing comments for video {video_id}: {e}", exc_info=True)
+                        continue
 
                 except Exception as e:
                     logger.error(f"Error processing comments for video {video_id}: {e}", exc_info=True)
@@ -110,8 +127,8 @@ with DAG(
 
             # Store stats in XCom
             context['task_instance'].xcom_push(key='comments_stats', value={
-            'videos_processed': videos_processed,
-            'new_comments_count': new_comments_count
+                'videos_processed': videos_processed,
+                'new_comments_count': new_comments_count
             })
 
         except Exception as e:
@@ -143,7 +160,7 @@ with DAG(
             try:
                 # Fetch only comments that haven't been processed for Neo4j
                 comments = comments_collection.find(
-                {"processed_for_neo4j": {"$ne": True}}
+                 {"transformed_to_neo4j": False}    
                 )
                 comments_processed = 0
 
@@ -177,7 +194,7 @@ with DAG(
                         # Mark comment as processed
                         comments_collection.update_one(
                             {"_id": comment["_id"]},
-                            {"$set": {"processed_for_neo4j": True}}
+                            {"$set": {"transformed_to_neo4j": True}}
                         )
                         comments_processed += 1
                         logger.debug(f"Processed comment {comment.get('id')} for video {comment.get('video_id')}")
@@ -198,10 +215,10 @@ with DAG(
         python_callable=fetch_and_store_comments,
     )
 
-    transform_comments_to_graph_task = PythonOperator(
-        task_id='transform_comments_to_graph',
-        python_callable=transform_comments_to_graph,
-    )
+    # transform_comments_to_graph_task = PythonOperator(
+    #     task_id='transform_comments_to_graph',
+    #     python_callable=transform_comments_to_graph,
+    # )
 
     # Set task dependencies
-    fetch_and_store_comments_task >> transform_comments_to_graph_task 
+    fetch_and_store_comments_task #>> transform_comments_to_graph_task 

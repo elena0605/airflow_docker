@@ -45,84 +45,67 @@ with DAG(
     def load_usernames(file_path, **context):
         try:
             usernames = sy.read_usernames_from_csv(file_path)
-            logger.info(f"Successfully loaded {len(usernames)} usernames from {file_path}")
-            logger.info(f"Usernames loaded: {usernames}")
-            context['ti'].xcom_push(key='usernames', value=usernames)
+            clean_usernames = [username.strip() for username in usernames if username.strip()]
+            logger.info(f"Successfully loaded {len(clean_usernames)} usernames from {file_path}")
+            logger.info(f"Usernames loaded: {clean_usernames}")
+            context['ti'].xcom_push(key='usernames', value=clean_usernames) 
         except Exception as e:
             logger.error(f"Error while loading usernames: {e}")
             raise
     
     def fetch_and_store_user_video(**context):
+     try:
         hook = MongoHook(mongo_conn_id="mongo_default")
         client = hook.get_conn()
         db = client.airflow_db
-        collection = db.tiktok_user_video
-
-
-        collection.create_index("video_id", unique=True)
-     
-        usernames = context['ti'].xcom_pull(key='usernames')
-        logger.info(f"Usernames pulled from XCom: {usernames}")
-
-        if not usernames:
-            logger.warning("No usernames found, skipping data fetch and storage.")
-            return
-
-        all_videos = []
-        new_video_ids = set() 
-
-        for username in usernames:
+        
+        video_collection = db.tiktok_user_video
+        video_collection.create_index("video_id", unique=True)
+        
+        usernames = context['task_instance'].xcom_pull(key='usernames')
+        
+        
+        for username in usernames:             
             try:
                 logger.info(f"Fetching data for username: {username}")
                 user_data_list_df = te.tiktok_get_user_video_info(username=username)
-                if isinstance(user_data_list_df, pd.DataFrame):
-                    user_data_list = user_data_list_df.to_dict(orient='records')
-                else:
-                    logger.error(f"Unexpected data format for {username}: {type(user_data_list_df)}")
+                
+                if user_data_list_df is None or user_data_list_df.empty:
+                    logger.warning(f"No data found for username: {username}")
                     continue
+                
+                # Convert DataFrame to list of dictionaries
+                videos = user_data_list_df.to_dict('records')
+                
+                # Ensure all videos have the transformed_to_neo4j flag
+                for video in videos:
+                    video['transformed_to_neo4j'] = False
+                
+                try:
+                    # Insert many with ordered=False to continue on error
+                    result = video_collection.insert_many(videos, ordered=False)
+                    logger.info(f"Stored {len(result.inserted_ids)} videos for {username}")
+                
+                except BulkWriteError as bwe:                  
+                    for video in videos:                  
+                            result = video_collection.update_one(
+                                {"video_id": video['video_id']},
+                                {"$setOnInsert": {"transformed_to_neo4j": False}},
+                                upsert=True
+                            )
+                             # Skip to next username
+                    logger.info(f"Handled duplicate videos for {username}")
 
-                if user_data_list: 
-                    all_videos.extend(user_data_list)
-                    logger.info(f"Fetched data for {len(user_data_list)} videos for username: {username}")
-
-            except Exception as e:
-                logger.error(f"Error processing data for username {username} : {e}", exc_info=True)
-                raise
-
-        if all_videos: 
-            try:
-                # Try to insert all videos
-                result = collection.insert_many(all_videos, ordered=False)
-
-                # Track successfully inserted video IDs
-                new_video_ids = set([all_videos[i]["video_id"] for i in range(len(all_videos)) 
-                               if all_videos[i]["video_id"] not in [str(e["op"]["_id"]) 
-                               for e in getattr(e, "details", {}).get("writeErrors", [])]])
-
-                logger.info(f"Stored {len(new_video_ids)} videos in MongoDB successfully.")
-
-            except BulkWriteError as e:
-                 # Get successfully inserted video IDs even when some failed
-                new_video_ids = set([all_videos[i]["video_id"] for i in range(len(all_videos)) 
-                                   if all_videos[i]["video_id"] not in [str(err["op"]["_id"]) 
-                                  for err in e.details.get("writeErrors", [])]])
-                logger.info(f"Stored {len(new_video_ids)} new videos. Some videos already existed and were skipped.")
-
-            # Store new video IDs in XCom for the transform task
-            context['task_instance'].xcom_push(key='new_video_ids', value=list(new_video_ids))
+            except Exception as user_error:
+                logger.error(f"Error processing username {username}: {str(user_error)}")
+                continue
+            
+     except Exception as main_error:
+        logger.error(f"Main process error: {str(main_error)}")
+        raise
 
 
-    def transform_to_graph(**context):
-        # Get only new video IDs from previous task
-     new_video_ids = context['task_instance'].xcom_pull(
-        task_ids='fetch_and_store_user_video',
-        key='new_video_ids'
-     )
-     if not new_video_ids:
-        logger.info("No new videos to transform")
-        return
-
-        # Connect to MongoDB
+    def transform_to_graph(**context):       # Connect to MongoDB
      mongo_hook = MongoHook(mongo_conn_id="mongo_default")
      mongo_client = mongo_hook.get_conn()
      db = mongo_client.airflow_db
@@ -133,7 +116,7 @@ with DAG(
      driver = hook.get_conn() 
      with driver.session() as session:
         # Fetch new video documents from MongoDB
-         documents = collection.find({"video_id": {"$in": new_video_ids}})
+         documents = collection.find({"transformed_to_neo4j": False})
          for doc in documents:
             username = doc.get("username")
             video_id = doc.get("video_id")
@@ -187,6 +170,10 @@ with DAG(
                     video_label=json.dumps(doc.get("video_label", {})), 
                     search_id = doc.get("search_id")                                                    
                 )
+                collection.update_one(
+                    {"video_id": video_id},
+                    {"$set": {"transformed_to_neo4j": True}}
+                )
                 logging.info(f"Data for username {username} and video_id {video_id} stored in Neo4j successfully.")
             except Exception as e:
                 logging.error(f"Error processing data for username {username}and video_id {video_id}: {e}", exc_info=True)     
@@ -203,10 +190,10 @@ with DAG(
         python_callable=fetch_and_store_user_video,
     )
 
-    transform_to_graph_task = PythonOperator(
-    task_id="transform_to_graph",
-    python_callable=transform_to_graph,
-    )
+    # transform_to_graph_task = PythonOperator(
+    # task_id="transform_to_graph",
+    # python_callable=transform_to_graph,
+    # )
    
 
-    load_usernames_task >> fetch_and_store_user_video_task >> transform_to_graph_task
+    load_usernames_task >> fetch_and_store_user_video_task #>> transform_to_graph_task

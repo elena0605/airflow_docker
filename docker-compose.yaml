@@ -73,6 +73,7 @@ x-airflow-common: &airflow-common
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+    - ${AIRFLOW_PROJ_DIR:-.}/mongodb_scripts:/opt/airflow/mongodb_scripts  
 
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
@@ -102,6 +103,7 @@ services:
       - "27017:27017"
     volumes:
       - mongodb-data:/data/db
+      - ${AIRFLOW_PROJ_DIR:-.}/mongodb_scripts:/opt/airflow/mongodb_scripts
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME} 
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD} 
@@ -122,7 +124,7 @@ services:
       - neo4j-data:/data
       - neo4j-plugins:/plugins
     environment:
-      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD} # Replace 'your_password' with your actual password
+      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
     ports:
       - "7474:7474" # HTTP port
       - "7687:7687" # Bolt protocol port (for connecting to Neo4j)
