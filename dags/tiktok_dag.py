@@ -14,6 +14,9 @@ import tiktok_etl as te
 # Set up logging
 logger = logging.getLogger("airflow.task")
 
+# Get environment variables 
+airflow_env = os.getenv("AIRFLOW_ENV", "development")
+
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
@@ -71,9 +74,13 @@ with DAG(
                 raise
     
     def store_user_data(**context):
-        hook = MongoHook(mongo_conn_id="mongo_default")
+        # Choose the connection ID based on your environment (development or production)
+        mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+        hook = MongoHook(mongo_conn_id=mongo_conn_id)
         client = hook.get_conn()
-        db = client.airflow_db
+        # Dynamically choose the database based on the environment
+        db_name = "rbl" if airflow_env == "production" else "airflow_db"
+        db = client[db_name]  # Use the appropriate database based on environment
         collection = db.tiktok_user_info
 
         # Track new users
@@ -84,6 +91,8 @@ with DAG(
         # Get usernames from previous task
         usernames = context['ti'].xcom_pull(task_ids='load_usernames', key='usernames')
         logger.info(f"Processing {len(usernames)} users")
+        logger.info(f"AIRFLOW_ENV is set to: {airflow_env}")
+
     
         if not usernames:
            logger.warning("No usernames found, skipping data storage.")
