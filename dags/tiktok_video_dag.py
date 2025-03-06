@@ -15,6 +15,9 @@ import tiktok_etl as te
 # Set up logging
 logger = logging.getLogger("airflow.task")
 
+# Get environment variables 
+airflow_env = os.getenv("AIRFLOW_ENV", "development")
+
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
@@ -55,10 +58,13 @@ with DAG(
     
     def fetch_and_store_user_video(**context):
      try:
-        hook = MongoHook(mongo_conn_id="mongo_default")
+        # Choose the connection ID based on your environment (development or production)
+        mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+        hook = MongoHook(mongo_conn_id=mongo_conn_id)
         client = hook.get_conn()
-        db = client.airflow_db
-        
+        # Dynamically choose the database based on the environment
+        db_name = "rbl" if airflow_env == "production" else "airflow_db"
+        db = client[db_name]  # Use the appropriate database based on environment
         video_collection = db.tiktok_user_video
         video_collection.create_index("video_id", unique=True)
         

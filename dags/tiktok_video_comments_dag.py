@@ -9,9 +9,12 @@ import logging
 import tiktok_etl as te
 from time import sleep
 from requests.exceptions import HTTPError
-
+import os
 # Set up logging
 logger = logging.getLogger("airflow.task")
+
+# Get environment variables 
+airflow_env = os.getenv("AIRFLOW_ENV", "development")
 
 default_args = {
     "owner": "airflow",
@@ -35,10 +38,13 @@ with DAG(
 ) as dag:
 
     def fetch_and_store_comments(**context):
-        # Connect to MongoDB
-        hook = MongoHook(mongo_conn_id="mongo_default")
+        # Choose the connection ID based on your environment (development or production)
+        mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+        hook = MongoHook(mongo_conn_id=mongo_conn_id)   
         client = hook.get_conn()
-        db = client.airflow_db
+        # Dynamically choose the database based on the environment
+        db_name = "rbl" if airflow_env == "production" else "airflow_db"
+        db = client[db_name]  # Use the appropriate database based on environment
         videos_collection = db.tiktok_user_video
         comments_collection = db.tiktok_video_comments
 
