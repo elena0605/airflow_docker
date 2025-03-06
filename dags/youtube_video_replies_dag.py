@@ -9,9 +9,13 @@ import logging
 import requests
 from pymongo.errors import BulkWriteError
 import youtube_etl as ye
+import os
 
 # Set up logging
 logger = logging.getLogger("airflow.task")
+
+# Get environment variables 
+airflow_env = os.getenv("AIRFLOW_ENV", "development")
 
 default_args = {
     "owner": "airflow",
@@ -36,9 +40,13 @@ with DAG(
 ) as dag:
         def fetch_and_store_video_replies(**context):
             try:
-                hook = MongoHook(mongo_conn_id="mongo_default")
+                # Choose the connection ID based on your environment (development or production)
+                mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"    
+                hook = MongoHook(mongo_conn_id=mongo_conn_id)
                 client = hook.get_conn()
-                db = client.airflow_db
+                # Dynamically choose the database based on the environment
+                db_name = "rbl" if airflow_env == "production" else "airflow_db"
+                db = client[db_name]  # Use the appropriate database based on environment
 
                 comment_collection = db.youtube_video_comments
                 replies_collection = db.youtube_video_replies
@@ -52,7 +60,7 @@ with DAG(
                 comment_documents = comment_collection.find(
                     {"replies_fetched": {"$ne": True}},
                     {"comment_id": 1, "channel_id": 1, "_id": 0}
-                )
+                ).limit(10)
 
                 comments_processed = 0
                 new_reply_ids = []

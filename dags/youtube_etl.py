@@ -9,7 +9,7 @@ from google_auth_oauthlib.flow import Flow
 from airflow.models import Variable
 import pickle
 import os
-
+from youtube_transcript_api import YouTubeTranscriptApi
 # Set up logging - log to airflow logs & console
 logger = logging.getLogger("airflow.task")
 logger.setLevel(logging.DEBUG)  # Set the log level
@@ -282,8 +282,7 @@ def get_replies(parent_id):
                 }                
                 replies.append(reply)
             
-                # nested_replies = get_replies(reply['reply_id'])
-                # replies.extend(nested_replies)
+                
             
             next_page_token = data.get('nextPageToken')
             if not next_page_token:
@@ -477,4 +476,39 @@ def get_captions(video_id):
         
     except Exception as e:
         logger.error(f"Failed to fetch captions: {e}")
+        return None
+
+
+
+
+
+def get_captions_with_api(video_id):
+    """Fetch captions for a YouTube video using youtube_transcript_api"""
+    try:
+        # Get the video transcript
+        transcripts = YouTubeTranscriptApi.get_transcript(video_id)
+        
+        if transcripts:
+            # Extract the transcripts as text
+            subtitle_text = " ".join([entry["text"] for entry in transcripts])
+            
+            caption_id = str(uuid.uuid4())
+            
+            logger.info(f"Successfully retrieved captions for video {video_id}")
+            
+            return {
+                'caption_id': caption_id,
+                'video_id': video_id,
+                'language': 'en',
+                'language_name': 'English',
+                'track_kind': 'standard',
+                'caption_content': subtitle_text,
+                'fetched_time': datetime.now()
+            }
+        else:
+            logger.info(f"No transcripts available for video {video_id}")
+            return None
+            
+    except Exception as e:
+        logger.error(f"Error extracting captions for video {video_id}: {e}")
         return None

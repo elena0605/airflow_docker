@@ -54,7 +54,7 @@ with DAG(
             for video_id in video_ids:
                 logger.info(f"Fetching captions for video_id: {video_id}")
                 try:
-                    caption = ye.get_captions(video_id)
+                    caption = ye.get_captions_with_api(video_id)
 
                     if caption:
                         logger.info(f"Storing caption for video_id: {video_id}")
@@ -134,9 +134,9 @@ with DAG(
         python_callable=fetch_and_store_video_captions,
     )
 
-    transform_to_graph_task = PythonOperator(
-        task_id='transform_to_graph',
-        python_callable=transform_to_graph,
-    )
+    # transform_to_graph_task = PythonOperator(
+    #     task_id='transform_to_graph',
+    #     python_callable=transform_to_graph,
+    # )
 
-    fetch_and_store_video_captions_task >> transform_to_graph_task
+    fetch_and_store_video_captions_task #>> transform_to_graph_task
