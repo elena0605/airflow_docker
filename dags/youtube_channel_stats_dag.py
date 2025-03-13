@@ -114,17 +114,24 @@ with DAG(
                 task_ids='fetch_and_store_channel_stats',
                 key='new_channel_ids'
              )
+             
              if not new_channel_ids:
                 logger.info("No new channels to transform")
                 return
              logger.info(f"Transforming {len(new_channel_ids)} new channels to graph") 
-
-             mongo_hook = MongoHook(mongo_conn_id="mongo_default")
+          
+             # Choose MongoDB connection based on environment
+             mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+             mongo_hook = MongoHook(mongo_conn_id=mongo_conn_id)
              mongo_client = mongo_hook.get_conn()
-             db = mongo_client.airflow_db
+             # Choose database based on environment
+             db_name = "rbl" if airflow_env == "production" else "airflow_db"
+             db = mongo_client[db_name]
              collection = db.youtube_channel_stats
 
-             hook = Neo4jHook(conn_id="neo4j_default") 
+             # Choose Neo4j connection based on environment
+             neo4j_conn_id = "neo4j_prod" if airflow_env == "production" else "neo4j_default"
+             hook = Neo4jHook(conn_id=neo4j_conn_id) 
              driver = hook.get_conn() 
              with driver.session() as session:
                  # Only fetch new channels from MongoDB
@@ -189,12 +196,12 @@ with DAG(
             python_callable = fetch_and_store_channel_stats,
         )
 
-        # transform_to_graph_task = PythonOperator(
-        #     task_id="transform_to_graph",
-        #     python_callable=transform_to_graph,
-        # )
+        transform_to_graph_task = PythonOperator(
+            task_id="transform_to_graph",
+            python_callable=transform_to_graph,
+        )
 
-        load_channels_ids_task >> fetch_and_store_channel_stats_task #>> transform_to_graph_task
+        load_channels_ids_task >> fetch_and_store_channel_stats_task >> transform_to_graph_task
 
      
 
