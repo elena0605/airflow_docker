@@ -1,4 +1,5 @@
-    db.youtube_channel_videos.aggregate([
+var results = [];
+db.youtube_channel_videos.aggregate([
     // Stage 1: Group videos by channel to get accurate counts
     {
       $group: {
@@ -223,4 +224,10 @@
         }
       }
     }
-  ]).forEach(printjson)
+    ]).forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_video_statistics.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));

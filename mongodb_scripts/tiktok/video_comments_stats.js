@@ -1,20 +1,21 @@
+var results = [];
 db.tiktok_video_comments.aggregate([
     // First group by username and video_id
     {
       $group: {
         _id: {
           username: "$username",
-          video_id: "$video_id"
+          video_id: { $toLong: "$video_id" }
         },
         comments_count: { $sum: 1 },
-        total_likes: { $sum: "$like_count" },
-        total_replies: { $sum: "$reply_count" },
-        min_likes: { $min: "$like_count" },
-        max_likes: { $max: "$like_count" },
-        min_replies: { $min: "$reply_count" },
-        max_replies: { $max: "$reply_count" },
-        avg_likes: { $avg: "$like_count" },
-        avg_replies: { $avg: "$reply_count" }
+        total_likes: { $sum: { $toLong: "$like_count" } },
+        total_replies: { $sum: { $toLong: "$reply_count" } },
+        min_likes: { $min: { $toLong: "$like_count" } },
+        max_likes: { $max: { $toLong: "$like_count" } },
+        min_replies: { $min: { $toLong: "$reply_count" } },
+        max_replies: { $max: { $toLong: "$reply_count" } },
+        avg_likes: { $avg: { $toLong: "$like_count" } },
+        avg_replies: { $avg: { $toLong: "$reply_count" } }
       }
     },
     
@@ -104,4 +105,30 @@ db.tiktok_video_comments.aggregate([
     {
       $sort: { "stats.total_comments": -1 }
     }
-  ]).forEach(printjson)
+  ]).forEach(function(doc) {
+    // Convert any Long numbers in the nested structure
+    const convertLongNumbers = (obj) => {
+        if (obj === null || typeof obj !== 'object') return obj;
+        
+        if (obj.hasOwnProperty('low') && obj.hasOwnProperty('high') && obj.hasOwnProperty('unsigned')) {
+            return NumberLong(obj).toNumber();
+        }
+        
+        if (Array.isArray(obj)) {
+            return obj.map(convertLongNumbers);
+        }
+        
+        const converted = {};
+        for (let key in obj) {
+            converted[key] = convertLongNumbers(obj[key]);
+        }
+        return converted;
+    };
+    
+    results.push(convertLongNumbers(doc));
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/video_comments_stats.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

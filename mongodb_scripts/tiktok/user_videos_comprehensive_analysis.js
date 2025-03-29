@@ -1,4 +1,5 @@
- db.tiktok_user_video.aggregate([
+var results = [];
+db.tiktok_user_video.aggregate([
     // First facet to run two parallel processes
     {
         $facet: {
@@ -129,5 +130,11 @@
             }
         }
     }
-]).forEach(printjson)
+]).forEach(function(doc) {
+    results.push(doc);
+});
 
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/user_videos_comprehensive_analysis.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

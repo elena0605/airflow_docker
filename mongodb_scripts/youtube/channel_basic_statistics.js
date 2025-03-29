@@ -1,3 +1,5 @@
+// Store the results in a variable
+var results = [];
 db.youtube_channel_stats.aggregate([
     {
       $project: {
@@ -31,4 +33,11 @@ db.youtube_channel_stats.aggregate([
     {
       $sort: { "Subscribers": -1 }
     }
-  ]).forEach(printjson)
+]).forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_basic_statistics.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

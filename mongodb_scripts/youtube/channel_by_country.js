@@ -1,3 +1,4 @@
+var results = [];
 // First, get channels with unknown countries
 db.youtube_channel_stats.aggregate([
     {
@@ -65,5 +66,11 @@ db.youtube_channel_stats.aggregate([
         "Channels": "$channels"
       }
     }
-    ]).forEach(printjson)
-    
+    ]).forEach(function(doc) {
+        results.push(doc);
+    });
+
+    // Save to file
+    var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_by_country.json";
+    fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+    print("Results saved to: " + outputPath);

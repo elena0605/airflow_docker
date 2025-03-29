@@ -1,4 +1,6 @@
-    db.youtube_channel_stats.aggregate([
+var results = [];
+
+db.youtube_channel_stats.aggregate([
     // Stage 1: Create a document with validation results for each field
     {
       $project: {
@@ -179,4 +181,11 @@
     {
       $sort: { "Channel": 1 }
     }
-  ]).forEach(printjson)
+    ]).forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_empty_fields.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

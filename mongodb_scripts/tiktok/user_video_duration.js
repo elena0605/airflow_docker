@@ -1,3 +1,4 @@
+var results = [];
 db.tiktok_user_video.aggregate([
     // Group by username
     {
@@ -93,4 +94,10 @@ db.tiktok_user_video.aggregate([
     {
       $sort: { "total_videos": -1 }
     }
-  ]).forEach(printjson)
+  ]).forEach(function(doc) {
+    results.push(doc);
+  });
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/user_video_duration.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));

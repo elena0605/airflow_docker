@@ -1,10 +1,11 @@
-  db.tiktok_user_info.aggregate([
+var results = [];
+db.tiktok_user_info.aggregate([
     {
       $project: {
         username: 1,
-        follower_count: { $ifNull: ["$follower_count", 0] }, // Handle missing follower_count
-        likes_count: { $ifNull: ["$likes_count", 0] },       // Handle missing likes_count
-        video_count: { $ifNull: ["$video_count", 0] },       // Handle missing video_count
+        follower_count: { $ifNull: [{ $toLong: "$follower_count" }, 0] }, 
+        likes_count: { $ifNull: [{ $toLong: "$likes_count" }, 0] },
+        video_count: { $ifNull: [{ $toLong: "$video_count" }, 0] },
   
         // Engagement Rate = (average likes per video) / follower_count * 100
         engagement_rate: {
@@ -16,8 +17,8 @@
                   $multiply: [
                     {
                       $divide: [
-                        { $divide: ["$likes_count", "$video_count"] }, // avg likes per video
-                        "$follower_count"
+                        { $divide: [{ $toLong: "$likes_count" }, { $toLong: "$video_count" }] }, // avg likes per video
+                        { $toLong: "$follower_count" }
                       ]
                     },
                     100 // Convert to percentage
@@ -37,8 +38,8 @@
               $multiply: [
                 {
                   $add: [
-                    { $multiply: [{ $divide: ["$follower_count", 1000000] }, 0.6] }, // 60% weight to followers (in millions)
-                    { $multiply: [{ $divide: ["$likes_count", 1000000] }, 0.4] }     // 40% weight to likes (in millions)
+                    { $multiply: [{ $divide: [{ $toLong: "$follower_count" }, 1000000] }, 0.6] }, // 60% weight to followers (in millions)
+                    { $multiply: [{ $divide: [{ $toLong: "$likes_count" }, 1000000] }, 0.4] }     // 40% weight to likes (in millions)
                   ]
                 },
                 100 // Scale to 0-100 range
@@ -52,7 +53,20 @@
     },
     {
       $sort: { popularity_score: -1 }
-    },
-    
-  ]).forEach(printjson)
+    }
+]).forEach(function(doc) {
+    // Convert any remaining Long numbers to regular numbers
+    results.push({
+        username: doc.username,
+        follower_count: NumberLong(doc.follower_count).toNumber(),
+        likes_count: NumberLong(doc.likes_count).toNumber(),
+        video_count: NumberLong(doc.video_count).toNumber(),
+        engagement_rate: doc.engagement_rate,
+        popularity_score: doc.popularity_score
+    });
+});
 
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/user_popularity_engagement.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

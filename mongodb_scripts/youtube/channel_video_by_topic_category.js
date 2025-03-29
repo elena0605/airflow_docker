@@ -1,4 +1,5 @@
-    db.youtube_channel_videos.aggregate([
+var results = [];
+db.youtube_channel_videos.aggregate([
     {
       $project: {
         video_id: 1,
@@ -147,5 +148,11 @@
     },
     
     { $sort: { totalVideos: -1 } }
-  ]).forEach(printjson)
-  
+    ]).forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_video_by_topic_category.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

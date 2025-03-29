@@ -1,4 +1,5 @@
-var result =db.youtube_channel_videos.aggregate([
+var results = []; 
+db.youtube_channel_videos.aggregate([
     {
       $facet: {
         "totalDocuments": [
@@ -87,5 +88,12 @@ var result =db.youtube_channel_videos.aggregate([
         fieldAnalysis: { $arrayElemAt: ["$fieldAnalysis", 0] }
       }
     }
-  ])
-printjson(result)
+      ])
+  .forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_video_empty_fields.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

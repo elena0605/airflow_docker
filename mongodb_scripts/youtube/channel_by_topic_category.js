@@ -1,4 +1,5 @@
-    db.youtube_channel_stats.aggregate([
+var results = [];
+db.youtube_channel_stats.aggregate([
     // Stage 1: Unwind the topic_categories array
     { $unwind: "$topic_categories" },
     
@@ -35,4 +36,11 @@
     
     // Stage 4: Sort by most popular categories
     { $sort: { channelCount: -1 } }
-  ]).forEach(printjson)
+    ]).forEach(function(doc) {
+    results.push(doc);
+});
+  
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/youtube/channel_by_topic_category.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

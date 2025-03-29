@@ -1,3 +1,4 @@
+var results = [];
 db.tiktok_user_video.aggregate([
   {
     $match: {
@@ -88,4 +89,10 @@ db.tiktok_user_video.aggregate([
       _id: 0
     }
   }
-]).forEach(printjson)
+]).forEach(function(doc) {
+    results.push(doc);
+});
+
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/video_duration.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));

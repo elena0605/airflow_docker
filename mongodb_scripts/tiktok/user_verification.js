@@ -1,4 +1,5 @@
-var result = db.tiktok_user_info.aggregate([
+var results = [];
+db.tiktok_user_info.aggregate([
     {
         $facet: {
             "verified": [
@@ -56,6 +57,11 @@ var result = db.tiktok_user_info.aggregate([
             }
         }
     }
-])
+    ]).forEach(function(doc) {
+        results.push(doc);
+    });
 
-print(result)
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/user_verification.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
+print("Results saved to: " + outputPath);

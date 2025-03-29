@@ -1,4 +1,5 @@
-var result = db.tiktok_user_video.aggregate([
+var results = [];
+db.tiktok_user_video.aggregate([
     {
       $match: {
         share_count: { $exists: true, $type: "number", $gte: 0 },  // Filter out invalid share_count
@@ -47,6 +48,10 @@ var result = db.tiktok_user_video.aggregate([
         totalVideos: 1
       }
     }
-  ])
+  ]).forEach(function(doc) {
+    results.push(doc);
+});
 
-result.forEach(printjson)
+// Save to file
+var outputPath = "/opt/airflow/mongodb_scripts/output/tiktok/min_max_avg.json";
+fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
