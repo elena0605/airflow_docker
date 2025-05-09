@@ -138,15 +138,20 @@ with DAG(
             logger.info("No new users to transform")
             return
             
-     logger.info(f"Transforming {len(new_usernames)} new users to graph")      
-     # Connect to MongoDB
-     mongo_hook = MongoHook(mongo_conn_id="mongo_default")
+     logger.info(f"Transforming {len(new_usernames)} new users to graph")   
+
+     # Choose MongoDB connection based on environment
+     mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+     mongo_hook = MongoHook(mongo_conn_id=mongo_conn_id)
      mongo_client = mongo_hook.get_conn()
-     db = mongo_client.airflow_db
+     # Choose database based on environment
+     db_name = "rbl" if airflow_env == "production" else "airflow_db"
+     db = mongo_client[db_name]
      collection = db.tiktok_user_info
 
-    # Use Neo4jHook to connect to Neo4j
-     hook = Neo4jHook(conn_id="neo4j_default") 
+    # Choose Neo4j connection based on environment
+     neo4j_conn_id = "neo4j_prod" if airflow_env == "production" else "neo4j_default"
+     hook = Neo4jHook(conn_id=neo4j_conn_id) 
      driver = hook.get_conn() 
      with driver.session() as session:
        

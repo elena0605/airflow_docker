@@ -196,12 +196,12 @@ with DAG(
             python_callable = fetch_and_store_channel_stats,
         )
 
-        # transform_to_graph_task = PythonOperator(
-        #     task_id="transform_to_graph",
-        #     python_callable=transform_to_graph,
-        # )
+        transform_to_graph_task = PythonOperator(
+            task_id="transform_to_graph",
+            python_callable=transform_to_graph,
+        )
 
-        load_channels_ids_task >> fetch_and_store_channel_stats_task #>> transform_to_graph_task
+        load_channels_ids_task >> fetch_and_store_channel_stats_task >> transform_to_graph_task
 
      
 

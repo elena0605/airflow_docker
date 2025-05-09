@@ -146,12 +146,18 @@ with DAG(
 
             logger.info(f"Transforming {len(new_comment_ids)} comments to graph")
 
-            mongo_hook = MongoHook(mongo_conn_id="mongo_default")
+            # Choose MongoDB connection based on environment
+            mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
+            mongo_hook = MongoHook(mongo_conn_id=mongo_conn_id)
             mongo_client = mongo_hook.get_conn()
-            db = mongo_client.airflow_db
+            # Choose database based on environment
+            db_name = "rbl" if airflow_env == "production" else "airflow_db"
+            db = mongo_client[db_name]
             collection = db.youtube_video_comments           
 
-            hook = Neo4jHook(conn_id="neo4j_default") 
+            # Choose Neo4j connection based on environment
+            neo4j_conn_id = "neo4j_prod" if airflow_env == "production" else "neo4j_default"
+            hook = Neo4jHook(conn_id=neo4j_conn_id) 
             driver = hook.get_conn()
 
             with driver.session() as session:
