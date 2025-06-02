@@ -175,12 +175,26 @@ with DAG(
                     is_stem_verified=doc.get("is_stem_verified"),
                     video_duration=doc.get("video_duration"),
                     effect_ids=doc.get("effect_ids"),
-                    hashtag_info_list = json.dumps(doc.get("hashtag_info_list", [])),
-                    hashtag_names = json.dumps(doc.get("hashtag_names", [])),
-                    video_mention_list = json.dumps(doc.get("video_mention_list", [])),
-                    video_label=json.dumps(doc.get("video_label", {})), 
+                    hashtag_info_list = doc.get("hashtag_info_list", []),
+                    hashtag_names = doc.get("hashtag_names", []),
+                    video_mention_list = doc.get("video_mention_list", []),
+                    video_label=doc.get("video_label", {}), 
                     search_id = doc.get("search_id")                                                    
                 )
+                # Create Hashtag nodes and connect them to the video
+                hashtag_names = doc.get("hashtag_names", [])
+                for tag in hashtag_names:
+                    if not tag:
+                        continue
+                    session.run(
+                        """
+                        MERGE (h:Hashtag {name: $tag})
+                        MATCH (v:TikTokVideo {video_id: $video_id})
+                        MERGE (v)-[:HAS_HASHTAG]->(h)
+                        """,
+                        tag=tag,
+                        video_id=video_id
+                    )
                 collection.update_one(
                     {"video_id": video_id},
                     {"$set": {"transformed_to_neo4j": True}}
@@ -201,10 +215,10 @@ with DAG(
         python_callable=fetch_and_store_user_video,
     )
 
-    # transform_to_graph_task = PythonOperator(
-    # task_id="transform_to_graph",
-    # python_callable=transform_to_graph,
-    # )
+    transform_to_graph_task = PythonOperator(
+    task_id="transform_to_graph",
+    python_callable=transform_to_graph,
+    )
    
 
-    load_usernames_task >> fetch_and_store_user_video_task #>> transform_to_graph_task
+    load_usernames_task >> fetch_and_store_user_video_task >> transform_to_graph_task

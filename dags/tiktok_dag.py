@@ -130,15 +130,15 @@ with DAG(
 
     def transform_to_graph(**context):
      # Get newly added usernames from XCom
-     new_usernames = context['task_instance'].xcom_pull(
-            task_ids='store_user_data',
-            key='new_usernames'
-        )
-     if not new_usernames:
-            logger.info("No new users to transform")
-            return
+    #  new_usernames = context['task_instance'].xcom_pull(
+    #         task_ids='store_user_data',
+    #         key='new_usernames'
+    #     )
+    #  if not new_usernames:
+    #         logger.info("No new users to transform")
+    #         return
             
-     logger.info(f"Transforming {len(new_usernames)} new users to graph")   
+    #  logger.info(f"Transforming {len(new_usernames)} new users to graph")   
 
      # Choose MongoDB connection based on environment
      mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
@@ -156,7 +156,7 @@ with DAG(
      with driver.session() as session:
        
         # Fetch all user data from MongoDB
-        documents = collection.find({"username": {"$in": new_usernames}, "transformed_to_neo4j": False})
+        documents = collection.find({"transformed_to_neo4j": False})
         for doc in documents:
             # Create or update User nodes in Neo4j
             session.run(
@@ -205,9 +205,9 @@ with DAG(
         python_callable= store_user_data,
     )
 
-    # transform_to_graph_task = PythonOperator(
-    # task_id="transform_to_graph",
-    # python_callable=transform_to_graph,
-    # )
+    transform_to_graph_task = PythonOperator(
+    task_id="transform_to_graph",
+    python_callable=transform_to_graph,
+    )
 
-    load_usernames_task >> fetch_user_info_task >> store_user_data_task #>> transform_to_graph_task
+    load_usernames_task >> fetch_user_info_task >> store_user_data_task >> transform_to_graph_task

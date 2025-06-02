@@ -224,10 +224,10 @@ with DAG(
         python_callable=fetch_and_store_comments,
     )
 
-    # transform_comments_to_graph_task = PythonOperator(
-    #     task_id='transform_comments_to_graph',
-    #     python_callable=transform_comments_to_graph,
-    # )
+    transform_comments_to_graph_task = PythonOperator(
+        task_id='transform_comments_to_graph',
+        python_callable=transform_comments_to_graph,
+    )
 
     # Set task dependencies
-    fetch_and_store_comments_task #>> transform_comments_to_graph_task 
+    fetch_and_store_comments_task >> transform_comments_to_graph_task 

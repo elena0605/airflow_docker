@@ -176,89 +176,89 @@ def tiktok_get_user_info(username: str, output_dir:str, **context):
 
 
 
-def tiktok_get_user_video_info(username: str, **context):
-    if context is None:
-        context = {}
+# def tiktok_get_user_video_info(username: str, **context):
+#     if context is None:
+#         context = {}
 
-    # Load the token
-    token_info = load_token_from_airflow()
+#     # Load the token
+#     token_info = load_token_from_airflow()
 
-    if is_token_expired(token_info):
-        client_key = TIKTOK_CLIENT_KEY
-        client_secret = TIKTOK_CLIENT_SECRET
-        token_info = get_new_token(client_key, client_secret)
+#     if is_token_expired(token_info):
+#         client_key = TIKTOK_CLIENT_KEY
+#         client_secret = TIKTOK_CLIENT_SECRET
+#         token_info = get_new_token(client_key, client_secret)
 
-    logger.info(f"Now in function tiktok_get_user_video_info, fetching videos for {username}")
-    url = 'https://open.tiktokapis.com/v2/research/video/query/'
-    headers = {"Authorization": token_info["token"], "Content-Type": "application/json"}
-    params = {"fields": "id, video_description, create_time, region_code, share_count, view_count, like_count, comment_count, music_id, hashtag_names, username, effect_ids, playlist_id,voice_to_text, is_stem_verified, video_duration, hashtag_info_list, video_mention_list, video_label"}
+#     logger.info(f"Now in function tiktok_get_user_video_info, fetching videos for {username}")
+#     url = 'https://open.tiktokapis.com/v2/research/video/query/'
+#     headers = {"Authorization": token_info["token"], "Content-Type": "application/json"}
+#     params = {"fields": "id, video_description, create_time, region_code, share_count, view_count, like_count, comment_count, music_id, hashtag_names, username, effect_ids, playlist_id,voice_to_text, is_stem_verified, video_duration, hashtag_info_list, video_mention_list, video_label"}
 
-    start_date = datetime.strptime("20240101", "%Y%m%d")
-    end_date = datetime.strptime("20241231", "%Y%m%d")
-    date_ranges = generate_date_ranges(start_date, end_date)
+#     start_date = datetime.strptime("20240101", "%Y%m%d")
+#     end_date = datetime.strptime("20241231", "%Y%m%d")
+#     date_ranges = generate_date_ranges(start_date, end_date)
 
-    all_video_data = [] 
+#     all_video_data = [] 
 
-    for start, end in date_ranges:
-        logger.info(f"Requesting videos for {username} from {start} to {end}")
-        body = {
-            "query": {"and": [{"operation": "IN", "field_name": "username", "field_values": [username]}]},
-            "max_count": 100,
-            "start_date": start,
-            "end_date": end
-        }
+#     for start, end in date_ranges:
+#         logger.info(f"Requesting videos for {username} from {start} to {end}")
+#         body = {
+#             "query": {"and": [{"operation": "IN", "field_name": "username", "field_values": [username]}]},
+#             "max_count": 100,
+#             "start_date": start,
+#             "end_date": end
+#         }
 
-        try:
-            response = requests.post(url, headers=headers, params=params, json=body,timeout=60)
-            response.raise_for_status()
-            resp = response.json()
+#         try:
+#             response = requests.post(url, headers=headers, params=params, json=body,timeout=60)
+#             response.raise_for_status()
+#             resp = response.json()
 
-            logger.info(f"Received response for {username}: {json.dumps(resp, indent=2)}")
+#             logger.info(f"Received response for {username}: {json.dumps(resp, indent=2)}")
             
-              # Extract and save data
-            videos = resp.get("data", {}).get("videos", [])
-            search_id = resp.get("data", {}).get("search_id", "")
-            for video in videos:
-                extracted_video = {
-                    "search_id": search_id,
-                    "username": username,
-                    "video_id": video.get("id"),
-                    "video_description": video.get("video_description"),
-                    "create_time": video.get("create_time"),
-                    "region_code": video.get("region_code"),
-                    "share_count": video.get("share_count"),
-                    "view_count": video.get("view_count"),
-                    "like_count": video.get("like_count"),
-                    "comment_count": video.get("comment_count"),
-                    "music_id": video.get("music_id"),
-                    "hashtag_names": video.get("hashtag_names"),
-                    "effect_ids": video.get("effect_ids"),
-                    "playlist_id": video.get("playlist_id"),
-                    "voice_to_text": video.get("voice_to_text"),
-                    "is_stem_verified": video.get("is_stem_verified"),
-                    "video_duration": video.get("video_duration"),
-                    "hashtag_info_list": video.get("hashtag_info_list"),
-                    "video_mention_list": video.get("video_mention_list"),
-                    "video_label": video.get("video_label"),
-                    "fetched_time": datetime.now()
-                }
-                all_video_data.append(extracted_video)               
+#               # Extract and save data
+#             videos = resp.get("data", {}).get("videos", [])
+#             search_id = resp.get("data", {}).get("search_id", "")
+#             for video in videos:
+#                 extracted_video = {
+#                     "search_id": search_id,
+#                     "username": username,
+#                     "video_id": video.get("id"),
+#                     "video_description": video.get("video_description"),
+#                     "create_time": video.get("create_time"),
+#                     "region_code": video.get("region_code"),
+#                     "share_count": video.get("share_count"),
+#                     "view_count": video.get("view_count"),
+#                     "like_count": video.get("like_count"),
+#                     "comment_count": video.get("comment_count"),
+#                     "music_id": video.get("music_id"),
+#                     "hashtag_names": video.get("hashtag_names"),
+#                     "effect_ids": video.get("effect_ids"),
+#                     "playlist_id": video.get("playlist_id"),
+#                     "voice_to_text": video.get("voice_to_text"),
+#                     "is_stem_verified": video.get("is_stem_verified"),
+#                     "video_duration": video.get("video_duration"),
+#                     "hashtag_info_list": video.get("hashtag_info_list"),
+#                     "video_mention_list": video.get("video_mention_list"),
+#                     "video_label": video.get("video_label"),
+#                     "fetched_time": datetime.now()
+#                 }
+#                 all_video_data.append(extracted_video)               
             
-        except requests.exceptions.HTTPError as http_err:
-            logger.error(f"HTTP error occurred: {http_err}", exc_info=True)
-            raise
-        except requests.exceptions.RequestException as err:
-            logger.error(f"Other error occurred: {err}", exc_info=True)
-            raise
-        except Exception as e:
-            logger.error(f"An unexpected error occurred: {e}", exc_info=True)  
-            raise
+#         except requests.exceptions.HTTPError as http_err:
+#             logger.error(f"HTTP error occurred: {http_err}", exc_info=True)
+#             raise
+#         except requests.exceptions.RequestException as err:
+#             logger.error(f"Other error occurred: {err}", exc_info=True)
+#             raise
+#         except Exception as e:
+#             logger.error(f"An unexpected error occurred: {e}", exc_info=True)  
+#             raise
 
-    #if 'ti' in context:
-              #context['ti'].xcom_push(key=f'{username}_info_path', value=all_video_data)
-    # Return all the video data as a DataFrame
-    df = pd.DataFrame(all_video_data)
-    return df
+#     #if 'ti' in context:
+#               #context['ti'].xcom_push(key=f'{username}_info_path', value=all_video_data)
+#     # Return all the video data as a DataFrame
+#     df = pd.DataFrame(all_video_data)
+#     return df
 
 def tiktok_get_video_comments(video_id):
     token_info = load_token_from_airflow()
@@ -355,3 +355,98 @@ def tiktok_get_video_comments(video_id):
 
     logger.info(f"Successfully fetched {len(all_comments)} comments for video {video_id}")
     return all_comments
+
+
+def tiktok_get_user_video_info(username: str, **context):
+    if context is None:
+        context = {}
+
+    # Load the token
+    token_info = load_token_from_airflow()
+
+    if is_token_expired(token_info):
+        client_key = TIKTOK_CLIENT_KEY
+        client_secret = TIKTOK_CLIENT_SECRET
+        token_info = get_new_token(client_key, client_secret)
+
+    logger.info(f"Now in function tiktok_get_user_video_info, fetching videos for {username}")
+    url = 'https://open.tiktokapis.com/v2/research/video/query/'
+    headers = {"Authorization": token_info["token"], "Content-Type": "application/json"}
+    params = {"fields": "id, video_description, create_time, region_code, share_count, view_count, like_count, comment_count, music_id, hashtag_names, username, effect_ids, playlist_id,voice_to_text, is_stem_verified, video_duration, hashtag_info_list, video_mention_list, video_label"}
+
+    start_date = datetime.strptime("20240101", "%Y%m%d")
+    end_date = datetime.strptime("20241231", "%Y%m%d")
+    date_ranges = generate_date_ranges(start_date, end_date)
+
+    all_video_data = []
+
+    for start, end in date_ranges:
+        logger.info(f"Requesting videos for {username} from {start} to {end}")
+        cursor = 0
+        has_more = True
+
+        while has_more:
+            body = {
+                "query": {
+                    "and": [{"operation": "IN", "field_name": "username", "field_values": [username]}]
+                },
+                "max_count": 100,
+                "start_date": start,
+                "end_date": end,
+                "cursor": cursor
+            }
+
+            try:
+                response = requests.post(url, headers=headers, params=params, json=body, timeout=60)
+                response.raise_for_status()
+                resp = response.json()
+
+                logger.info(f"Received response for {username}: {json.dumps(resp, indent=2)}")
+
+                videos = resp.get("data", {}).get("videos", [])
+                cursor = resp.get("data", {}).get("cursor", None)
+                if cursor is None:
+                    logger.warning(f"No cursor returned. Stopping pagination for {username} from {start} to {end}.")
+                    break
+                has_more = resp.get("data", {}).get("has_more", False)
+                search_id = resp.get("data", {}).get("search_id", "")
+
+                for video in videos:
+                    extracted_video = {
+                        "search_id": search_id,
+                        "username": username,
+                        "video_id": video.get("id"),
+                        "video_description": video.get("video_description"),
+                        "create_time": video.get("create_time"),
+                        "region_code": video.get("region_code"),
+                        "share_count": video.get("share_count"),
+                        "view_count": video.get("view_count"),
+                        "like_count": video.get("like_count"),
+                        "comment_count": video.get("comment_count"),
+                        "music_id": video.get("music_id"),
+                        "hashtag_names": video.get("hashtag_names"),
+                        "effect_ids": video.get("effect_ids"),
+                        "playlist_id": video.get("playlist_id"),
+                        "voice_to_text": video.get("voice_to_text"),
+                        "is_stem_verified": video.get("is_stem_verified"),
+                        "video_duration": video.get("video_duration"),
+                        "hashtag_info_list": video.get("hashtag_info_list"),
+                        "video_mention_list": video.get("video_mention_list"),
+                        "video_label": video.get("video_label"),
+                        "fetched_time": datetime.now()
+                    }
+                    all_video_data.append(extracted_video)
+
+            except requests.exceptions.HTTPError as http_err:
+                logger.error(f"HTTP error occurred: {http_err}", exc_info=True)
+                raise
+            except requests.exceptions.RequestException as err:
+                logger.error(f"Other error occurred: {err}", exc_info=True)
+                raise
+            except Exception as e:
+                logger.error(f"An unexpected error occurred: {e}", exc_info=True)
+                raise
+
+    df = pd.DataFrame(all_video_data)
+    return df
+
