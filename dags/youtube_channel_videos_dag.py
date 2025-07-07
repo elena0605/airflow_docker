@@ -72,8 +72,8 @@ with DAG(
 
             new_video_ids = []
 
-            start_date = "2024-01-01T00:00:00Z"
-            end_date = "2024-12-31T23:59:59Z"
+            start_date = "2023-01-01T00:00:00Z"
+            end_date = "2023-12-31T23:59:59Z"
 
             for username, channel_id in channels_ids.items():
                 logger.info(f"Fetching videos for {username} (channel_id: {channel_id})")

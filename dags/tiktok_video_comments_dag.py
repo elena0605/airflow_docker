@@ -142,15 +142,6 @@ with DAG(
             raise
 
     def transform_comments_to_graph(**context):
-        # Get stats from previous task
-        stats = context['task_instance'].xcom_pull(
-            task_ids='fetch_and_store_comments',
-            key='comments_stats'
-        )
-
-        if not stats or stats.get('new_comments_count', 0) == 0:
-            logger.info("No new comments to transform")
-            return
               
         # Connect to MongoDB
         mongo_conn_id = "mongo_prod" if airflow_env == "production" else "mongo_default"
@@ -175,38 +166,74 @@ with DAG(
 
                 for comment in comments:
                     try:
-                        # Create comment node and relationships
-                        session.run(
-                            """
-                            MATCH (v:TikTokVideo {video_id: $video_id})
-                            MERGE (c:TikTokComment {comment_id: $comment_id})
-                            ON CREATE SET
-                                c.text = $text,
-                                c.like_count = $like_count,
-                                c.reply_count = $reply_count,
-                                c.create_time = datetime($create_time),
-                                c.username = $username,
-                                c.video_id = $video_id,
-                                c.comment_id = $comment_id,
-                                c.parent_comment_id = $parent_comment_id
-                            MERGE (c)-[:COMMENTONTIKTOK]->(v)
-                            """,
-                            video_id=comment.get("video_id"),
-                            comment_id=comment.get("id"),
-                            text=comment.get("text"),
-                            like_count=comment.get("like_count"),
-                            reply_count=comment.get("reply_count"),
-                            parent_comment_id=comment.get("parent_comment_id"),
-                            create_time=comment.get("create_time"),
-                            username=comment.get("username") 
-                        )
+                        comment_id = comment.get("id")
+                        video_id = comment.get("video_id")
+                        parent_comment_id = comment.get("parent_comment_id")
+
+                        is_reply = parent_comment_id != video_id
+
+                        if is_reply:
+                            # Comment is a reply to another comment
+                            session.run(
+                                """
+                                MERGE (c:TikTokComment {comment_id: $comment_id})
+                                ON CREATE SET
+                                    c.text = $text,
+                                    c.like_count = $like_count,
+                                    c.reply_count = $reply_count,
+                                    c.create_time = datetime($create_time),
+                                    c.username = $username,
+                                    c.video_id = $video_id,
+                                    c.comment_id = $comment_id,
+                                    c.parent_comment_id = $parent_comment_id
+
+                                MERGE (parent:TikTokComment {comment_id: $parent_comment_id})
+                                MERGE (c)-[:REPLIED_TO_TIKTOK_COMMENT]->(parent)
+                                """,
+                                comment_id=comment_id,
+                                parent_comment_id=parent_comment_id,
+                                text=comment.get("text"),
+                                like_count=comment.get("like_count"),
+                                reply_count=comment.get("reply_count"),
+                                create_time=comment.get("create_time"),
+                                username=comment.get("username"),
+                                video_id=video_id
+                            )
+                        else:
+                            # Top-level comment on video
+                            session.run(
+                                """
+                                MATCH (v:TikTokVideo {video_id: $video_id})
+                                MERGE (c:TikTokComment {comment_id: $comment_id})
+                                ON CREATE SET
+                                    c.text = $text,
+                                    c.like_count = $like_count,
+                                    c.reply_count = $reply_count,
+                                    c.create_time = datetime($create_time),
+                                    c.username = $username,
+                                    c.video_id = $video_id,
+                                    c.comment_id = $comment_id,
+                                    c.parent_comment_id = $parent_comment_id
+
+                                MERGE (c)-[:POSTED_ON_TIKTOK_VIDEO]->(v)
+                                """,
+                                comment_id=comment_id,
+                                parent_comment_id=parent_comment_id,
+                                text=comment.get("text"),
+                                like_count=comment.get("like_count"),
+                                reply_count=comment.get("reply_count"),
+                                create_time=comment.get("create_time"),
+                                username=comment.get("username"),
+                                video_id=video_id
+                            )
+
                         # Mark comment as processed
                         comments_collection.update_one(
                             {"_id": comment["_id"]},
                             {"$set": {"transformed_to_neo4j": True}}
                         )
                         comments_processed += 1
-                        logger.debug(f"Processed comment {comment.get('id')} for video {comment.get('video_id')}")
+                        logger.debug(f"Processed comment {comment_id} for video {video_id}")
                         
                     except Exception as e:
                         logger.error(f"Error processing comment {comment.get('id')}: {e}", exc_info=True)
@@ -218,11 +245,11 @@ with DAG(
                 logger.error(f"Error in transform_comments_to_graph: {e}", exc_info=True)
                 raise
 
-    # Define tasks
-    fetch_and_store_comments_task = PythonOperator(
-        task_id='fetch_and_store_comments',
-        python_callable=fetch_and_store_comments,
-    )
+    #Define tasks
+    # fetch_and_store_comments_task = PythonOperator(
+    #     task_id='fetch_and_store_comments',
+    #     python_callable=fetch_and_store_comments,
+    # )
 
     transform_comments_to_graph_task = PythonOperator(
         task_id='transform_comments_to_graph',
@@ -230,4 +257,5 @@ with DAG(
     )
 
     # Set task dependencies
-    fetch_and_store_comments_task >> transform_comments_to_graph_task 
+    #fetch_and_store_comments_task >> transform_comments_to_graph_task 
+    transform_comments_to_graph_task    

@@ -133,8 +133,21 @@ with DAG(
             video_id = doc.get("video_id")
 
             if not username or not video_id:
-                logging.warning(f"Skipping invalid document with username {username} or video_id {video_id}.")
+                logging.warning(f"Skipping invalid document with username {username} or video_id {video_id}.") 
                 continue
+            
+            # Safe extraction from potentially None struct fields
+            video_label = doc.get("video_label") or {}
+            video_tag = doc.get("video_tag")
+
+            if isinstance(video_tag, dict):
+                video_tag_type = video_tag.get("video_tag_type", "")
+            else:
+                video_tag_type = ""
+
+            hashtag_info_list = doc.get("hashtag_info_list") or []
+            sticker_info_list = doc.get("sticker_info_list") or []    
+
             try:
                 session.run(
                     """
@@ -152,49 +165,70 @@ with DAG(
                        v.voice_to_text = $voice_to_text,
                        v.is_stem_verified = $is_stem_verified,
                        v.video_duration = $video_duration, 
-                       v.effect_ids = $effect_ids,
-                       v.hashtag_info_list = $hashtag_info_list,
-                       v.hashtag_names = $hashtag_names,
+                       v.video_title = $video_title,
+                       v.video_author_url = $video_author_url,
+                       v.video_thumbnail_url = $video_thumbnail_url,
                        v.video_mention_list = $video_mention_list,
-                       v.video_label = $video_label,
+                       v.video_label_content = $video_label_content,
+                       v.video_tag_type = $video_tag_type,
                        v.search_id = $search_id,
                        v.username = $username
                     MERGE (u)-[:PUBLISHED_ON_TIKTOK]->(v)  
                     """,
                     username=username,
                     video_id=video_id,
-                    video_description=doc.get("video_description"),
-                    create_time=doc.get("create_time"),
-                    region_code=doc.get("region_code"),
-                    share_count=doc.get("share_count"),
-                    view_count=doc.get("view_count"),
-                    like_count=doc.get("like_count"),
-                    comment_count=doc.get("comment_count"),
-                    music_id=doc.get("music_id"),
-                    voice_to_text=doc.get("voice_to_text"),
-                    is_stem_verified=doc.get("is_stem_verified"),
-                    video_duration=doc.get("video_duration"),
-                    effect_ids=doc.get("effect_ids"),
-                    hashtag_info_list = doc.get("hashtag_info_list", []),
-                    hashtag_names = doc.get("hashtag_names", []),
+                    video_description=doc.get("video_description", ""),
+                    create_time=doc.get("create_time", ""),
+                    region_code=doc.get("region_code", ""),
+                    share_count=doc.get("share_count", 0),
+                    view_count=doc.get("view_count", 0),
+                    like_count=doc.get("like_count", 0),
+                    comment_count=doc.get("comment_count", 0),
+                    music_id = str(doc.get("music_id", "")),
+                    voice_to_text=doc.get("voice_to_text", ""),
+                    is_stem_verified=doc.get("is_stem_verified", False),
+                    video_duration=doc.get("video_duration", 0),
                     video_mention_list = doc.get("video_mention_list", []),
-                    video_label=doc.get("video_label", {}), 
-                    search_id = doc.get("search_id")                                                    
+                    video_title = doc.get("video_title", ""),
+                    video_author_url = doc.get("video_author_url", ""),
+                    video_thumbnail_url = doc.get("video_thumbnail_url", ""),
+                    video_label_content = video_label.get("content", ""),
+                    video_tag_type = video_tag_type,
+                    search_id = doc.get("search_id", "")                                                    
                 )
                 # Create Hashtag nodes and connect them to the video
-                hashtag_names = doc.get("hashtag_names", [])
-                for tag in hashtag_names:
-                    if not tag:
-                        continue
-                    session.run(
-                        """
-                        MERGE (h:Hashtag {name: $tag})
-                        MATCH (v:TikTokVideo {video_id: $video_id})
-                        MERGE (v)-[:HAS_HASHTAG]->(h)
-                        """,
-                        tag=tag,
-                        video_id=video_id
-                    )
+                for hashtag in hashtag_info_list:
+                    hashtag_id = str(hashtag.get("hashtag_id"))
+                    hashtag_name = hashtag.get("hashtag_name")
+                    hashtag_description = hashtag.get("hashtag_description")
+                    if hashtag_id and hashtag_name:
+                        session.run("""
+                            MERGE (h:Hashtag {id: $hashtag_id})
+                            SET h.name = $hashtag_name,
+                                h.description = $hashtag_description
+                            WITH h
+                            MATCH (v:TikTokVideo {video_id: $video_id})
+                            MERGE (v)-[:HAS_HASHTAG]->(h)
+                        """, {
+                            "video_id": video_id,
+                            "hashtag_id": hashtag_id,
+                            "hashtag_name": hashtag_name,
+                            "hashtag_description": hashtag_description
+                        })
+                for sticker in sticker_info_list:
+                    sticker_id = str(sticker.get("sticker_id"))
+                    sticker_name = sticker.get("sticker_name")
+                    if sticker_id and sticker_name:
+                        session.run("""
+                            MERGE (s:Sticker {id: $sticker_id, name: $sticker_name})
+                            WITH s
+                            MATCH (v:TikTokVideo {video_id: $video_id})
+                            MERGE (v)-[:HAS_STICKER]->(s)
+                        """, {
+                            "video_id": video_id,
+                            "sticker_id": sticker_id,
+                            "sticker_name": sticker_name
+                        })        
                 collection.update_one(
                     {"video_id": video_id},
                     {"$set": {"transformed_to_neo4j": True}}
@@ -221,4 +255,5 @@ with DAG(
     )
    
 
-    load_usernames_task >> fetch_and_store_user_video_task >> transform_to_graph_task
+    load_usernames_task >> fetch_and_store_user_video_task >> transform_to_graph_task   
+    
