@@ -57,7 +57,7 @@ with DAG(
             video_documents = videos_collection.find(
                 {"comments_fetched": {"$ne": True}},
                 {"video_id": 1, "username": 1, "_id": 0}
-            )  # Process in smaller batches
+            ).limit(300)
             
             videos_processed = 0
             new_comments_count = 0
@@ -117,10 +117,8 @@ with DAG(
 
                 except HTTPError as e:
                     if e.response.status_code == 429:  # Rate limit hit
-                        wait_time = min(wait_time * 2, 1800) # Double the wait time
-                        logger.warning(f"Rate limit hit for video {video_id}, increasing wait time to {wait_time} seconds")
-                        sleep(wait_time)    
-                        continue  # Try the same video again after waiting
+                        logger.warning(f"Global rate limit hit while processing video {video_id}. Stopping fetch early.")
+                        break
                     else:
                         logger.error(f"Error processing comments for video {video_id}: {e}", exc_info=True)
                         continue
@@ -246,10 +244,10 @@ with DAG(
                 raise
 
     #Define tasks
-    # fetch_and_store_comments_task = PythonOperator(
-    #     task_id='fetch_and_store_comments',
-    #     python_callable=fetch_and_store_comments,
-    # )
+    fetch_and_store_comments_task = PythonOperator(
+        task_id='fetch_and_store_comments',
+        python_callable=fetch_and_store_comments,
+    )
 
     transform_comments_to_graph_task = PythonOperator(
         task_id='transform_comments_to_graph',
@@ -257,5 +255,5 @@ with DAG(
     )
 
     # Set task dependencies
-    #fetch_and_store_comments_task >> transform_comments_to_graph_task 
-    transform_comments_to_graph_task    
+    fetch_and_store_comments_task >> transform_comments_to_graph_task 
+     
