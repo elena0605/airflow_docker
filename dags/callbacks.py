@@ -1,5 +1,5 @@
 import os
-from airflow.exceptions.fail import AirflowFailException
+from airflow.exceptions import AirflowFailException
 
 
 def check_logs_for_errors(context):
