@@ -1,21 +1,25 @@
+# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
+# Airflow runtime files
 logs/
 *.log
 airflow.cfg
 airflow.db
 airflow-webserver.pid
 
+# Ignored __pycache__ folders inside subdirectories
 dags/__pycache__/
 plugins/__pycache__/
 
-*.pyc
-__pycache
-
+# Secrets and sensitive config
+.env
+passwords.json
 config/credentials/client_secrets.json
 
-.env
-
+# macOS system file
 .DS_Store
+

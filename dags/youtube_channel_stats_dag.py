@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python  import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from callbacks import task_failure_callback, task_success_callback
@@ -35,7 +35,7 @@ with DAG(
     "youtube_channel_stats_dag",
      default_args=default_args,
      description= 'A DAG to fetch, store, and transform YouTube channel statistics',
-     schedule_interval=None,
+     schedule=None,
      start_date=datetime(2025, 1, 14),
      catchup=False,
      tags=['youtube_channel_stats'],

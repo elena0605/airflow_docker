@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python  import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from pymongo.errors import DuplicateKeyError
@@ -38,7 +38,7 @@ with DAG(
     "tiktok_dag",
     default_args=default_args,
     description="A simple DAG to fetch TikTok user info",
-    schedule_interval=None,
+    schedule=None,
     start_date=datetime(2024, 12, 1),
     catchup=False,
     tags=['tiktok_user_info'],

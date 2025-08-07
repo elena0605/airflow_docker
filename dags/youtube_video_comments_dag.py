@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from callbacks import task_failure_callback, task_success_callback
@@ -32,7 +32,7 @@ with DAG(
     "youtube_video_comments",
      default_args=default_args,
      description= 'A DAG to fetch, store, and transform YouTube video comments',
-     schedule_interval=None,
+     schedule=None,
      start_date=datetime(2025, 1, 19),
      catchup=False,
      tags=['youtube_video_comments'],
@@ -229,9 +229,9 @@ with DAG(
             python_callable = fetch_and_store_video_comments,
         )
 
-        # transform_to_graph_task = PythonOperator(
-        #     task_id = 'transform_to_graph',
-        #     python_callable = transform_to_graph,
-        # )
+        transform_to_graph_task = PythonOperator(
+            task_id = 'transform_to_graph',
+            python_callable = transform_to_graph,
+        )
 
-        fetch_and_store_video_comments_task #>> transform_to_graph_task
+        fetch_and_store_video_comments_task >> transform_to_graph_task

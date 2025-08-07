@@ -1,13 +1,16 @@
-FROM apache/airflow:2.10.3
+FROM apache/airflow:3.0.0
 
-# Install pymongo and other dependencies
-RUN pip install pymongo
-RUN pip install neo4j
-RUN pip install apache-airflow-providers-mongo
-RUN pip install apache-airflow-providers-neo4j
-RUN pip install google-auth
-RUN pip install google-api-python-client
-RUN pip install google-auth-oauthlib
-RUN pip install google-auth-httplib2 
+# Install pymongo and other dependencies in a single RUN to reduce image layers
+RUN pip install --no-cache-dir \
+    pymongo \
+    neo4j \
+    apache-airflow-providers-mongo \
+    apache-airflow-providers-neo4j \
+    apache-airflow-providers-standard \
+    google-auth \
+    google-api-python-client \
+    google-auth-oauthlib \
+    google-auth-httplib2
+
 
 

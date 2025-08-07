@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.mongo.hooks.mongo import MongoHook
 from airflow.providers.neo4j.hooks.neo4j import Neo4jHook
 from callbacks import task_failure_callback, task_success_callback
@@ -35,7 +35,7 @@ with DAG(
     "youtube_channel_videos",
      default_args=default_args,
      description= 'A DAG to fetch, store, and transform YouTube channel videos',
-     schedule_interval=None,
+     schedule=None,
      start_date=datetime(2025, 1, 15),
      catchup=False,
      tags=['youtube_channel_videos'],
@@ -235,9 +235,9 @@ with DAG(
             python_callable = fetch_and_store_channel_videos,
         )
 
-        # transform_to_graph_task = PythonOperator(
-        #     task_id = 'transform_to_graph',
-        #     python_callable = transform_to_graph,
-        # )
+        transform_to_graph_task = PythonOperator(
+            task_id = 'transform_to_graph',
+            python_callable = transform_to_graph,
+        )
 
-        load_channels_ids_task >> fetch_and_store_channel_videos_task #>> transform_to_graph_task
+        load_channels_ids_task >> fetch_and_store_channel_videos_task >> transform_to_graph_task
