@@ -167,7 +167,7 @@ services:
       # mongodb:  # Add MongoDB dependency
       #   condition: service_healthy
     environment:
-      - AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS=airlow:admin
+      - AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS=airflow:admin
       - AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE=/opt/airflow/passwords.json
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}/passwords.json:/opt/airflow/passwords.json
