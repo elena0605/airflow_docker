@@ -23,3 +23,5 @@ config/credentials/client_secrets.json
 # macOS system file
 .DS_Store
 
+airflow_backup.sql
+*.sql
